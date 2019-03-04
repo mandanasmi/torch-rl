@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fd3eb88-de3e-4cbc-8982-b8a32f7e3a23" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/storage/GridCity/log.csv" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/GridCity/log.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/storage/GridCity/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/GridCity/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/storage/GridCity/model.pt" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/GridCity/model.pt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/storage/GridCity/status.json" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/GridCity/status.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +22,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="75">
-                <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+                <caret line="5" column="85" selection-start-line="5" selection-start-column="85" selection-end-line="5" selection-end-column="85" />
               </first_editor>
               <second_editor />
             </state>
@@ -221,7 +216,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="75">
-            <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+            <caret line="5" column="85" selection-start-line="5" selection-start-column="85" selection-end-line="5" selection-end-column="85" />
           </first_editor>
           <second_editor />
         </state>

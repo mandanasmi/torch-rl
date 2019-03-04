@@ -1,9 +1,9 @@
-#torch-rl in Grid-City
+# Torch-rl in Grid-City
 
 We use train, visualize and evaluate scripts to train the agent in the GridCity environment, 
 then evaluate the performance and afterward visualize the progress.
 
-<p align="center"><img src="README-rsrc/visualize-training.gif" width="300" height="400"></p>
+<p align="center"><img src="README-rsrc/visualize-training.gif" width="500" height="600"></p>
 
 ## Installation
 
