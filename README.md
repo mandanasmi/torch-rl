@@ -1,3 +1,20 @@
+#torch-rl in Grid-City
+
+We use train, visualize and evaluate scripts to train the agent in the GridCity environment, 
+then evaluate the performance and afterward visualize the progress.
+
+<p align="center"><img src="README-rsrc/visualize-training.gif" width="300" height="400"></p>
+
+## Installation
+
+Clone this repository and install the dependencies with `pip3`:
+
+```
+git clone https://github.com/mandanasmi/torch-rl.git
+cd torch-rl
+pip3 install -e .
+``` 
+
 # PyTorch A2C and PPO deep reinforcement learning algorithms
 
 The `torch_rl` package actually contains the PyTorch implementation of two Actor-Critic deep reinforcement learning algorithms:

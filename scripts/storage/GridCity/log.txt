@@ -180,3 +180,55 @@ U 138 | F 282624 | FPS 1412 | D 238 | rR:μσmM 0.88 0.28 0.00 1.00 | F:μσmM 2
 U 139 | F 284672 | FPS 1658 | D 239 | rR:μσmM 0.81 0.36 0.00 1.00 | F:μσmM 33.0 67.4 1.0 300.0 | H 1.312 | V 0.368 | pL 0.023 | vL 0.019 | ∇ 0.190
 U 140 | F 286720 | FPS 1595 | D 241 | rR:μσmM 0.58 0.47 0.00 1.00 | F:μσmM 54.6 87.1 1.0 300.0 | H 1.341 | V 0.307 | pL 0.056 | vL 0.010 | ∇ 0.191
 Model successfully saved
+/Users/mandanasamiei/PycharmProjects/torch-rl/scripts/train.py --algo ppo --env MiniGrid-GridCity-4S30-v0 --model GridCity --save-interval 10
+
+Namespace(algo='ppo', batch_size=256, clip_eps=0.2, discount=0.99, entropy_coef=0.01, env='MiniGrid-GridCity-4S30-v0', epochs=4, frames=10000000, frames_per_proc=None, gae_lambda=0.95, log_interval=1, lr=0.0007, max_grad_norm=0.5, mem=False, model='GridCity', optim_alpha=0.99, optim_eps=1e-05, procs=16, recurrence=1, save_interval=10, seed=1, tb=False, text=False, value_loss_coef=0.5)
+
+Model successfully loaded
+
+ACModel(
+  (image_conv): Sequential(
+    (0): Conv2d(3, 16, kernel_size=(2, 2), stride=(1, 1))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+    (3): Conv2d(16, 64, kernel_size=(2, 2), stride=(1, 1))
+    (4): ReLU()
+  )
+  (actor): Sequential(
+    (0): Linear(in_features=64, out_features=64, bias=True)
+    (1): Tanh()
+    (2): Linear(in_features=64, out_features=7, bias=True)
+  )
+  (critic): Sequential(
+    (0): Linear(in_features=64, out_features=64, bias=True)
+    (1): Tanh()
+    (2): Linear(in_features=64, out_features=1, bias=True)
+  )
+)
+
+CUDA available: False
+
+U 141 | F 288768 | FPS 1413 | D 1 | rR:μσmM 0.90 0.27 0.00 1.00 | F:μσmM 9.7 14.9 1.0 92.0 | H 1.216 | V 0.508 | pL -0.096 | vL 0.039 | ∇ 0.308
+U 142 | F 290816 | FPS 1476 | D 2 | rR:μσmM 0.89 0.28 0.00 1.00 | F:μσmM 12.5 24.0 1.0 164.0 | H 1.267 | V 0.496 | pL -0.005 | vL 0.032 | ∇ 0.310
+U 143 | F 292864 | FPS 1277 | D 4 | rR:μσmM 0.89 0.28 0.00 1.00 | F:μσmM 14.8 35.7 1.0 271.0 | H 1.246 | V 0.506 | pL 0.008 | vL 0.025 | ∇ 0.334
+U 144 | F 294912 | FPS 1487 | D 5 | rR:μσmM 0.84 0.33 0.00 1.00 | F:μσmM 24.8 62.2 1.0 300.0 | H 1.289 | V 0.433 | pL 0.021 | vL 0.022 | ∇ 0.307
+U 145 | F 296960 | FPS 1457 | D 7 | rR:μσmM 0.83 0.35 0.00 1.00 | F:μσmM 17.8 43.7 1.0 280.0 | H 1.298 | V 0.450 | pL -0.005 | vL 0.034 | ∇ 0.339
+U 146 | F 299008 | FPS 1689 | D 8 | rR:μσmM 0.76 0.41 0.00 1.00 | F:μσmM 26.2 57.2 1.0 300.0 | H 1.298 | V 0.404 | pL 0.030 | vL 0.029 | ∇ 0.300
+U 147 | F 301056 | FPS 1308 | D 10 | rR:μσmM 0.82 0.36 0.00 1.00 | F:μσmM 15.6 28.6 1.0 180.0 | H 1.251 | V 0.479 | pL 0.003 | vL 0.035 | ∇ 0.386
+U 148 | F 303104 | FPS 1504 | D 11 | rR:μσmM 0.79 0.39 0.00 1.00 | F:μσmM 31.1 70.1 1.0 300.0 | H 1.318 | V 0.351 | pL 0.026 | vL 0.017 | ∇ 0.258
+U 149 | F 305152 | FPS 1838 | D 12 | rR:μσmM 0.74 0.42 0.00 1.00 | F:μσmM 36.7 78.6 1.0 300.0 | H 1.333 | V 0.304 | pL 0.040 | vL 0.014 | ∇ 0.192
+U 150 | F 307200 | FPS 1275 | D 14 | rR:μσmM 0.83 0.35 0.00 1.00 | F:μσmM 31.5 71.6 1.0 300.0 | H 1.287 | V 0.353 | pL -0.002 | vL 0.024 | ∇ 0.240
+Model successfully saved
+U 151 | F 309248 | FPS 1361 | D 15 | rR:μσmM 0.80 0.37 0.00 1.00 | F:μσmM 21.7 54.9 1.0 300.0 | H 1.243 | V 0.355 | pL -0.016 | vL 0.030 | ∇ 0.279
+U 152 | F 311296 | FPS 1532 | D 16 | rR:μσmM 0.79 0.39 0.00 1.00 | F:μσmM 29.7 70.5 1.0 300.0 | H 1.280 | V 0.342 | pL 0.012 | vL 0.026 | ∇ 0.324
+U 153 | F 313344 | FPS 1535 | D 18 | rR:μσmM 0.79 0.38 0.00 1.00 | F:μσmM 24.7 55.4 1.0 300.0 | H 1.305 | V 0.330 | pL 0.024 | vL 0.017 | ∇ 0.211
+U 154 | F 315392 | FPS 1412 | D 19 | rR:μσmM 0.83 0.35 0.00 1.00 | F:μσmM 25.9 59.2 1.0 300.0 | H 1.235 | V 0.437 | pL -0.015 | vL 0.034 | ∇ 0.364
+U 155 | F 317440 | FPS 1268 | D 21 | rR:μσmM 0.89 0.27 0.00 1.00 | F:μσmM 14.1 28.4 1.0 185.0 | H 1.236 | V 0.510 | pL -0.037 | vL 0.036 | ∇ 0.343
+U 156 | F 319488 | FPS 1610 | D 22 | rR:μσmM 0.81 0.36 0.00 1.00 | F:μσmM 26.5 55.7 1.0 300.0 | H 1.363 | V 0.392 | pL 0.047 | vL 0.015 | ∇ 0.203
+U 157 | F 321536 | FPS 1630 | D 23 | rR:μσmM 0.82 0.35 0.00 1.00 | F:μσmM 37.7 75.4 1.0 300.0 | H 1.372 | V 0.374 | pL 0.026 | vL 0.019 | ∇ 0.234
+U 158 | F 323584 | FPS 1779 | D 25 | rR:μσmM 0.88 0.29 0.00 1.00 | F:μσmM 21.7 54.4 1.0 300.0 | H 1.392 | V 0.324 | pL 0.022 | vL 0.012 | ∇ 0.156
+U 159 | F 325632 | FPS 1567 | D 26 | rR:μσmM 0.79 0.39 0.00 1.00 | F:μσmM 36.2 82.4 1.0 300.0 | H 1.345 | V 0.366 | pL 0.017 | vL 0.027 | ∇ 0.288
+U 160 | F 327680 | FPS 1622 | D 27 | rR:μσmM 0.88 0.28 0.00 1.00 | F:μσmM 18.6 43.0 1.0 300.0 | H 1.352 | V 0.388 | pL -0.027 | vL 0.024 | ∇ 0.239
+Model successfully saved
+U 161 | F 329728 | FPS 1471 | D 29 | rR:μσmM 0.82 0.37 0.00 1.00 | F:μσmM 27.9 67.3 1.0 300.0 | H 1.314 | V 0.404 | pL 0.001 | vL 0.031 | ∇ 0.308
+U 162 | F 331776 | FPS 1341 | D 30 | rR:μσmM 0.84 0.34 0.00 1.00 | F:μσmM 15.2 35.9 1.0 300.0 | H 1.300 | V 0.418 | pL -0.027 | vL 0.039 | ∇ 0.369
