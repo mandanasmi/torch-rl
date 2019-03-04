@@ -11,7 +11,7 @@ import utils
 def get_obss_preprocessor(env_id, obs_space, model_dir):
     # Check if it is a MiniGrid environment
     if re.match("MiniGrid-.*", env_id):
-        obs_space = {"image": obs_space.spaces['image'].shape, "text": 100}
+        obs_space = {"image": obs_space.spaces['image'].shape, "text": 500} #100
 
         vocab = Vocabulary(model_dir, obs_space["text"])
         def preprocess_obss(obss, device=None):
