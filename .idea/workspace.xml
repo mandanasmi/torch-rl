@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/scripts/storage/GridCity/model.pt" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/GridCity/model.pt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/storage/GridCity/status.json" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage/GridCity/status.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/format.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/format.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-666">
-              <caret line="35" column="58" lean-forward="true" selection-start-line="35" selection-start-column="58" selection-end-line="35" selection-end-column="58" />
+            <state relative-caret-position="361">
+              <caret line="170" column="20" selection-start-line="170" selection-start-column="20" selection-end-line="170" selection-end-column="20" />
               <folding>
                 <element signature="e#24#39#0" expanded="true" />
               </folding>
@@ -50,11 +51,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utils/format.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+            <state relative-caret-position="665">
+              <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,9 +84,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/model.py" />
-        <option value="$PROJECT_DIR$/utils/format.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/scripts/train.py" />
+        <option value="$PROJECT_DIR$/utils/format.py" />
       </list>
     </option>
   </component>
@@ -119,6 +123,19 @@
               <item name="torch-rl" type="b2602c69:ProjectViewProjectNode" />
               <item name="torch-rl" type="462c0819:PsiDirectoryNode" />
               <item name="torch_rl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="torch-rl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="torch-rl" type="462c0819:PsiDirectoryNode" />
+              <item name="torch_rl" type="462c0819:PsiDirectoryNode" />
+              <item name="torch_rl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="torch-rl" type="b2602c69:ProjectViewProjectNode" />
+              <item name="torch-rl" type="462c0819:PsiDirectoryNode" />
+              <item name="torch_rl" type="462c0819:PsiDirectoryNode" />
+              <item name="torch_rl" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="torch-rl" type="b2602c69:ProjectViewProjectNode" />
@@ -161,7 +178,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/train.py" />
-      <option name="PARAMETERS" value="--algo ppo --env MiniGrid-GridCity-4S30-v0 --difficulty 1 --model GridCity --save-interval 10" />
+      <option name="PARAMETERS" value="--algo ppo --env MiniGrid-GridCity-4S30-v0 --difficulty 2 --model GridCity --save-interval 10" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -185,13 +202,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-642" y="-1440" width="2560" height="1440" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11199365" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11199365" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.49562043" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23138686" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -218,13 +236,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/format.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -244,10 +255,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-666">
-          <caret line="35" column="58" lean-forward="true" selection-start-line="35" selection-start-column="58" selection-end-line="35" selection-end-column="58" />
+        <state relative-caret-position="361">
+          <caret line="170" column="20" selection-start-line="170" selection-start-column="20" selection-end-line="170" selection-end-column="20" />
           <folding>
             <element signature="e#24#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/format.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
