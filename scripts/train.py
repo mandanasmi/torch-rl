@@ -23,6 +23,8 @@ parser.add_argument("--algo", required=True,
                     help="algorithm to use: a2c | ppo (REQUIRED)")
 parser.add_argument("--env", required=True,
                     help="name of the environment to train on (REQUIRED)")
+parser.add_argument("--difficulty", required=False, default=1, type=int,
+                    help="difficulty of the environment")
 parser.add_argument("--model", default=None,
                     help="name of the model (default: {ENV}_{ALGO}_{TIME})")
 parser.add_argument("--seed", type=int, default=1,
@@ -97,6 +99,7 @@ utils.seed(args.seed)
 envs = []
 for i in range(args.procs):
     env = gym.make(args.env)
+    env.unwrapped.set_difficulty(args.difficulty)
     env.seed(args.seed + 10000*i)
     envs.append(env)
 
