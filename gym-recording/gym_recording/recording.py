@@ -22,7 +22,6 @@ class TraceRecording(object):
             directory = os.path.join('/tmp', 'openai.gym.{}.{}'.format(time.time(), os.getpid()))
             os.mkdir(directory)
 
-        self.env = env
         self.directory = directory
         self.file_prefix = 'openaigym.trace.{}.{}'.format(self._id_counter, os.getpid())
         TraceRecording._id_counter += 1
@@ -32,6 +31,7 @@ class TraceRecording(object):
         self.actions = []
         self.observations = []
         self.rewards = []
+        self.encoded_env = None
         self.episode_id = 0
 
         self.buffered_step_count = 0
@@ -41,10 +41,11 @@ class TraceRecording(object):
         self.episodes = []
         self.batches = []
 
-    def add_reset(self, observation):
+    def add_reset(self, observation, encoded_env):
         assert not self.closed
         self.end_episode()
         self.observations.append(observation)
+        self.encoded_env = encoded_env
 
     def add_step(self, action, observation, reward):
         assert not self.closed
@@ -61,16 +62,17 @@ class TraceRecording(object):
         if len(self.observations) > 0:
             if len(self.episodes)==0:
                 self.episodes_first = self.episode_id
-            import pdb; pdb.set_trace()
 
             self.episodes.append({
                 'actions': optimize_list_of_ndarrays(self.actions),
                 'observations': optimize_list_of_ndarrays(self.observations),
                 'rewards': optimize_list_of_ndarrays(self.rewards),
+                'env': self.encoded_env,
             })
             self.actions = []
             self.observations = []
             self.rewards = []
+            self.encoded_env = None
             self.episode_id += 1
             if self.buffered_step_count >= self.buffer_batch_size:
                 self.save_complete()
@@ -102,7 +104,6 @@ class TraceRecording(object):
                     return obj
 
                 json.dump({'episodes': self.episodes}, batch_f, default=json_encode)
-
                 bytes_per_step = float(bin_f.tell() + batch_f.tell()) / float(self.buffered_step_count)
 
         self.batches.append({
