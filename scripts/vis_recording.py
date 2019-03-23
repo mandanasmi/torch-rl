@@ -36,6 +36,7 @@ def handle_ep(observations, actions, rewards, encoded_env):
     trajectory = [int(x) for x in actions]
     actions = trajectory.copy()
     while actions:
+        env.target_door.color = "red"
         action = actions.pop()
         renderer = env.render()
         obs, reward, done, info = env.step(action)
