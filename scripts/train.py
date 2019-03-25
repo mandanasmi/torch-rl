@@ -99,7 +99,7 @@ utils.seed(args.seed)
 envs = []
 for i in range(args.procs):
     env = gym.make(args.env)
-    env.unwrapped.set_difficulty(args.difficulty)
+    # env.unwrapped.set_difficulty(args.difficulty)
     env.seed(args.seed + 10000*i)
     envs.append(env)
 

@@ -5,6 +5,7 @@ import gym
 import time
 import torch
 from torch_rl.utils.penv import ParallelEnv
+from gym_recording.wrappers import TraceRecordingWrapper
 
 try:
     import gym_minigrid
@@ -41,6 +42,7 @@ utils.seed(args.seed)
 envs = []
 for i in range(args.procs):
     env = gym.make(args.env)
+    env = TraceRecordingWrapper(env, directory="storage/recordings")
     env.seed(args.seed + 10000*i)
     envs.append(env)
 env = ParallelEnv(envs)
