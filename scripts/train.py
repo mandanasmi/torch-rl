@@ -184,6 +184,17 @@ while num_frames < args.frames:
 
         if status["num_frames"] == 0:
             csv_writer.writerow(header)
+
+        # #TODO Curriculum Learning : Mandana
+        #
+        # if rreturn_per_episode['mean'] >= 0.70:
+        #     #increment difficulty by 1
+        #     args.difficulty = args.difficulty + 1
+        #     print(args.difficulty)
+        #     env.unwrapped.set_difficulty(args.difficulty)
+        #     num_frames = 0
+        #     update = status["update"]
+
         csv_writer.writerow(data)
         csv_file.flush()
 
