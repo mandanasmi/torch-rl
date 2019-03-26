@@ -99,7 +99,7 @@ utils.seed(args.seed)
 envs = []
 for i in range(args.procs):
     env = gym.make(args.env)
-    # env.unwrapped.set_difficulty(args.difficulty)
+    env.unwrapped.set_difficulty(args.difficulty)
     env.seed(args.seed + 10000*i)
     envs.append(env)
 
@@ -160,14 +160,15 @@ while num_frames < args.frames:
     # Print logs
 
     if update % args.log_interval == 0:
+        difficulty = args. difficulty
         fps = logs["num_frames"]/(update_end_time - update_start_time)
         duration = int(time.time() - total_start_time)
         return_per_episode = utils.synthesize(logs["return_per_episode"])
         rreturn_per_episode = utils.synthesize(logs["reshaped_return_per_episode"])
         num_frames_per_episode = utils.synthesize(logs["num_frames_per_episode"])
 
-        header = ["update", "frames", "FPS", "duration"]
-        data = [update, num_frames, fps, duration]
+        header = ["update", "frames", "FPS", "duration", "difficulty"]
+        data = [update, num_frames, fps, duration, difficulty]
         header += ["return_" + key for key in rreturn_per_episode.keys()]
         data += rreturn_per_episode.values()
         header += ["num_frames_" + key for key in num_frames_per_episode.keys()]
@@ -176,24 +177,24 @@ while num_frames < args.frames:
         data += [logs["entropy"], logs["value"], logs["policy_loss"], logs["value_loss"], logs["grad_norm"]]
 
         logger.info(
-            "U {} | F {:06} | FPS {:04.0f} | D {} | rR:μσmM {:.2f} {:.2f} {:.2f} {:.2f} | F:μσmM {:.1f} {:.1f} {} {} | H {:.3f} | V {:.3f} | pL {:.3f} | vL {:.3f} | ∇ {:.3f}"
+            "U {} | F {:06} | FPS {:04.0f} | D {} | Difficulty {} | rR:μσmM {:.2f} {:.2f} {:.2f} {:.2f} | F:μσmM {:.1f} {:.1f} {} {} | H {:.3f} | V {:.3f} | pL {:.3f} | vL {:.3f} | ∇ {:.3f}"
             .format(*data))
 
         header += ["return_" + key for key in return_per_episode.keys()]
         data += return_per_episode.values()
 
+        # Curriculum Learning
+
+        if rreturn_per_episode['mean'] >= 0.70:
+            print('Average return reward for current task is higher than 0.70 now, increase difficulty by 1!\n')
+            args.difficulty = args.difficulty + 1
+            env.unwrapped.set_difficulty(args.difficulty)
+            env.reset()
+            if args.difficulty == 10:
+                break
+
         if status["num_frames"] == 0:
             csv_writer.writerow(header)
-
-        # #TODO Curriculum Learning : Mandana
-        #
-        # if rreturn_per_episode['mean'] >= 0.70:
-        #     #increment difficulty by 1
-        #     args.difficulty = args.difficulty + 1
-        #     print(args.difficulty)
-        #     env.unwrapped.set_difficulty(args.difficulty)
-        #     num_frames = 0
-        #     update = status["update"]
 
         csv_writer.writerow(data)
         csv_file.flush()
@@ -203,6 +204,7 @@ while num_frames < args.frames:
                 tb_writer.add_scalar(field, value, num_frames)
 
         status = {"num_frames": num_frames, "update": update}
+
 
     # Save vocabulary and model
 
