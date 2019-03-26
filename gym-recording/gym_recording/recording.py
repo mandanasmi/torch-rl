@@ -31,30 +31,30 @@ class TraceRecording(object):
         self.actions = []
         self.observations = []
         self.rewards = []
-        self.encoded_env = None
         self.episode_id = 0
 
         self.buffered_step_count = 0
-        self.buffer_batch_size = 100
+        self.buffer_batch_size = 1
 
         self.episodes_first = 0
         self.episodes = []
         self.batches = []
 
-    def add_reset(self, observation, encoded_env):
+    def add_reset(self, observation):
         assert not self.closed
-        self.end_episode()
+        self.end_episode(None)
         self.observations.append(observation)
-        self.encoded_env = encoded_env
 
-    def add_step(self, action, observation, reward):
+    def add_step(self, action, observation, reward, done, seed):
         assert not self.closed
         self.actions.append(action)
         self.observations.append(observation)
         self.rewards.append(reward)
         self.buffered_step_count += 1
+        if done:
+            self.end_episode(seed)
 
-    def end_episode(self):
+    def end_episode(self, seed):
         """
         if len(observations) == 0, nothing has happened yet.
         If len(observations) == 1, then len(actions) == 0, and we have only called reset and done a null episode.
@@ -67,12 +67,11 @@ class TraceRecording(object):
                 'actions': optimize_list_of_ndarrays(self.actions),
                 'observations': optimize_list_of_ndarrays(self.observations),
                 'rewards': optimize_list_of_ndarrays(self.rewards),
-                'env': self.encoded_env,
+                'seed': seed,
             })
             self.actions = []
             self.observations = []
             self.rewards = []
-            self.encoded_env = None
             self.episode_id += 1
             if self.buffered_step_count >= self.buffer_batch_size:
                 self.save_complete()
@@ -86,7 +85,6 @@ class TraceRecording(object):
         """
         batch_fn = '{}.ep{:09}.json'.format(self.file_prefix, self.episodes_first)
         bin_fn = '{}.ep{:09}.bin'.format(self.file_prefix, self.episodes_first)
-
         with atomic_write.atomic_write(os.path.join(self.directory, batch_fn), False) as batch_f:
             with atomic_write.atomic_write(os.path.join(self.directory, bin_fn), True) as bin_f:
 
@@ -102,7 +100,6 @@ class TraceRecording(object):
                         size = bin_f.tell() - offset
                         return {'__type': 'ndarray', 'shape': obj.shape, 'order': 'C', 'dtype': str(obj.dtype), 'npyfile': bin_fn, 'npyoff': offset, 'size': size}
                     return obj
-
                 json.dump({'episodes': self.episodes}, batch_f, default=json_encode)
                 bytes_per_step = float(bin_f.tell() + batch_f.tell()) / float(self.buffered_step_count)
 
@@ -133,7 +130,7 @@ class TraceRecording(object):
         you can free up memory by calling it explicitly when you're done
         """
         if not self.closed:
-            self.end_episode()
+            self.end_episode(None)
             if len(self.episodes) > 0:
                 self.save_complete()
             self.closed = True

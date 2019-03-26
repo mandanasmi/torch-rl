@@ -5,7 +5,6 @@ import glob
 import logging
 import numpy as np
 import gym
-import jsonpickle
 from gym import error
 from gym.utils import closer
 from gym_recording.recording import TraceRecording
@@ -63,13 +62,13 @@ class TraceRecordingWrapper(gym.Wrapper):
 
     def step(self, action):
         observation, reward, done, info = self.env.step(action)
-        self.recording.add_step(action, observation, reward)
+        self.recording.add_step(action, observation, reward, done, self.env.random_seed)
         return observation, reward, done, info
 
     def reset(self):
-        self.recording.end_episode()
+        self.recording.end_episode(self.env.random_seed)
         observation = self.env.reset()
-        self.recording.add_reset(observation, jsonpickle.encode(self.env))
+        self.recording.add_reset(observation)
         return observation
 
     def close(self):
