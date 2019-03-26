@@ -44,26 +44,40 @@ def handle_ep(observations, actions, rewards, seed):
     env.seed(seed)
     utils.seed(seed)
     env.reset()
-    import pdb; pdb.set_trace()
+
     trajectory = [int(x) for x in actions]
     actions = trajectory.copy()
     while actions:
         env.target_door.color = "red"
-        action = actions.pop()
+        action = actions.pop(0)
         renderer = env.render()
         obs, reward, done, info = env.step(action)
-        text = 'seed=%s, mission=%s, step=%s, reward=%.2f' % (str(seed), env.mission, env.step_count, reward)
-        renderer.window.setText(text)
+        if done and reward:
+            text = "WINNNNNNN!!!"
+        elif done and not reward:
+            text = "lose :("
+        else:
+            text = 'seed=%s, mission=%s, step=%s, reward=%.2f, trajectory=%s' % (str(seed), env.mission, env.step_count, reward, str(trajectory))
+        try:
+            renderer.window.setText(text)
+        except Exception as e:
+            import pdb; pdb.set_trace()
+            print(e)
+
         renderer.window.setKeyDownCb(keyDownCb)
         if renderer.window is None or renderer.window.key == "return":
             return
         if renderer.window.key == "restart":
-            actions = trajectory
+            actions = trajectory.copy()
             env.grid_render.close()
             renderer.window.close()
             renderer.close()
             renderer = None
-            env = jsonpickle.decode(encoded_env)
+            env.seed(seed)
+            utils.seed(seed)
+            env.reset()
+            window = renderer.window.copy()
+            renderer = env.render()
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--fails", action='store_true', required=False, help="shows only failing trajectories")
