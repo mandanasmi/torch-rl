@@ -53,17 +53,13 @@ def handle_ep(observations, actions, rewards, seed):
         renderer = env.render()
         obs, reward, done, info = env.step(action)
         if done and reward:
-            text = "WINNNNNNN!!!"
+            text = "Win!"
         elif done and not reward:
-            text = "lose :("
+            text = "Failure :("
         else:
             text = 'seed=%s, mission=%s, step=%s, reward=%.2f, trajectory=%s' % (str(seed), env.mission, env.step_count, reward, str(trajectory))
-        try:
-            renderer.window.setText(text)
-        except Exception as e:
-            import pdb; pdb.set_trace()
-            print(e)
 
+        renderer.window.setText(text)
         renderer.window.setKeyDownCb(keyDownCb)
         if renderer.window is None or renderer.window.key == "return":
             return
