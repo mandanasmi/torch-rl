@@ -131,17 +131,6 @@ logger.info("CUDA available: {}\n".format(torch.cuda.is_available()))
 
 # Define actor-critic algo
 
-if args.algo == "a2c":
-    algo = torch_rl.A2CAlgo(envs, acmodel, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
-                            args.entropy_coef, args.value_loss_coef, args.max_grad_norm, args.recurrence,
-                            args.optim_alpha, args.optim_eps, preprocess_obss)
-elif args.algo == "ppo":
-    algo = torch_rl.PPOAlgo(envs, acmodel, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
-                            args.entropy_coef, args.value_loss_coef, args.max_grad_norm, args.recurrence,
-                            args.optim_eps, args.clip_eps, args.epochs, args.batch_size, preprocess_obss)
-else:
-    raise ValueError("Incorrect algorithm name: {}".format(args.algo))
-
 # Train model
 
 num_frames = status["num_frames"]
@@ -150,6 +139,17 @@ update = status["update"]
 
 while num_frames < args.frames:
     # Update model parameters
+
+    if args.algo == "a2c":
+        algo = torch_rl.A2CAlgo(envs, acmodel, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
+                                args.entropy_coef, args.value_loss_coef, args.max_grad_norm, args.recurrence,
+                                args.optim_alpha, args.optim_eps, preprocess_obss)
+    elif args.algo == "ppo":
+        algo = torch_rl.PPOAlgo(envs, acmodel, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
+                                args.entropy_coef, args.value_loss_coef, args.max_grad_norm, args.recurrence,
+                                args.optim_eps, args.clip_eps, args.epochs, args.batch_size, preprocess_obss)
+    else:
+        raise ValueError("Incorrect algorithm name: {}".format(args.algo))
 
     update_start_time = time.time()
     logs = algo.update_parameters()
@@ -161,7 +161,7 @@ while num_frames < args.frames:
     # Print logs
 
     if update % args.log_interval == 0:
-        difficulty = args. difficulty
+        difficulty = args.difficulty
         fps = logs["num_frames"]/(update_end_time - update_start_time)
         duration = int(time.time() - total_start_time)
         return_per_episode = utils.synthesize(logs["return_per_episode"])
@@ -189,8 +189,14 @@ while num_frames < args.frames:
         if rreturn_per_episode['mean'] >= 0.70:
             print('Average return reward for current task is higher than 0.70 now, increase difficulty by 1!\n')
             args.difficulty = args.difficulty + 1
-            env.unwrapped.set_difficulty(args.difficulty)
-            env.reset()
+            envs = []
+            for i in range(args.procs):
+                env = gym.make(args.env)
+                env.unwrapped.set_difficulty(args.difficulty)
+                env.seed(args.seed + 10000*i)
+                env.reset()
+                envs.append(env)
+
             if args.difficulty == 10:
                 break
 
