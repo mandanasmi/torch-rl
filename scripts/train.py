@@ -12,7 +12,8 @@ try:
     import gym_minigrid
 except ImportError:
     pass
-
+import sys
+sys.path.append(".")
 import utils
 from model import ACModel
 
