@@ -51,12 +51,21 @@ done = True
 while True:
     if done:
         obs = env.reset()
+    env.target_door.color = "red"
 
     time.sleep(args.pause)
     renderer = env.render()
 
     action = agent.get_action(obs)
     obs, reward, done, _ = env.step(action)
+    if done and reward:
+        text = "WINNNNNNN!!!"
+    elif done and not reward:
+        text = "lose :("
+    else:
+        text = 'mission=%s, step=%s, reward=%.2f' % (env.mission, env.step_count, reward)
+    renderer.window.setText(text)
+
     agent.analyze_feedback(reward, done)
 
     if renderer.window is None:
