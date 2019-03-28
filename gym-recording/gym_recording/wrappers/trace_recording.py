@@ -62,11 +62,11 @@ class TraceRecordingWrapper(gym.Wrapper):
 
     def step(self, action):
         observation, reward, done, info = self.env.step(action)
-        self.recording.add_step(action, observation, reward, done, self.env.random_seed)
+        self.recording.add_step(action, observation, reward, done, self.env.random_seed, self.env.difficulty)
         return observation, reward, done, info
 
     def reset(self):
-        self.recording.end_episode(self.env.random_seed)
+        self.recording.end_episode(self.env.random_seed, self.env.difficulty)
         observation = self.env.reset()
         self.recording.add_reset(observation)
         return observation

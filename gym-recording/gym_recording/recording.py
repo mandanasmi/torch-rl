@@ -42,19 +42,19 @@ class TraceRecording(object):
 
     def add_reset(self, observation):
         assert not self.closed
-        self.end_episode(None)
+        self.end_episode(None, None)
         self.observations.append(observation)
 
-    def add_step(self, action, observation, reward, done, seed):
+    def add_step(self, action, observation, reward, done, seed, difficulty):
         assert not self.closed
         self.actions.append(action)
         self.observations.append(observation)
         self.rewards.append(reward)
         self.buffered_step_count += 1
         if done:
-            self.end_episode(seed)
+            self.end_episode(seed, difficulty)
 
-    def end_episode(self, seed):
+    def end_episode(self, seed, difficulty):
         """
         if len(observations) == 0, nothing has happened yet.
         If len(observations) == 1, then len(actions) == 0, and we have only called reset and done a null episode.
@@ -68,6 +68,7 @@ class TraceRecording(object):
                 'observations': optimize_list_of_ndarrays(self.observations),
                 'rewards': optimize_list_of_ndarrays(self.rewards),
                 'seed': seed,
+                'difficulty': difficulty
             })
             self.actions = []
             self.observations = []
@@ -130,7 +131,7 @@ class TraceRecording(object):
         you can free up memory by calling it explicitly when you're done
         """
         if not self.closed:
-            self.end_episode(None)
+            self.end_episode(None, None)
             if len(self.episodes) > 0:
                 self.save_complete()
             self.closed = True

@@ -5,6 +5,7 @@ import gym
 import time
 import torch
 import sys
+import pickle
 import numpy as np
 from torch_rl.utils.penv import ParallelEnv
 from gym_recording.wrappers import TraceRecordingWrapper
@@ -25,6 +26,8 @@ parser.add_argument("--env", required=True,
                     help="name of the environment to be run (REQUIRED)")
 parser.add_argument("--model", required=True,
                     help="name of the trained model (REQUIRED)")
+parser.add_argument("--difficulty", required=True,
+                    type=int, help="difficulty")
 parser.add_argument("--episodes", type=int, default=100,
                     help="number of episodes of evaluation (default: 100)")
 parser.add_argument("--seed", type=int, default=0,
@@ -37,61 +40,41 @@ parser.add_argument("--worst-episodes-to-show", type=int, default=10,
                     help="The number of worse episodes to show")
 args = parser.parse_args()
 
-logs = {"num_frames_per_episode": [], "return_per_episode": []}
-
+logs = []
 start_time = time.time()
 
 print("CUDA available: {}\n".format(torch.cuda.is_available()))
+for difficulty in range(1, args.difficulty + 1):
+    logs_by_difficulty = {"difficulty": difficulty, "num_frames_per_episode": [], "return_per_episode": []}
+    for i in range(args.episodes):
+        print("episode: " + str(i))
+        episode_return = 0
+        episode_num_frames = 0
 
-for i in range(args.episodes):
-    print("episode: " + str(i))
-    episode_return = 0
-    episode_num_frames = 0
+        env = gym.make(args.env)
+        env.random_seed = i
+        env.seed(i)
+        utils.seed(i)
+        env.unwrapped.set_difficulty(difficulty)
 
-    env = gym.make(args.env)
-    env.random_seed = i
-    env.seed(i)
-    utils.seed(i)
-    env = TraceRecordingWrapper(env, directory="storage/recordings")
-    obs = env.reset()
+        env = TraceRecordingWrapper(env, directory="storage/recordings")
+        obs = env.reset()
 
-    model_dir = utils.get_model_dir(args.model)
-    agent = utils.Agent(args.env, env.observation_space, model_dir, args.argmax, 1)
-    done = False
-    while not done:
-        action = agent.get_action(obs)
-        obs, reward, done, _ = env.step(action)
-        agent.analyze_feedback(reward, done)
+        model_dir = utils.get_model_dir(args.model)
+        agent = utils.Agent(args.env, env.observation_space, model_dir, args.argmax, 1)
+        done = False
+        while not done:
+            action = agent.get_action(obs)
+            obs, reward, done, _ = env.step(action)
+            agent.analyze_feedback(reward, done)
 
-        episode_return += reward
-        episode_num_frames += 1
+            episode_return += reward
+            episode_num_frames += 1
 
-        if done:
-            logs["return_per_episode"].append(episode_return)
-            logs["num_frames_per_episode"].append(episode_num_frames)
-            print(reward)
-end_time = time.time()
+            if done:
+                logs_by_difficulty["return_per_episode"].append(episode_return)
+                logs_by_difficulty["num_frames_per_episode"].append(episode_num_frames)
+                print(reward)
+    logs.append(logs_by_difficulty)
 
-# Print logs
-
-num_frames = sum(logs["num_frames_per_episode"])
-fps = num_frames/(end_time - start_time)
-duration = int(end_time - start_time)
-print(logs)
-# return_per_episode = utils.synthesize(logs["return_per_episode"])
-# num_frames_per_episode = utils.synthesize(logs["num_frames_per_episode"])
-#
-# print("F {} | FPS {:.0f} | D {} | R:μσmM {:.2f} {:.2f} {:.2f} {:.2f} | F:μσmM {:.1f} {:.1f} {} {}"
-#       .format(num_frames, fps, duration,
-#               *return_per_episode.values(),
-#               *num_frames_per_episode.values()))
-#
-# Print worst episodes
-
-# n = args.worst_episodes_to_show
-# if n > 0:
-#     print("\n{} worst episodes:".format(n))
-#
-#     indexes = sorted(range(len(logs["return_per_episode"])), key=lambda k: logs["return_per_episode"][k])
-#     for i in indexes[:n]:
-#         print("- episode {}: R={}, F={}".format(i, logs["return_per_episode"][i], logs["num_frames_per_episode"][i]))
+pickle.dump(logs, open("log.txt", 'wb'))
