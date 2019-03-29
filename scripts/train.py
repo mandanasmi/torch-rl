@@ -129,8 +129,6 @@ if torch.cuda.is_available():
     acmodel.cuda()
 logger.info("CUDA available: {}\n".format(torch.cuda.is_available()))
 
-# Define actor-critic algo
-
 # Train model
 
 num_frames = status["num_frames"]

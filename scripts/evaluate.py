@@ -45,9 +45,8 @@ start_time = time.time()
 
 print("CUDA available: {}\n".format(torch.cuda.is_available()))
 for difficulty in range(1, args.difficulty + 1):
-    logs_by_difficulty = {"difficulty": difficulty, "num_frames_per_episode": [], "return_per_episode": []}
+    logs_by_difficulty = {"difficulty": difficulty, "actual_difficulty": [], "target_path_length": [], "num_frames_per_episode": [], "return_per_episode": []}
     for i in range(args.episodes):
-        print("episode: " + str(i))
         episode_return = 0
         episode_num_frames = 0
 
@@ -72,9 +71,11 @@ for difficulty in range(1, args.difficulty + 1):
             episode_num_frames += 1
 
             if done:
+                logs_by_difficulty["actual_difficulty"].append(env.unwrapped.actual_difficulty)
+                logs_by_difficulty["target_path_length"].append(env.unwrapped.target_path_length)
                 logs_by_difficulty["return_per_episode"].append(episode_return)
                 logs_by_difficulty["num_frames_per_episode"].append(episode_num_frames)
-                print(reward)
+                print("episode: " + str(i) + ", reward: " + str(reward))
     logs.append(logs_by_difficulty)
 
 pickle.dump(logs, open("log.txt", 'wb'))

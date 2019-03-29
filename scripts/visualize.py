@@ -52,6 +52,7 @@ while True:
     if done:
         obs = env.reset()
     env.target_door.color = "red"
+    env.draw_address = True
 
     time.sleep(args.pause)
     renderer = env.render()
