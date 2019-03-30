@@ -101,7 +101,7 @@ envs = []
 for i in range(args.procs):
     env = gym.make(args.env)
     env.unwrapped.set_difficulty(args.difficulty)
-    env.seed(args.seed + 10000*i)
+    env.seed(args.seed)
     envs.append(env)
 
 # Define obss preprocessor
@@ -221,7 +221,9 @@ while num_frames < args.frames:
 
         if torch.cuda.is_available():
             acmodel.cpu()
-        utils.save_model(acmodel.load_state_dict(best_model), model_dir)
+        model_to_save = ACModel(obs_space, envs[0].action_space, args.mem, args.text)
+        model_to_save.load_state_dict(best_model)
+        utils.save_model(model_to_save, model_dir)
         logger.info("Model successfully saved")
         if torch.cuda.is_available():
             acmodel.cuda()
