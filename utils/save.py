@@ -62,5 +62,5 @@ def get_csv_path(model_dir):
 def get_csv_writer(model_dir):
     csv_path = get_csv_path(model_dir)
     utils.create_folders_if_necessary(csv_path)
-    csv_file = open(csv_path, "a")
-    return csv_file, csv.writer(csv_file)
+    f = open(csv_path, "a")
+    return f, csv.writer(f)
