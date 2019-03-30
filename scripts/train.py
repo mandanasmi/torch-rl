@@ -134,6 +134,7 @@ logger.info("CUDA available: {}\n".format(torch.cuda.is_available()))
 num_frames = status["num_frames"]
 total_start_time = time.time()
 update = status["update"]
+best_val = 0
 
 while num_frames < args.frames:
     # Update model parameters
@@ -156,8 +157,11 @@ while num_frames < args.frames:
     num_frames += logs["num_frames"]
     update += 1
 
-    # Print logs
+    if utils.synthesize(logs["return_per_episode"])['mean'] > best_val:
+        print("logs[return_per_episode]: " + str(utils.synthesize(logs["return_per_episode"])['mean']))
+        best_model = acmodel.state_dict()
 
+    # Print logs
     if update % args.log_interval == 0:
         difficulty = args.difficulty
         fps = logs["num_frames"]/(update_end_time - update_start_time)
@@ -183,9 +187,8 @@ while num_frames < args.frames:
         data += return_per_episode.values()
 
         # Curriculum Learning
-
-        if rreturn_per_episode['mean'] >= 0.70:
-            print('Average return reward for current task is higher than 0.70 now, increase difficulty by 1!\n')
+        if rreturn_per_episode['mean'] >= 0.9:
+            print('Average return reward for current task is higher than 0.90 now, increase difficulty by 1!\n')
             args.difficulty = args.difficulty + 1
             envs = []
             for i in range(args.procs):
@@ -218,7 +221,7 @@ while num_frames < args.frames:
 
         if torch.cuda.is_available():
             acmodel.cpu()
-        utils.save_model(acmodel, model_dir)
+        utils.save_model(acmodel.load_state_dict(best_model), model_dir)
         logger.info("Model successfully saved")
         if torch.cuda.is_available():
             acmodel.cuda()
