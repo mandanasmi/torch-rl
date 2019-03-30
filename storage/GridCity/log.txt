@@ -20,83 +20,11 @@ ACModel(
   )
 )
 
-CUDA available: True
-
-U 1 | F 002048 | FPS 0732 | D 2 | Difficulty 1 | rR:μσmM 0.22 0.41 0.00 1.00 | F:μσmM 3.5 3.2 1.0 22.0 | H 1.367 | V 0.140 | pL -0.069 | vL 0.096 | grad 0.255
-U 2 | F 004096 | FPS 0768 | D 5 | Difficulty 1 | rR:μσmM 0.26 0.44 0.00 1.00 | F:μσmM 3.6 3.1 1.0 24.0 | H 1.349 | V 0.209 | pL -0.027 | vL 0.093 | grad 0.229
-U 3 | F 006144 | FPS 0805 | D 8 | Difficulty 1 | rR:μσmM 0.25 0.43 0.00 1.00 | F:μσmM 3.1 2.6 1.0 18.0 | H 1.324 | V 0.207 | pL -0.009 | vL 0.086 | grad 0.292
-U 4 | F 008192 | FPS 0721 | D 11 | Difficulty 1 | rR:μσmM 0.29 0.45 0.00 1.00 | F:μσmM 3.2 2.9 1.0 20.0 | H 1.285 | V 0.228 | pL -0.010 | vL 0.079 | grad 0.346
-U 5 | F 010240 | FPS 0782 | D 14 | Difficulty 1 | rR:μσmM 0.29 0.45 0.00 1.00 | F:μσmM 3.6 3.8 1.0 33.0 | H 1.260 | V 0.222 | pL -0.018 | vL 0.069 | grad 0.252
-U 6 | F 012288 | FPS 0820 | D 17 | Difficulty 1 | rR:μσmM 0.32 0.47 0.00 1.00 | F:μσmM 3.4 4.0 1.0 34.0 | H 1.245 | V 0.247 | pL -0.012 | vL 0.075 | grad 0.288
-U 7 | F 014336 | FPS 0766 | D 20 | Difficulty 1 | rR:μσmM 0.36 0.48 0.00 1.00 | F:μσmM 4.1 4.7 1.0 31.0 | H 1.186 | V 0.244 | pL -0.098 | vL 0.082 | grad 0.337
-U 8 | F 016384 | FPS 0915 | D 22 | Difficulty 1 | rR:μσmM 0.35 0.47 0.00 1.00 | F:μσmM 5.1 6.3 1.0 43.0 | H 1.153 | V 0.225 | pL -0.035 | vL 0.075 | grad 0.245
-U 9 | F 018432 | FPS 0897 | D 25 | Difficulty 1 | rR:μσmM 0.43 0.49 0.00 1.00 | F:μσmM 4.9 5.0 1.0 31.0 | H 1.110 | V 0.277 | pL -0.147 | vL 0.099 | grad 0.297
-U 10 | F 020480 | FPS 0777 | D 27 | Difficulty 1 | rR:μσmM 0.48 0.49 0.00 1.00 | F:μσmM 5.0 5.9 1.0 53.0 | H 1.038 | V 0.376 | pL -0.013 | vL 0.091 | grad 0.393
-Model successfully saved
-U 11 | F 022528 | FPS 0901 | D 30 | Difficulty 1 | rR:μσmM 0.48 0.49 0.00 1.00 | F:μσmM 5.2 6.3 1.0 45.0 | H 0.996 | V 0.332 | pL -0.055 | vL 0.085 | grad 0.313
-U 12 | F 024576 | FPS 0862 | D 33 | Difficulty 1 | rR:μσmM 0.55 0.49 0.00 1.00 | F:μσmM 5.4 6.5 1.0 39.0 | H 0.953 | V 0.458 | pL -0.068 | vL 0.097 | grad 0.341
-U 13 | F 026624 | FPS 0939 | D 35 | Difficulty 1 | rR:μσmM 0.54 0.49 0.00 1.00 | F:μσmM 5.6 7.0 1.0 68.0 | H 0.923 | V 0.434 | pL -0.061 | vL 0.098 | grad 0.466
-U 14 | F 028672 | FPS 1002 | D 37 | Difficulty 1 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 7.1 8.4 1.0 63.0 | H 0.846 | V 0.415 | pL -0.112 | vL 0.083 | grad 0.426
-U 15 | F 030720 | FPS 1040 | D 39 | Difficulty 1 | rR:μσmM 0.61 0.48 0.00 1.00 | F:μσmM 8.4 9.3 1.0 54.0 | H 0.857 | V 0.419 | pL -0.003 | vL 0.077 | grad 0.386
-U 16 | F 032768 | FPS 0935 | D 42 | Difficulty 1 | rR:μσmM 0.65 0.47 0.00 1.00 | F:μσmM 6.7 7.2 1.0 41.0 | H 0.827 | V 0.437 | pL -0.032 | vL 0.089 | grad 0.412
-U 17 | F 034816 | FPS 0835 | D 44 | Difficulty 1 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 6.8 6.8 1.0 49.0 | H 0.791 | V 0.493 | pL -0.013 | vL 0.093 | grad 0.390
-U 18 | F 036864 | FPS 1032 | D 47 | Difficulty 1 | rR:μσmM 0.71 0.44 0.00 1.00 | F:μσmM 7.6 8.7 1.0 67.0 | H 0.756 | V 0.519 | pL -0.046 | vL 0.076 | grad 0.337
-U 19 | F 038912 | FPS 1057 | D 49 | Difficulty 2 | rR:μσmM 0.39 0.48 0.00 1.00 | F:μσmM 8.0 8.2 1.0 62.0 | H 0.790 | V 0.407 | pL 0.138 | vL 0.093 | grad 0.348
-U 20 | F 040960 | FPS 0971 | D 51 | Difficulty 2 | rR:μσmM 0.37 0.48 0.00 1.00 | F:μσmM 7.3 8.1 1.0 77.0 | H 0.758 | V 0.337 | pL 0.026 | vL 0.092 | grad 0.345
-Model successfully saved
-U 21 | F 043008 | FPS 0992 | D 54 | Difficulty 2 | rR:μσmM 0.43 0.49 0.00 1.00 | F:μσmM 7.6 8.4 1.0 69.0 | H 0.806 | V 0.357 | pL 0.010 | vL 0.100 | grad 0.388
-U 22 | F 045056 | FPS 0847 | D 56 | Difficulty 2 | rR:μσmM 0.45 0.49 0.00 1.00 | F:μσmM 7.9 8.9 1.0 77.0 | H 0.823 | V 0.366 | pL -0.029 | vL 0.095 | grad 0.385
-U 23 | F 047104 | FPS 1029 | D 59 | Difficulty 2 | rR:μσmM 0.38 0.48 0.00 1.00 | F:μσmM 7.7 9.1 1.0 75.0 | H 0.816 | V 0.312 | pL -0.022 | vL 0.084 | grad 0.345
-U 24 | F 049152 | FPS 0992 | D 61 | Difficulty 2 | rR:μσmM 0.38 0.48 0.00 1.00 | F:μσmM 7.2 7.6 1.0 52.0 | H 0.719 | V 0.338 | pL -0.071 | vL 0.106 | grad 0.357
-U 25 | F 051200 | FPS 0965 | D 63 | Difficulty 2 | rR:μσmM 0.41 0.48 0.00 1.00 | F:μσmM 6.6 6.0 1.0 34.0 | H 0.725 | V 0.341 | pL -0.007 | vL 0.109 | grad 0.421
-U 26 | F 053248 | FPS 0791 | D 66 | Difficulty 2 | rR:μσmM 0.38 0.48 0.00 1.00 | F:μσmM 6.2 6.2 1.0 51.0 | H 0.710 | V 0.358 | pL -0.024 | vL 0.095 | grad 0.363
-U 27 | F 055296 | FPS 0955 | D 69 | Difficulty 2 | rR:μσmM 0.43 0.49 0.00 1.00 | F:μσmM 7.0 6.9 1.0 42.0 | H 0.678 | V 0.345 | pL -0.041 | vL 0.109 | grad 0.363
-U 28 | F 057344 | FPS 0935 | D 71 | Difficulty 2 | rR:μσmM 0.52 0.49 0.00 1.00 | F:μσmM 6.0 5.7 1.0 42.0 | H 0.647 | V 0.418 | pL -0.110 | vL 0.119 | grad 0.354
-U 29 | F 059392 | FPS 0914 | D 74 | Difficulty 2 | rR:μσmM 0.47 0.49 0.00 1.00 | F:μσmM 6.4 5.9 1.0 33.0 | H 0.642 | V 0.416 | pL 0.028 | vL 0.106 | grad 0.384
-U 30 | F 061440 | FPS 0794 | D 76 | Difficulty 2 | rR:μσmM 0.46 0.49 0.00 1.00 | F:μσmM 6.2 5.8 1.0 39.0 | H 0.654 | V 0.368 | pL 0.000 | vL 0.110 | grad 0.378
-Model successfully saved
-U 31 | F 063488 | FPS 0909 | D 79 | Difficulty 2 | rR:μσmM 0.48 0.49 0.00 1.00 | F:μσmM 5.6 5.0 1.0 37.0 | H 0.661 | V 0.374 | pL -0.027 | vL 0.115 | grad 0.371
-U 32 | F 065536 | FPS 0910 | D 81 | Difficulty 2 | rR:μσmM 0.44 0.49 0.00 1.00 | F:μσmM 6.2 5.7 1.0 50.0 | H 0.691 | V 0.337 | pL 0.017 | vL 0.102 | grad 0.414
-U 33 | F 067584 | FPS 0797 | D 84 | Difficulty 2 | rR:μσmM 0.45 0.49 0.00 1.00 | F:μσmM 7.2 8.5 1.0 83.0 | H 0.718 | V 0.350 | pL 0.031 | vL 0.102 | grad 0.317
-U 34 | F 069632 | FPS 0973 | D 87 | Difficulty 2 | rR:μσmM 0.45 0.49 0.00 1.00 | F:μσmM 6.9 7.0 1.0 50.0 | H 0.723 | V 0.382 | pL 0.021 | vL 0.108 | grad 0.347
-U 35 | F 071680 | FPS 0944 | D 89 | Difficulty 2 | rR:μσmM 0.53 0.49 0.00 1.00 | F:μσmM 6.5 5.7 1.0 57.0 | H 0.681 | V 0.406 | pL -0.099 | vL 0.117 | grad 0.423
-U 36 | F 073728 | FPS 0805 | D 92 | Difficulty 2 | rR:μσmM 0.40 0.48 0.00 1.00 | F:μσmM 7.5 7.2 1.0 44.0 | H 0.740 | V 0.386 | pL 0.060 | vL 0.094 | grad 0.402
-U 37 | F 075776 | FPS 1016 | D 95 | Difficulty 2 | rR:μσmM 0.47 0.49 0.00 1.00 | F:μσmM 8.3 8.0 1.0 54.0 | H 0.685 | V 0.378 | pL -0.036 | vL 0.089 | grad 0.379
-U 38 | F 077824 | FPS 1030 | D 97 | Difficulty 2 | rR:μσmM 0.51 0.49 0.00 1.00 | F:μσmM 8.9 10.6 1.0 98.0 | H 0.691 | V 0.371 | pL -0.046 | vL 0.071 | grad 0.310
-U 39 | F 079872 | FPS 0702 | D 103 | Difficulty 2 | rR:μσmM 0.49 0.49 0.00 1.00 | F:μσmM 8.1 7.0 1.0 35.0 | H 0.648 | V 0.315 | pL -0.050 | vL 0.092 | grad 0.369
-U 40 | F 081920 | FPS 0882 | D 110 | Difficulty 2 | rR:μσmM 0.49 0.49 0.00 1.00 | F:μσmM 7.8 8.6 1.0 63.0 | H 0.716 | V 0.389 | pL -0.020 | vL 0.091 | grad 0.428
-Model successfully saved
-U 41 | F 083968 | FPS 0166 | D 125 | Difficulty 2 | rR:μσmM 0.50 0.49 0.00 1.00 | F:μσmM 9.1 10.1 1.0 86.0 | H 0.710 | V 0.379 | pL -0.019 | vL 0.094 | grad 0.425
-U 42 | F 086016 | FPS 0880 | D 133 | Difficulty 2 | rR:μσmM 0.42 0.48 0.00 1.00 | F:μσmM 8.2 8.7 1.0 91.0 | H 0.711 | V 0.368 | pL 0.030 | vL 0.086 | grad 0.356
-U 43 | F 088064 | FPS 0920 | D 142 | Difficulty 2 | rR:μσmM 0.45 0.49 0.00 1.00 | F:μσmM 8.3 7.7 1.0 48.0 | H 0.719 | V 0.383 | pL 0.030 | vL 0.092 | grad 0.511
-U 44 | F 090112 | FPS 0954 | D 148 | Difficulty 2 | rR:μσmM 0.42 0.48 0.00 1.00 | F:μσmM 9.6 8.0 1.0 45.0 | H 0.743 | V 0.356 | pL 0.001 | vL 0.089 | grad 0.378
-U 45 | F 092160 | FPS 1019 | D 168 | Difficulty 2 | rR:μσmM 0.42 0.48 0.00 1.00 | F:μσmM 10.5 10.4 1.0 61.0 | H 0.681 | V 0.301 | pL 0.001 | vL 0.077 | grad 0.309
-U 46 | F 094208 | FPS 0184 | D 182 | Difficulty 2 | rR:μσmM 0.49 0.49 0.00 1.00 | F:μσmM 10.4 12.1 1.0 79.0 | H 0.697 | V 0.321 | pL -0.034 | vL 0.066 | grad 0.310
-U 47 | F 096256 | FPS 0976 | D 186 | Difficulty 2 | rR:μσmM 0.49 0.48 0.00 1.00 | F:μσmM 11.5 12.8 1.0 112.0 | H 0.676 | V 0.307 | pL -0.050 | vL 0.079 | grad 0.332
-U 48 | F 098304 | FPS 1065 | D 190 | Difficulty 2 | rR:μσmM 0.47 0.49 0.00 1.00 | F:μσmM 11.3 10.8 1.0 71.0 | H 0.723 | V 0.347 | pL -0.004 | vL 0.071 | grad 0.400
-U 49 | F 100352 | FPS 0995 | D 194 | Difficulty 2 | rR:μσmM 0.53 0.49 0.00 1.00 | F:μσmM 11.4 12.7 1.0 89.0 | H 0.709 | V 0.375 | pL -0.031 | vL 0.073 | grad 0.312
-U 50 | F 102400 | FPS 1071 | D 197 | Difficulty 2 | rR:μσmM 0.53 0.49 0.00 1.00 | F:μσmM 9.4 9.4 1.0 59.0 | H 0.753 | V 0.430 | pL 0.024 | vL 0.076 | grad 0.383
-Model successfully saved
-U 51 | F 104448 | FPS 1020 | D 201 | Difficulty 2 | rR:μσmM 0.50 0.48 0.00 1.00 | F:μσmM 11.6 12.0 1.0 79.0 | H 0.751 | V 0.381 | pL -0.008 | vL 0.059 | grad 0.300
-U 52 | F 106496 | FPS 0269 | D 211 | Difficulty 2 | rR:μσmM 0.53 0.49 0.00 1.00 | F:μσmM 9.3 9.8 1.0 57.0 | H 0.756 | V 0.471 | pL 0.009 | vL 0.096 | grad 0.396
-U 53 | F 108544 | FPS 1101 | D 216 | Difficulty 2 | rR:μσmM 0.54 0.48 0.00 1.00 | F:μσmM 10.6 12.2 1.0 70.0 | H 0.677 | V 0.351 | pL 0.012 | vL 0.070 | grad 0.299
-U 54 | F 110592 | FPS 0859 | D 221 | Difficulty 2 | rR:μσmM 0.54 0.48 0.00 1.00 | F:μσmM 9.6 9.2 1.0 50.0 | H 0.735 | V 0.398 | pL -0.028 | vL 0.081 | grad 0.363
-U 55 | F 112640 | FPS 1050 | D 226 | Difficulty 2 | rR:μσmM 0.49 0.49 0.00 1.00 | F:μσmM 9.1 9.9 1.0 67.0 | H 0.726 | V 0.352 | pL 0.019 | vL 0.081 | grad 0.326
-U 56 | F 114688 | FPS 1051 | D 229 | Difficulty 2 | rR:μσmM 0.52 0.49 0.00 1.00 | F:μσmM 10.1 11.5 1.0 69.0 | H 0.727 | V 0.395 | pL -0.053 | vL 0.082 | grad 0.355
-U 57 | F 116736 | FPS 0189 | D 244 | Difficulty 2 | rR:μσmM 0.50 0.49 0.00 1.00 | F:μσmM 9.7 11.7 1.0 78.0 | H 0.735 | V 0.386 | pL 0.025 | vL 0.082 | grad 0.328
-U 58 | F 118784 | FPS 1051 | D 249 | Difficulty 2 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 10.1 14.9 1.0 115.0 | H 0.691 | V 0.348 | pL -0.040 | vL 0.064 | grad 0.284
-U 59 | F 120832 | FPS 1007 | D 253 | Difficulty 2 | rR:μσmM 0.48 0.49 0.00 1.00 | F:μσmM 9.2 10.7 1.0 68.0 | H 0.709 | V 0.361 | pL 0.012 | vL 0.072 | grad 0.333
-U 60 | F 122880 | FPS 1017 | D 258 | Difficulty 2 | rR:μσmM 0.44 0.49 0.00 1.00 | F:μσmM 9.1 11.3 1.0 83.0 | H 0.749 | V 0.307 | pL 0.013 | vL 0.063 | grad 0.292
-Model successfully saved
-U 61 | F 124928 | FPS 1095 | D 263 | Difficulty 2 | rR:μσmM 0.51 0.49 0.00 1.00 | F:μσmM 10.5 13.3 1.0 124.0 | H 0.728 | V 0.341 | pL -0.010 | vL 0.060 | grad 0.313
-U 62 | F 126976 | FPS 0258 | D 274 | Difficulty 2 | rR:μσmM 0.52 0.49 0.00 1.00 | F:μσmM 10.0 12.4 1.0 78.0 | H 0.741 | V 0.236 | pL 0.015 | vL 0.051 | grad 0.274
-U 63 | F 129024 | FPS 1069 | D 280 | Difficulty 2 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 10.3 12.7 1.0 80.0 | H 0.720 | V 0.368 | pL -0.034 | vL 0.072 | grad 0.308
-U 64 | F 131072 | FPS 1128 | D 286 | Difficulty 2 | rR:μσmM 0.60 0.48 0.00 1.00 | F:μσmM 11.0 13.4 1.0 81.0 | H 0.707 | V 0.360 | pL -0.024 | vL 0.058 | grad 0.273
 scripts/train.py --algo ppo --env MiniGrid-GridCity-4S30-v0 --model GridCity --save-interval 10 --recurrence=8 --text --tb
 
 Namespace(algo='ppo', batch_size=256, clip_eps=0.2, difficulty=1, discount=0.99, entropy_coef=0.01, env='MiniGrid-GridCity-4S30-v0', epochs=4, frames=10000000, frames_per_proc=None, gae_lambda=0.95, log_interval=1, lr=0.0007, max_grad_norm=0.5, mem=True, model='GridCity', optim_alpha=0.99, optim_eps=1e-05, procs=16, recurrence=8, save_interval=10, seed=1, tb=True, text=True, value_loss_coef=0.5)
 
-Model successfully loaded
+Model successfully created
 
 ACModel(
   (memory_rnn): LSTMCell(75, 75)
@@ -116,81 +44,11 @@ ACModel(
 
 CUDA available: True
 
-U 61 | F 124928 | FPS 0876 | D 2 | Difficulty 1 | rR:μσmM 0.74 0.42 0.00 1.00 | F:μσmM 9.2 12.4 1.0 78.0 | H 0.676 | V 0.437 | pL -0.119 | vL 0.065 | grad 0.315
-U 62 | F 126976 | FPS 0915 | D 5 | Difficulty 2 | rR:μσmM 0.59 0.48 0.00 1.00 | F:μσmM 10.2 12.2 1.0 114.0 | H 0.706 | V 0.411 | pL 0.010 | vL 0.071 | grad 0.293
-U 63 | F 129024 | FPS 1064 | D 7 | Difficulty 2 | rR:μσmM 0.54 0.49 0.00 1.00 | F:μσmM 9.5 10.3 1.0 81.0 | H 0.732 | V 0.426 | pL 0.002 | vL 0.082 | grad 0.287
-U 64 | F 131072 | FPS 1068 | D 9 | Difficulty 2 | rR:μσmM 0.47 0.49 0.00 1.00 | F:μσmM 9.5 11.4 1.0 78.0 | H 0.736 | V 0.351 | pL 0.000 | vL 0.084 | grad 0.368
-U 65 | F 133120 | FPS 1047 | D 11 | Difficulty 2 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 8.5 8.6 1.0 49.0 | H 0.743 | V 0.411 | pL -0.000 | vL 0.089 | grad 0.348
-U 66 | F 135168 | FPS 0937 | D 14 | Difficulty 2 | rR:μσmM 0.51 0.49 0.00 1.00 | F:μσmM 8.9 10.2 1.0 79.0 | H 0.747 | V 0.354 | pL 0.002 | vL 0.072 | grad 0.384
-U 67 | F 137216 | FPS 1050 | D 16 | Difficulty 2 | rR:μσmM 0.48 0.49 0.00 1.00 | F:μσmM 8.4 10.1 1.0 68.0 | H 0.741 | V 0.339 | pL -0.002 | vL 0.086 | grad 0.311
-U 68 | F 139264 | FPS 1049 | D 18 | Difficulty 2 | rR:μσmM 0.52 0.49 0.00 1.00 | F:μσmM 8.4 8.8 1.0 49.0 | H 0.701 | V 0.374 | pL -0.035 | vL 0.073 | grad 0.332
-U 69 | F 141312 | FPS 1055 | D 20 | Difficulty 2 | rR:μσmM 0.56 0.49 0.00 1.00 | F:μσmM 8.4 9.6 1.0 78.0 | H 0.695 | V 0.383 | pL -0.015 | vL 0.090 | grad 0.374
-U 70 | F 143360 | FPS 0903 | D 23 | Difficulty 2 | rR:μσmM 0.47 0.49 0.00 1.00 | F:μσmM 10.1 11.3 1.0 76.0 | H 0.714 | V 0.373 | pL 0.006 | vL 0.071 | grad 0.313
-Model successfully saved
-U 71 | F 145408 | FPS 1110 | D 25 | Difficulty 2 | rR:μσmM 0.50 0.49 0.00 1.00 | F:μσmM 10.6 11.8 1.0 81.0 | H 0.691 | V 0.362 | pL -0.035 | vL 0.072 | grad 0.378
-U 72 | F 147456 | FPS 1029 | D 27 | Difficulty 2 | rR:μσmM 0.52 0.49 0.00 1.00 | F:μσmM 9.3 9.6 1.0 61.0 | H 0.671 | V 0.399 | pL -0.009 | vL 0.082 | grad 0.343
-U 73 | F 149504 | FPS 1074 | D 29 | Difficulty 2 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 8.6 10.1 1.0 81.0 | H 0.641 | V 0.400 | pL -0.043 | vL 0.078 | grad 0.329
-U 74 | F 151552 | FPS 1125 | D 31 | Difficulty 2 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 10.6 12.0 1.0 62.0 | H 0.668 | V 0.361 | pL -0.032 | vL 0.062 | grad 0.306
-U 75 | F 153600 | FPS 0977 | D 34 | Difficulty 2 | rR:μσmM 0.60 0.48 0.00 1.00 | F:μσmM 8.2 7.8 1.0 52.0 | H 0.642 | V 0.433 | pL -0.004 | vL 0.084 | grad 0.373
-U 76 | F 155648 | FPS 0908 | D 36 | Difficulty 2 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 10.1 12.7 1.0 102.0 | H 0.615 | V 0.387 | pL -0.008 | vL 0.074 | grad 0.359
-U 77 | F 157696 | FPS 1018 | D 38 | Difficulty 2 | rR:μσmM 0.54 0.49 0.00 1.00 | F:μσmM 8.0 8.4 1.0 52.0 | H 0.630 | V 0.432 | pL 0.009 | vL 0.097 | grad 0.350
-U 78 | F 159744 | FPS 1049 | D 41 | Difficulty 2 | rR:μσmM 0.59 0.48 0.00 1.00 | F:μσmM 8.4 9.1 1.0 68.0 | H 0.639 | V 0.474 | pL -0.006 | vL 0.078 | grad 0.337
-U 79 | F 161792 | FPS 1027 | D 43 | Difficulty 2 | rR:μσmM 0.55 0.49 0.00 1.00 | F:μσmM 8.7 8.7 1.0 46.0 | H 0.615 | V 0.441 | pL 0.009 | vL 0.082 | grad 0.339
-U 80 | F 163840 | FPS 0884 | D 45 | Difficulty 2 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 8.8 9.4 1.0 67.0 | H 0.622 | V 0.413 | pL -0.026 | vL 0.078 | grad 0.333
-Model successfully saved
-U 81 | F 165888 | FPS 0987 | D 48 | Difficulty 2 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 7.5 6.9 1.0 43.0 | H 0.615 | V 0.470 | pL -0.016 | vL 0.096 | grad 0.449
-U 82 | F 167936 | FPS 1079 | D 50 | Difficulty 2 | rR:μσmM 0.60 0.47 0.00 1.00 | F:μσmM 9.4 10.9 1.0 77.0 | H 0.617 | V 0.456 | pL -0.014 | vL 0.073 | grad 0.329
-U 83 | F 169984 | FPS 1046 | D 52 | Difficulty 2 | rR:μσmM 0.59 0.48 0.00 1.00 | F:μσmM 8.9 10.8 1.0 78.0 | H 0.640 | V 0.469 | pL -0.001 | vL 0.081 | grad 0.316
-U 84 | F 172032 | FPS 1046 | D 54 | Difficulty 2 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 10.0 12.1 1.0 68.0 | H 0.652 | V 0.432 | pL -0.025 | vL 0.066 | grad 0.330
-U 85 | F 174080 | FPS 0921 | D 57 | Difficulty 2 | rR:μσmM 0.65 0.46 0.00 1.00 | F:μσmM 9.5 11.6 1.0 75.0 | H 0.618 | V 0.446 | pL -0.055 | vL 0.064 | grad 0.289
-U 86 | F 176128 | FPS 1051 | D 59 | Difficulty 2 | rR:μσmM 0.60 0.47 0.00 1.00 | F:μσmM 9.0 9.0 1.0 53.0 | H 0.613 | V 0.485 | pL 0.033 | vL 0.075 | grad 0.288
-U 87 | F 178176 | FPS 1053 | D 61 | Difficulty 2 | rR:μσmM 0.66 0.46 0.00 1.00 | F:μσmM 9.2 11.2 1.0 80.0 | H 0.630 | V 0.482 | pL -0.038 | vL 0.072 | grad 0.300
-U 88 | F 180224 | FPS 1142 | D 64 | Difficulty 2 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 11.0 13.8 1.0 86.0 | H 0.617 | V 0.424 | pL 0.036 | vL 0.053 | grad 0.252
-U 89 | F 182272 | FPS 0912 | D 66 | Difficulty 2 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 9.3 11.4 1.0 92.0 | H 0.621 | V 0.420 | pL -0.022 | vL 0.070 | grad 0.312
-U 90 | F 184320 | FPS 1054 | D 68 | Difficulty 2 | rR:μσmM 0.55 0.49 0.00 1.00 | F:μσmM 7.8 8.2 1.0 66.0 | H 0.612 | V 0.431 | pL 0.010 | vL 0.086 | grad 0.358
-Model successfully saved
-U 91 | F 186368 | FPS 1042 | D 71 | Difficulty 2 | rR:μσmM 0.56 0.49 0.00 1.00 | F:μσmM 8.6 11.8 1.0 86.0 | H 0.597 | V 0.438 | pL 0.019 | vL 0.074 | grad 0.365
-U 92 | F 188416 | FPS 1090 | D 73 | Difficulty 2 | rR:μσmM 0.56 0.49 0.00 1.00 | F:μσmM 8.8 10.8 1.0 59.0 | H 0.585 | V 0.348 | pL 0.016 | vL 0.057 | grad 0.241
-U 93 | F 190464 | FPS 1073 | D 75 | Difficulty 2 | rR:μσmM 0.50 0.49 0.00 1.00 | F:μσmM 9.1 10.5 1.0 81.0 | H 0.621 | V 0.331 | pL -0.017 | vL 0.060 | grad 0.284
-U 94 | F 192512 | FPS 0884 | D 78 | Difficulty 2 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 8.8 10.8 1.0 67.0 | H 0.607 | V 0.409 | pL -0.005 | vL 0.071 | grad 0.305
-U 95 | F 194560 | FPS 1068 | D 80 | Difficulty 2 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 9.2 12.2 1.0 103.0 | H 0.577 | V 0.400 | pL -0.041 | vL 0.075 | grad 0.302
-U 96 | F 196608 | FPS 1019 | D 82 | Difficulty 2 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 8.0 9.5 1.0 74.0 | H 0.581 | V 0.477 | pL -0.063 | vL 0.088 | grad 0.408
-U 97 | F 198656 | FPS 1045 | D 84 | Difficulty 2 | rR:μσmM 0.66 0.46 0.00 1.00 | F:μσmM 8.9 10.5 1.0 60.0 | H 0.604 | V 0.467 | pL 0.007 | vL 0.067 | grad 0.323
-U 98 | F 200704 | FPS 1090 | D 87 | Difficulty 2 | rR:μσmM 0.59 0.47 0.00 1.00 | F:μσmM 9.6 10.7 1.0 70.0 | H 0.586 | V 0.455 | pL -0.018 | vL 0.081 | grad 0.300
-U 99 | F 202752 | FPS 1069 | D 89 | Difficulty 2 | rR:μσmM 0.65 0.46 0.00 1.00 | F:μσmM 8.9 9.5 1.0 57.0 | H 0.561 | V 0.480 | pL -0.017 | vL 0.077 | grad 0.327
-U 100 | F 204800 | FPS 0868 | D 92 | Difficulty 2 | rR:μσmM 0.65 0.46 0.00 1.00 | F:μσmM 9.0 11.5 1.0 102.0 | H 0.570 | V 0.461 | pL -0.001 | vL 0.075 | grad 0.324
-Model successfully saved
-U 101 | F 206848 | FPS 1087 | D 94 | Difficulty 2 | rR:μσmM 0.67 0.46 0.00 1.00 | F:μσmM 9.6 11.4 1.0 75.0 | H 0.585 | V 0.389 | pL -0.014 | vL 0.064 | grad 0.329
-U 102 | F 208896 | FPS 1013 | D 96 | Difficulty 2 | rR:μσmM 0.64 0.47 0.00 1.00 | F:μσmM 7.0 6.4 1.0 37.0 | H 0.543 | V 0.547 | pL -0.019 | vL 0.089 | grad 0.309
-U 103 | F 210944 | FPS 0864 | D 99 | Difficulty 2 | rR:μσmM 0.65 0.47 0.00 1.00 | F:μσmM 7.8 8.1 1.0 51.0 | H 0.563 | V 0.473 | pL 0.014 | vL 0.076 | grad 0.316
-U 104 | F 212992 | FPS 1037 | D 101 | Difficulty 2 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 8.0 9.9 1.0 65.0 | H 0.535 | V 0.441 | pL -0.019 | vL 0.071 | grad 0.295
-U 105 | F 215040 | FPS 1041 | D 103 | Difficulty 2 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 9.5 9.3 1.0 56.0 | H 0.599 | V 0.430 | pL 0.029 | vL 0.072 | grad 0.316
-U 106 | F 217088 | FPS 0920 | D 107 | Difficulty 2 | rR:μσmM 0.64 0.47 0.00 1.00 | F:μσmM 7.4 7.9 1.0 45.0 | H 0.553 | V 0.482 | pL -0.040 | vL 0.080 | grad 0.373
-U 107 | F 219136 | FPS 0817 | D 110 | Difficulty 2 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 8.6 11.0 1.0 97.0 | H 0.573 | V 0.449 | pL -0.003 | vL 0.086 | grad 0.361
-U 108 | F 221184 | FPS 0104 | D 137 | Difficulty 2 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 9.3 11.8 1.0 80.0 | H 0.556 | V 0.450 | pL -0.027 | vL 0.059 | grad 0.264
-U 109 | F 223232 | FPS 0580 | D 147 | Difficulty 2 | rR:μσmM 0.68 0.45 0.00 1.00 | F:μσmM 8.5 8.9 1.0 51.0 | H 0.583 | V 0.476 | pL -0.049 | vL 0.066 | grad 0.308
-U 110 | F 225280 | FPS 0566 | D 156 | Difficulty 2 | rR:μσmM 0.67 0.46 0.00 1.00 | F:μσmM 8.4 8.6 1.0 43.0 | H 0.567 | V 0.468 | pL 0.009 | vL 0.074 | grad 0.395
-Model successfully saved
-U 111 | F 227328 | FPS 0565 | D 165 | Difficulty 2 | rR:μσmM 0.52 0.49 0.00 1.00 | F:μσmM 8.8 11.0 1.0 72.0 | H 0.625 | V 0.420 | pL 0.091 | vL 0.075 | grad 0.310
-U 112 | F 229376 | FPS 0780 | D 174 | Difficulty 2 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 9.0 10.3 1.0 76.0 | H 0.610 | V 0.433 | pL -0.047 | vL 0.063 | grad 0.289
-U 113 | F 231424 | FPS 0206 | D 190 | Difficulty 2 | rR:μσmM 0.60 0.47 0.00 1.00 | F:μσmM 10.0 11.5 1.0 63.0 | H 0.599 | V 0.491 | pL 0.021 | vL 0.081 | grad 0.355
-U 114 | F 233472 | FPS 0211 | D 205 | Difficulty 2 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 8.9 11.9 1.0 99.0 | H 0.618 | V 0.467 | pL -0.007 | vL 0.074 | grad 0.257
-U 115 | F 235520 | FPS 1035 | D 211 | Difficulty 2 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 8.2 8.3 1.0 51.0 | H 0.612 | V 0.505 | pL -0.003 | vL 0.083 | grad 0.309
-U 116 | F 237568 | FPS 0806 | D 216 | Difficulty 2 | rR:μσmM 0.52 0.49 0.00 1.00 | F:μσmM 10.5 13.4 1.0 82.0 | H 0.661 | V 0.370 | pL 0.061 | vL 0.066 | grad 0.290
-U 117 | F 239616 | FPS 1060 | D 221 | Difficulty 2 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 9.3 9.8 1.0 51.0 | H 0.597 | V 0.453 | pL -0.021 | vL 0.065 | grad 0.335
-U 118 | F 241664 | FPS 0300 | D 232 | Difficulty 2 | rR:μσmM 0.59 0.48 0.00 1.00 | F:μσmM 9.4 12.7 1.0 94.0 | H 0.623 | V 0.432 | pL 0.011 | vL 0.072 | grad 0.283
-U 119 | F 243712 | FPS 0189 | D 247 | Difficulty 2 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 9.4 11.8 1.0 69.0 | H 0.637 | V 0.435 | pL 0.024 | vL 0.072 | grad 0.292
-U 120 | F 245760 | FPS 1097 | D 253 | Difficulty 2 | rR:μσmM 0.67 0.45 0.00 1.00 | F:μσmM 10.2 12.6 1.0 73.0 | H 0.643 | V 0.423 | pL -0.004 | vL 0.061 | grad 0.312
-Model successfully saved
-U 121 | F 247808 | FPS 0665 | D 259 | Difficulty 2 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 9.2 11.4 1.0 87.0 | H 0.624 | V 0.481 | pL 0.002 | vL 0.079 | grad 0.364
-U 122 | F 249856 | FPS 1057 | D 264 | Difficulty 2 | rR:μσmM 0.70 0.44 0.00 1.00 | F:μσmM 9.2 12.4 1.0 96.0 | H 0.612 | V 0.514 | pL -0.026 | vL 0.065 | grad 0.318
-U 123 | F 251904 | FPS 0912 | D 271 | Difficulty 3 | rR:μσmM 0.51 0.49 0.00 1.00 | F:μσmM 10.7 15.5 1.0 120.0 | H 0.615 | V 0.349 | pL 0.035 | vL 0.057 | grad 0.231
-U 124 | F 253952 | FPS 1115 | D 275 | Difficulty 3 | rR:μσmM 0.51 0.48 0.00 1.00 | F:μσmM 12.3 14.2 1.0 88.0 | H 0.636 | V 0.364 | pL 0.047 | vL 0.061 | grad 0.258
 scripts/train.py --algo ppo --env MiniGrid-GridCity-4S30-v0 --model GridCity --save-interval 10 --recurrence=8 --text --tb
 
 Namespace(algo='ppo', batch_size=256, clip_eps=0.2, difficulty=1, discount=0.99, entropy_coef=0.01, env='MiniGrid-GridCity-4S30-v0', epochs=4, frames=10000000, frames_per_proc=None, gae_lambda=0.95, log_interval=1, lr=0.0007, max_grad_norm=0.5, mem=True, model='GridCity', optim_alpha=0.99, optim_eps=1e-05, procs=16, recurrence=8, save_interval=10, seed=1, tb=True, text=True, value_loss_coef=0.5)
 
-Model successfully loaded
+Model successfully created
 
 ACModel(
   (memory_rnn): LSTMCell(75, 75)
@@ -210,412 +68,48 @@ ACModel(
 
 CUDA available: True
 
-U 121 | F 247808 | FPS 0874 | D 2 | Difficulty 1 | rR:μσmM 0.82 0.37 0.00 1.00 | F:μσmM 7.6 10.1 1.0 76.0 | H 0.567 | V 0.520 | pL -0.071 | vL 0.069 | grad 0.292
-U 122 | F 249856 | FPS 0900 | D 5 | Difficulty 2 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 7.5 7.0 1.0 39.0 | H 0.563 | V 0.507 | pL 0.057 | vL 0.077 | grad 0.332
-U 123 | F 251904 | FPS 1041 | D 7 | Difficulty 2 | rR:μσmM 0.71 0.44 0.00 1.00 | F:μσmM 8.4 11.4 1.0 95.0 | H 0.557 | V 0.530 | pL -0.024 | vL 0.071 | grad 0.247
-U 124 | F 253952 | FPS 1047 | D 9 | Difficulty 3 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 8.5 10.2 1.0 78.0 | H 0.556 | V 0.504 | pL 0.035 | vL 0.081 | grad 0.296
-U 125 | F 256000 | FPS 1061 | D 12 | Difficulty 3 | rR:μσmM 0.49 0.49 0.00 1.00 | F:μσmM 8.1 7.2 1.0 48.0 | H 0.572 | V 0.361 | pL 0.040 | vL 0.071 | grad 0.294
-U 126 | F 258048 | FPS 1083 | D 14 | Difficulty 3 | rR:μσmM 0.48 0.49 0.00 1.00 | F:μσmM 9.5 11.8 1.0 82.0 | H 0.608 | V 0.351 | pL 0.036 | vL 0.057 | grad 0.244
-U 127 | F 260096 | FPS 1087 | D 16 | Difficulty 3 | rR:μσmM 0.53 0.49 0.00 1.00 | F:μσmM 10.1 10.9 1.0 69.0 | H 0.585 | V 0.403 | pL 0.017 | vL 0.065 | grad 0.294
-U 128 | F 262144 | FPS 1054 | D 18 | Difficulty 3 | rR:μσmM 0.46 0.48 0.00 1.00 | F:μσmM 12.4 11.9 1.0 77.0 | H 0.616 | V 0.365 | pL 0.009 | vL 0.053 | grad 0.252
-U 129 | F 264192 | FPS 1075 | D 20 | Difficulty 3 | rR:μσmM 0.49 0.49 0.00 1.00 | F:μσmM 11.7 14.1 1.0 111.0 | H 0.594 | V 0.397 | pL 0.031 | vL 0.068 | grad 0.271
-U 130 | F 266240 | FPS 1103 | D 22 | Difficulty 3 | rR:μσmM 0.53 0.49 0.00 1.00 | F:μσmM 12.1 15.3 1.0 86.0 | H 0.606 | V 0.362 | pL 0.004 | vL 0.051 | grad 0.233
+U 1 | F 002048 | FPS 0743 | D 3 | Difficulty 1 | rR:μσmM 0.20 0.40 0.00 1.00 | F:μσmM 3.6 3.1 1.0 18.0 | H 1.366 | V 0.168 | pL -0.037 | vL 0.089 | grad 0.238
+U 2 | F 004096 | FPS 0770 | D 5 | Difficulty 1 | rR:μσmM 0.23 0.42 0.00 1.00 | F:μσmM 3.6 3.4 1.0 27.0 | H 1.344 | V 0.159 | pL -0.051 | vL 0.082 | grad 0.245
+U 3 | F 006144 | FPS 0802 | D 8 | Difficulty 1 | rR:μσmM 0.27 0.44 0.00 1.00 | F:μσmM 3.2 2.7 1.0 18.0 | H 1.321 | V 0.219 | pL -0.034 | vL 0.089 | grad 0.323
+U 4 | F 008192 | FPS 0732 | D 11 | Difficulty 1 | rR:μσmM 0.28 0.44 0.00 1.00 | F:μσmM 3.7 3.7 1.0 37.0 | H 1.297 | V 0.201 | pL -0.116 | vL 0.084 | grad 0.250
+U 5 | F 010240 | FPS 0822 | D 14 | Difficulty 1 | rR:μσmM 0.30 0.45 0.00 1.00 | F:μσmM 3.5 3.9 1.0 51.0 | H 1.260 | V 0.189 | pL -0.089 | vL 0.084 | grad 0.272
+U 6 | F 012288 | FPS 0716 | D 17 | Difficulty 1 | rR:μσmM 0.30 0.46 0.00 1.00 | F:μσmM 3.0 3.0 1.0 23.0 | H 1.217 | V 0.200 | pL -0.015 | vL 0.063 | grad 0.215
+U 7 | F 014336 | FPS 0783 | D 20 | Difficulty 1 | rR:μσmM 0.34 0.47 0.00 1.00 | F:μσmM 3.6 3.7 1.0 27.0 | H 1.167 | V 0.207 | pL -0.051 | vL 0.082 | grad 0.298
+U 8 | F 016384 | FPS 0845 | D 23 | Difficulty 1 | rR:μσmM 0.36 0.48 0.00 1.00 | F:μσmM 3.8 3.6 1.0 20.0 | H 1.121 | V 0.266 | pL 0.002 | vL 0.078 | grad 0.259
+U 9 | F 018432 | FPS 0869 | D 26 | Difficulty 1 | rR:μσmM 0.44 0.49 0.00 1.00 | F:μσmM 4.7 5.3 1.0 48.0 | H 1.036 | V 0.281 | pL -0.100 | vL 0.088 | grad 0.309
+U 10 | F 020480 | FPS 0787 | D 28 | Difficulty 1 | rR:μσmM 0.47 0.49 0.00 1.00 | F:μσmM 5.2 5.4 1.0 31.0 | H 1.001 | V 0.296 | pL -0.099 | vL 0.090 | grad 0.395
 Model successfully saved
-U 131 | F 268288 | FPS 1174 | D 24 | Difficulty 3 | rR:μσmM 0.40 0.48 0.00 1.00 | F:μσmM 10.7 11.8 1.0 63.0 | H 0.669 | V 0.276 | pL 0.066 | vL 0.043 | grad 0.245
-U 132 | F 270336 | FPS 1060 | D 27 | Difficulty 3 | rR:μσmM 0.50 0.49 0.00 1.00 | F:μσmM 9.8 9.4 1.0 67.0 | H 0.645 | V 0.331 | pL -0.053 | vL 0.070 | grad 0.292
-U 133 | F 272384 | FPS 1176 | D 29 | Difficulty 3 | rR:μσmM 0.52 0.48 0.00 1.00 | F:μσmM 14.1 18.4 1.0 125.0 | H 0.642 | V 0.340 | pL -0.033 | vL 0.056 | grad 0.270
-U 134 | F 274432 | FPS 1125 | D 31 | Difficulty 3 | rR:μσmM 0.49 0.48 0.00 1.00 | F:μσmM 12.6 15.7 1.0 103.0 | H 0.653 | V 0.334 | pL 0.010 | vL 0.050 | grad 0.294
-U 135 | F 276480 | FPS 1063 | D 33 | Difficulty 3 | rR:μσmM 0.52 0.48 0.00 1.00 | F:μσmM 11.6 13.3 1.0 77.0 | H 0.684 | V 0.346 | pL -0.021 | vL 0.050 | grad 0.205
-U 136 | F 278528 | FPS 1003 | D 35 | Difficulty 3 | rR:μσmM 0.54 0.48 0.00 1.00 | F:μσmM 12.1 13.0 1.0 58.0 | H 0.640 | V 0.338 | pL -0.006 | vL 0.056 | grad 0.258
-U 137 | F 280576 | FPS 1132 | D 37 | Difficulty 3 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 11.2 12.9 1.0 86.0 | H 0.649 | V 0.379 | pL -0.036 | vL 0.062 | grad 0.299
-U 138 | F 282624 | FPS 1206 | D 39 | Difficulty 3 | rR:μσmM 0.50 0.48 0.00 1.00 | F:μσmM 12.5 15.4 1.0 82.0 | H 0.660 | V 0.330 | pL 0.039 | vL 0.055 | grad 0.250
-U 139 | F 284672 | FPS 1113 | D 41 | Difficulty 3 | rR:μσmM 0.50 0.48 0.00 1.00 | F:μσmM 11.6 13.5 1.0 83.0 | H 0.661 | V 0.362 | pL 0.001 | vL 0.060 | grad 0.256
-U 140 | F 286720 | FPS 1214 | D 43 | Difficulty 3 | rR:μσmM 0.52 0.48 0.00 1.00 | F:μσmM 12.4 11.9 1.0 61.0 | H 0.674 | V 0.296 | pL 0.006 | vL 0.042 | grad 0.228
+U 11 | F 022528 | FPS 0910 | D 31 | Difficulty 1 | rR:μσmM 0.52 0.49 0.00 1.00 | F:μσmM 4.8 5.5 1.0 44.0 | H 0.940 | V 0.307 | pL -0.090 | vL 0.097 | grad 0.382
+U 12 | F 024576 | FPS 0782 | D 34 | Difficulty 1 | rR:μσmM 0.58 0.49 0.00 1.00 | F:μσmM 5.1 5.1 1.0 38.0 | H 0.865 | V 0.388 | pL -0.143 | vL 0.096 | grad 0.379
+U 13 | F 026624 | FPS 0935 | D 36 | Difficulty 1 | rR:μσmM 0.62 0.48 0.00 1.00 | F:μσmM 5.6 6.5 1.0 63.0 | H 0.808 | V 0.426 | pL -0.099 | vL 0.098 | grad 0.400
+U 14 | F 028672 | FPS 0963 | D 39 | Difficulty 1 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 5.6 6.0 1.0 44.0 | H 0.764 | V 0.414 | pL -0.074 | vL 0.092 | grad 0.457
+U 15 | F 030720 | FPS 0899 | D 41 | Difficulty 1 | rR:μσmM 0.61 0.48 0.00 1.00 | F:μσmM 5.9 6.3 1.0 49.0 | H 0.752 | V 0.439 | pL -0.037 | vL 0.091 | grad 0.430
+U 16 | F 032768 | FPS 0837 | D 44 | Difficulty 1 | rR:μσmM 0.61 0.48 0.00 1.00 | F:μσmM 6.2 6.9 1.0 53.0 | H 0.724 | V 0.452 | pL -0.097 | vL 0.094 | grad 0.443
+U 17 | F 034816 | FPS 0916 | D 46 | Difficulty 1 | rR:μσmM 0.68 0.46 0.00 1.00 | F:μσmM 5.2 5.0 1.0 35.0 | H 0.692 | V 0.569 | pL -0.043 | vL 0.093 | grad 0.443
+U 18 | F 036864 | FPS 0788 | D 49 | Difficulty 1 | rR:μσmM 0.69 0.45 0.00 1.00 | F:μσmM 5.5 5.7 1.0 55.0 | H 0.700 | V 0.548 | pL -0.039 | vL 0.084 | grad 0.354
+U 19 | F 038912 | FPS 0920 | D 52 | Difficulty 1 | rR:μσmM 0.72 0.44 0.00 1.00 | F:μσmM 5.4 4.6 1.0 36.0 | H 0.681 | V 0.600 | pL -0.023 | vL 0.087 | grad 0.396
+U 20 | F 040960 | FPS 0936 | D 54 | Difficulty 1 | rR:μσmM 0.73 0.43 0.00 1.00 | F:μσmM 5.7 6.4 1.0 50.0 | H 0.630 | V 0.603 | pL 0.032 | vL 0.088 | grad 0.406
 Model successfully saved
-U 141 | F 288768 | FPS 1082 | D 45 | Difficulty 3 | rR:μσmM 0.49 0.49 0.00 1.00 | F:μσmM 10.5 12.5 1.0 78.0 | H 0.625 | V 0.360 | pL -0.023 | vL 0.058 | grad 0.252
-U 142 | F 290816 | FPS 0929 | D 48 | Difficulty 3 | rR:μσmM 0.45 0.49 0.00 1.00 | F:μσmM 10.7 11.6 1.0 56.0 | H 0.650 | V 0.298 | pL 0.027 | vL 0.067 | grad 0.250
-U 143 | F 292864 | FPS 1135 | D 50 | Difficulty 3 | rR:μσmM 0.47 0.49 0.00 1.00 | F:μσmM 12.2 14.5 1.0 83.0 | H 0.650 | V 0.314 | pL -0.040 | vL 0.052 | grad 0.293
-U 144 | F 294912 | FPS 1199 | D 52 | Difficulty 3 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 14.1 13.2 1.0 74.0 | H 0.641 | V 0.300 | pL -0.004 | vL 0.057 | grad 0.258
-U 145 | F 296960 | FPS 1095 | D 54 | Difficulty 3 | rR:μσmM 0.54 0.48 0.00 1.00 | F:μσmM 10.9 15.1 1.0 112.0 | H 0.622 | V 0.363 | pL -0.030 | vL 0.058 | grad 0.274
-U 146 | F 299008 | FPS 1083 | D 56 | Difficulty 3 | rR:μσmM 0.54 0.49 0.00 1.00 | F:μσmM 10.2 12.4 1.0 91.0 | H 0.663 | V 0.373 | pL 0.004 | vL 0.069 | grad 0.258
-U 147 | F 301056 | FPS 1169 | D 58 | Difficulty 3 | rR:μσmM 0.59 0.47 0.00 1.00 | F:μσmM 13.1 16.8 1.0 103.0 | H 0.634 | V 0.335 | pL -0.027 | vL 0.052 | grad 0.210
-U 148 | F 303104 | FPS 0996 | D 61 | Difficulty 3 | rR:μσmM 0.50 0.48 0.00 1.00 | F:μσmM 10.9 11.4 1.0 63.0 | H 0.627 | V 0.367 | pL -0.015 | vL 0.052 | grad 0.267
-U 149 | F 305152 | FPS 0955 | D 63 | Difficulty 3 | rR:μσmM 0.50 0.48 0.00 1.00 | F:μσmM 12.5 12.7 1.0 77.0 | H 0.637 | V 0.388 | pL -0.010 | vL 0.056 | grad 0.258
-U 150 | F 307200 | FPS 1149 | D 65 | Difficulty 3 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 12.3 13.8 1.0 71.0 | H 0.648 | V 0.341 | pL 0.019 | vL 0.054 | grad 0.248
+U 21 | F 043008 | FPS 0775 | D 57 | Difficulty 1 | rR:μσmM 0.73 0.43 0.00 1.00 | F:μσmM 5.0 4.4 1.0 26.0 | H 0.640 | V 0.631 | pL -0.021 | vL 0.085 | grad 0.353
+U 22 | F 045056 | FPS 0939 | D 60 | Difficulty 1 | rR:μσmM 0.74 0.43 0.00 1.00 | F:μσmM 5.7 6.0 1.0 39.0 | H 0.656 | V 0.612 | pL 0.038 | vL 0.083 | grad 0.419
+U 23 | F 047104 | FPS 0958 | D 62 | Difficulty 1 | rR:μσmM 0.79 0.40 0.00 1.00 | F:μσmM 6.1 7.9 1.0 67.0 | H 0.681 | V 0.636 | pL 0.047 | vL 0.076 | grad 0.421
+U 24 | F 049152 | FPS 0828 | D 65 | Difficulty 1 | rR:μσmM 0.74 0.42 0.00 1.00 | F:μσmM 6.0 5.5 1.0 35.0 | H 0.658 | V 0.641 | pL -0.018 | vL 0.088 | grad 0.435
+U 25 | F 051200 | FPS 0988 | D 67 | Difficulty 1 | rR:μσmM 0.80 0.38 0.00 1.00 | F:μσmM 6.4 7.1 1.0 46.0 | H 0.631 | V 0.597 | pL -0.013 | vL 0.067 | grad 0.308
+U 26 | F 053248 | FPS 0955 | D 70 | Difficulty 1 | rR:μσmM 0.78 0.40 0.00 1.00 | F:μσmM 6.0 6.9 1.0 51.0 | H 0.676 | V 0.640 | pL 0.020 | vL 0.079 | grad 0.368
+U 27 | F 055296 | FPS 0971 | D 72 | Difficulty 1 | rR:μσmM 0.81 0.38 0.00 1.00 | F:μσmM 6.2 7.3 1.0 66.0 | H 0.644 | V 0.626 | pL 0.023 | vL 0.069 | grad 0.378
+U 28 | F 057344 | FPS 0846 | D 75 | Difficulty 1 | rR:μσmM 0.80 0.38 0.00 1.00 | F:μσmM 6.2 6.8 1.0 58.0 | H 0.649 | V 0.664 | pL 0.004 | vL 0.070 | grad 0.340
+U 29 | F 059392 | FPS 0948 | D 77 | Difficulty 1 | rR:μσmM 0.82 0.37 0.00 1.00 | F:μσmM 6.1 6.5 1.0 51.0 | H 0.656 | V 0.656 | pL -0.055 | vL 0.078 | grad 0.436
+U 30 | F 061440 | FPS 0924 | D 80 | Difficulty 1 | rR:μσmM 0.81 0.38 0.00 1.00 | F:μσmM 6.1 6.1 1.0 58.0 | H 0.646 | V 0.689 | pL 0.001 | vL 0.075 | grad 0.391
 Model successfully saved
-U 151 | F 309248 | FPS 1110 | D 67 | Difficulty 3 | rR:μσmM 0.49 0.49 0.00 1.00 | F:μσmM 10.8 9.9 1.0 51.0 | H 0.648 | V 0.337 | pL -0.023 | vL 0.063 | grad 0.248
-U 152 | F 311296 | FPS 1103 | D 70 | Difficulty 3 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 10.6 14.6 1.0 121.0 | H 0.622 | V 0.366 | pL -0.012 | vL 0.066 | grad 0.270
-U 153 | F 313344 | FPS 1084 | D 72 | Difficulty 3 | rR:μσmM 0.54 0.48 0.00 1.00 | F:μσmM 10.0 10.4 1.0 72.0 | H 0.586 | V 0.397 | pL -0.042 | vL 0.062 | grad 0.248
-U 154 | F 315392 | FPS 1142 | D 74 | Difficulty 3 | rR:μσmM 0.59 0.48 0.00 1.00 | F:μσmM 11.5 15.0 1.0 102.0 | H 0.627 | V 0.333 | pL 0.018 | vL 0.051 | grad 0.210
-U 155 | F 317440 | FPS 0992 | D 76 | Difficulty 3 | rR:μσmM 0.50 0.48 0.00 1.00 | F:μσmM 13.3 16.2 1.0 94.0 | H 0.628 | V 0.355 | pL 0.014 | vL 0.053 | grad 0.224
-U 156 | F 319488 | FPS 1063 | D 78 | Difficulty 3 | rR:μσmM 0.59 0.48 0.00 1.00 | F:μσmM 10.1 10.1 1.0 72.0 | H 0.599 | V 0.400 | pL -0.018 | vL 0.071 | grad 0.319
-U 157 | F 321536 | FPS 1127 | D 81 | Difficulty 3 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 10.3 12.4 1.0 117.0 | H 0.584 | V 0.343 | pL -0.006 | vL 0.050 | grad 0.226
-U 158 | F 323584 | FPS 1057 | D 83 | Difficulty 3 | rR:μσmM 0.60 0.48 0.00 1.00 | F:μσmM 9.0 8.1 1.0 56.0 | H 0.579 | V 0.402 | pL -0.011 | vL 0.072 | grad 0.330
-U 159 | F 325632 | FPS 1139 | D 85 | Difficulty 3 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 12.2 15.2 1.0 106.0 | H 0.582 | V 0.307 | pL -0.011 | vL 0.046 | grad 0.254
-U 160 | F 327680 | FPS 0938 | D 87 | Difficulty 3 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 9.4 11.4 1.0 102.0 | H 0.578 | V 0.380 | pL -0.010 | vL 0.070 | grad 0.307
+U 31 | F 063488 | FPS 0826 | D 82 | Difficulty 1 | rR:μσmM 0.85 0.34 0.00 1.00 | F:μσmM 6.6 8.5 1.0 77.0 | H 0.652 | V 0.710 | pL 0.004 | vL 0.055 | grad 0.307
+U 32 | F 065536 | FPS 0939 | D 85 | Difficulty 1 | rR:μσmM 0.86 0.33 0.00 1.00 | F:μσmM 5.8 6.4 1.0 55.0 | H 0.627 | V 0.739 | pL -0.017 | vL 0.058 | grad 0.335
+U 33 | F 067584 | FPS 0947 | D 87 | Difficulty 1 | rR:μσmM 0.86 0.33 0.00 1.00 | F:μσmM 5.9 6.7 1.0 80.0 | H 0.650 | V 0.702 | pL -0.023 | vL 0.062 | grad 0.363
+U 34 | F 069632 | FPS 0998 | D 90 | Difficulty 1 | rR:μσmM 0.82 0.37 0.00 1.00 | F:μσmM 6.9 9.7 1.0 82.0 | H 0.652 | V 0.619 | pL 0.007 | vL 0.053 | grad 0.336
+U 35 | F 071680 | FPS 0831 | D 92 | Difficulty 1 | rR:μσmM 0.83 0.36 0.00 1.00 | F:μσmM 6.1 6.6 1.0 48.0 | H 0.655 | V 0.687 | pL 0.007 | vL 0.057 | grad 0.296
+U 36 | F 073728 | FPS 0925 | D 95 | Difficulty 1 | rR:μσmM 0.84 0.35 0.00 1.00 | F:μσmM 5.7 7.4 1.0 86.0 | H 0.649 | V 0.684 | pL 0.017 | vL 0.062 | grad 0.358
+U 37 | F 075776 | FPS 0874 | D 99 | Difficulty 1 | rR:μσmM 0.86 0.32 0.00 1.00 | F:μσmM 6.0 5.9 1.0 44.0 | H 0.626 | V 0.769 | pL -0.041 | vL 0.065 | grad 0.314
+U 38 | F 077824 | FPS 0581 | D 105 | Difficulty 1 | rR:μσmM 0.86 0.33 0.00 1.00 | F:μσmM 6.4 8.1 1.0 91.0 | H 0.677 | V 0.730 | pL -0.005 | vL 0.055 | grad 0.363
+U 39 | F 079872 | FPS 0136 | D 120 | Difficulty 1 | rR:μσmM 0.83 0.35 0.00 1.00 | F:μσmM 7.2 9.6 1.0 67.0 | H 0.661 | V 0.668 | pL 0.018 | vL 0.060 | grad 0.315
+U 40 | F 081920 | FPS 0720 | D 129 | Difficulty 1 | rR:μσmM 0.80 0.38 0.00 1.00 | F:μσmM 6.3 6.2 1.0 39.0 | H 0.661 | V 0.646 | pL 0.020 | vL 0.071 | grad 0.387
 Model successfully saved
-U 161 | F 329728 | FPS 0895 | D 90 | Difficulty 3 | rR:μσmM 0.49 0.49 0.00 1.00 | F:μσmM 9.6 10.9 1.0 71.0 | H 0.577 | V 0.347 | pL 0.006 | vL 0.077 | grad 0.285
-U 162 | F 331776 | FPS 1043 | D 92 | Difficulty 3 | rR:μσmM 0.51 0.49 0.00 1.00 | F:μσmM 8.8 10.9 1.0 109.0 | H 0.547 | V 0.365 | pL -0.023 | vL 0.077 | grad 0.252
-U 163 | F 333824 | FPS 1036 | D 95 | Difficulty 3 | rR:μσmM 0.53 0.49 0.00 1.00 | F:μσmM 8.2 8.6 1.0 63.0 | H 0.549 | V 0.375 | pL -0.022 | vL 0.073 | grad 0.222
-U 164 | F 335872 | FPS 1033 | D 97 | Difficulty 3 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 7.9 8.6 1.0 64.0 | H 0.531 | V 0.433 | pL -0.045 | vL 0.086 | grad 0.310
-U 165 | F 337920 | FPS 1064 | D 99 | Difficulty 3 | rR:μσmM 0.52 0.49 0.00 1.00 | F:μσmM 9.7 9.7 1.0 58.0 | H 0.557 | V 0.380 | pL -0.002 | vL 0.059 | grad 0.223
-U 166 | F 339968 | FPS 0534 | D 104 | Difficulty 3 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 10.3 12.8 1.0 107.0 | H 0.588 | V 0.389 | pL -0.009 | vL 0.062 | grad 0.266
-U 167 | F 342016 | FPS 1121 | D 106 | Difficulty 3 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 12.4 15.3 1.0 90.0 | H 0.574 | V 0.343 | pL -0.009 | vL 0.047 | grad 0.209
-U 168 | F 344064 | FPS 0355 | D 121 | Difficulty 3 | rR:μσmM 0.60 0.48 0.00 1.00 | F:μσmM 10.5 11.3 1.0 76.0 | H 0.598 | V 0.395 | pL 0.009 | vL 0.067 | grad 0.289
-U 169 | F 346112 | FPS 0910 | D 130 | Difficulty 3 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 11.7 13.1 1.0 100.0 | H 0.584 | V 0.395 | pL -0.005 | vL 0.056 | grad 0.260
-U 170 | F 348160 | FPS 0488 | D 141 | Difficulty 3 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 9.0 8.7 1.0 56.0 | H 0.584 | V 0.421 | pL -0.027 | vL 0.083 | grad 0.275
-Model successfully saved
-U 171 | F 350208 | FPS 0156 | D 160 | Difficulty 3 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 9.4 10.4 1.0 97.0 | H 0.571 | V 0.434 | pL -0.000 | vL 0.081 | grad 0.298
-U 172 | F 352256 | FPS 0933 | D 169 | Difficulty 3 | rR:μσmM 0.71 0.43 0.00 1.00 | F:μσmM 11.4 12.8 1.0 82.0 | H 0.588 | V 0.396 | pL -0.050 | vL 0.049 | grad 0.246
-U 173 | F 354304 | FPS 1116 | D 181 | Difficulty 4 | rR:μσmM 0.43 0.48 0.00 1.00 | F:μσmM 11.3 13.2 1.0 110.0 | H 0.645 | V 0.307 | pL 0.049 | vL 0.040 | grad 0.183
-U 174 | F 356352 | FPS 1108 | D 190 | Difficulty 4 | rR:μσmM 0.50 0.48 0.00 1.00 | F:μσmM 14.0 15.5 1.0 82.0 | H 0.649 | V 0.346 | pL 0.008 | vL 0.044 | grad 0.221
-U 175 | F 358400 | FPS 1142 | D 195 | Difficulty 4 | rR:μσmM 0.60 0.47 0.00 1.00 | F:μσmM 11.8 13.4 1.0 90.0 | H 0.645 | V 0.389 | pL 0.005 | vL 0.051 | grad 0.228
-U 176 | F 360448 | FPS 0969 | D 199 | Difficulty 4 | rR:μσmM 0.49 0.48 0.00 1.00 | F:μσmM 17.2 19.0 1.0 114.0 | H 0.648 | V 0.346 | pL 0.014 | vL 0.037 | grad 0.199
-U 177 | F 362496 | FPS 1170 | D 204 | Difficulty 4 | rR:μσmM 0.43 0.48 0.00 1.00 | F:μσmM 13.7 15.4 1.0 89.0 | H 0.664 | V 0.343 | pL 0.045 | vL 0.044 | grad 0.225
-U 178 | F 364544 | FPS 1199 | D 208 | Difficulty 4 | rR:μσmM 0.52 0.49 0.00 1.00 | F:μσmM 13.7 16.1 1.0 103.0 | H 0.658 | V 0.324 | pL 0.010 | vL 0.039 | grad 0.176
-U 179 | F 366592 | FPS 1196 | D 214 | Difficulty 4 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 15.3 18.1 1.0 120.0 | H 0.674 | V 0.332 | pL -0.018 | vL 0.044 | grad 0.237
-U 180 | F 368640 | FPS 0621 | D 223 | Difficulty 4 | rR:μσmM 0.42 0.48 0.00 1.00 | F:μσmM 13.8 14.8 1.0 85.0 | H 0.692 | V 0.303 | pL 0.023 | vL 0.042 | grad 0.187
-Model successfully saved
-U 181 | F 370688 | FPS 0179 | D 239 | Difficulty 4 | rR:μσmM 0.45 0.49 0.00 1.00 | F:μσmM 11.0 14.1 1.0 89.0 | H 0.676 | V 0.284 | pL -0.021 | vL 0.058 | grad 0.202
-U 182 | F 372736 | FPS 1166 | D 245 | Difficulty 4 | rR:μσmM 0.52 0.48 0.00 1.00 | F:μσmM 13.5 16.9 1.0 128.0 | H 0.654 | V 0.321 | pL -0.034 | vL 0.041 | grad 0.236
-U 183 | F 374784 | FPS 1111 | D 250 | Difficulty 4 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 12.7 15.0 1.0 99.0 | H 0.643 | V 0.355 | pL 0.003 | vL 0.060 | grad 0.245
-U 184 | F 376832 | FPS 1166 | D 255 | Difficulty 4 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 13.7 14.0 1.0 78.0 | H 0.694 | V 0.379 | pL -0.004 | vL 0.048 | grad 0.199
-scripts/train.py --algo ppo --env MiniGrid-GridCity-4S30-v0 --model GridCity --save-interval 10 --recurrence=8 --text --tb
-
-Namespace(algo='ppo', batch_size=256, clip_eps=0.2, difficulty=1, discount=0.99, entropy_coef=0.01, env='MiniGrid-GridCity-4S30-v0', epochs=4, frames=10000000, frames_per_proc=None, gae_lambda=0.95, log_interval=1, lr=0.0007, max_grad_norm=0.5, mem=True, model='GridCity', optim_alpha=0.99, optim_eps=1e-05, procs=16, recurrence=8, save_interval=10, seed=1, tb=True, text=True, value_loss_coef=0.5)
-
-Model successfully loaded
-
-ACModel(
-  (memory_rnn): LSTMCell(75, 75)
-  (word_embedding): Embedding(500, 32)
-  (text_rnn): GRU(32, 128, batch_first=True)
-  (actor): Sequential(
-    (0): Linear(in_features=203, out_features=64, bias=True)
-    (1): Tanh()
-    (2): Linear(in_features=64, out_features=4, bias=True)
-  )
-  (critic): Sequential(
-    (0): Linear(in_features=203, out_features=64, bias=True)
-    (1): Tanh()
-    (2): Linear(in_features=64, out_features=1, bias=True)
-  )
-)
-
-CUDA available: True
-
-U 181 | F 370688 | FPS 0898 | D 2 | Difficulty 1 | rR:μσmM 0.79 0.38 0.00 1.00 | F:μσmM 8.3 10.4 1.0 62.0 | H 0.633 | V 0.470 | pL -0.139 | vL 0.089 | grad 0.275
-U 182 | F 372736 | FPS 1063 | D 4 | Difficulty 2 | rR:μσmM 0.75 0.41 0.00 1.00 | F:μσmM 9.0 9.9 1.0 58.0 | H 0.605 | V 0.515 | pL -0.039 | vL 0.055 | grad 0.216
-U 183 | F 374784 | FPS 0992 | D 7 | Difficulty 3 | rR:μσmM 0.60 0.47 0.00 1.00 | F:μσmM 12.8 13.4 1.0 66.0 | H 0.653 | V 0.429 | pL 0.013 | vL 0.046 | grad 0.214
-U 184 | F 376832 | FPS 1178 | D 9 | Difficulty 3 | rR:μσmM 0.59 0.48 0.00 1.00 | F:μσmM 11.4 12.4 1.0 73.0 | H 0.686 | V 0.394 | pL 0.026 | vL 0.047 | grad 0.197
-U 185 | F 378880 | FPS 1166 | D 11 | Difficulty 3 | rR:μσmM 0.66 0.45 0.00 1.00 | F:μσmM 11.8 14.2 1.0 90.0 | H 0.632 | V 0.452 | pL -0.010 | vL 0.047 | grad 0.211
-U 186 | F 380928 | FPS 1110 | D 13 | Difficulty 3 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 10.2 13.5 1.0 95.0 | H 0.678 | V 0.381 | pL 0.004 | vL 0.061 | grad 0.235
-U 187 | F 382976 | FPS 1057 | D 15 | Difficulty 3 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 11.0 13.7 1.0 89.0 | H 0.650 | V 0.420 | pL 0.013 | vL 0.055 | grad 0.263
-U 188 | F 385024 | FPS 0956 | D 18 | Difficulty 3 | rR:μσmM 0.53 0.49 0.00 1.00 | F:μσmM 10.2 10.8 1.0 71.0 | H 0.682 | V 0.342 | pL 0.027 | vL 0.042 | grad 0.206
-U 189 | F 387072 | FPS 1117 | D 20 | Difficulty 3 | rR:μσmM 0.51 0.49 0.00 1.00 | F:μσmM 10.6 13.9 1.0 109.0 | H 0.690 | V 0.289 | pL 0.011 | vL 0.053 | grad 0.202
-U 190 | F 389120 | FPS 1203 | D 22 | Difficulty 3 | rR:μσmM 0.62 0.46 0.00 1.00 | F:μσmM 12.1 12.4 1.0 72.0 | H 0.629 | V 0.439 | pL -0.045 | vL 0.048 | grad 0.229
-Model successfully saved
-U 191 | F 391168 | FPS 1108 | D 24 | Difficulty 3 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 10.4 11.6 1.0 57.0 | H 0.646 | V 0.418 | pL 0.027 | vL 0.072 | grad 0.267
-U 192 | F 393216 | FPS 1143 | D 26 | Difficulty 3 | rR:μσmM 0.58 0.47 0.00 1.00 | F:μσmM 11.9 12.9 1.0 79.0 | H 0.694 | V 0.415 | pL -0.013 | vL 0.066 | grad 0.214
-U 193 | F 395264 | FPS 1144 | D 28 | Difficulty 3 | rR:μσmM 0.63 0.46 0.00 1.00 | F:μσmM 10.1 12.2 1.0 87.0 | H 0.658 | V 0.478 | pL -0.038 | vL 0.057 | grad 0.247
-U 194 | F 397312 | FPS 1131 | D 30 | Difficulty 3 | rR:μσmM 0.60 0.47 0.00 0.99 | F:μσmM 13.6 15.1 1.0 105.0 | H 0.684 | V 0.475 | pL 0.033 | vL 0.047 | grad 0.206
-U 195 | F 399360 | FPS 1074 | D 32 | Difficulty 3 | rR:μσmM 0.60 0.47 0.00 1.00 | F:μσmM 12.6 13.9 1.0 77.0 | H 0.629 | V 0.407 | pL 0.011 | vL 0.052 | grad 0.186
-U 196 | F 401408 | FPS 0988 | D 34 | Difficulty 3 | rR:μσmM 0.59 0.47 0.00 1.00 | F:μσmM 11.8 14.5 1.0 78.0 | H 0.696 | V 0.408 | pL 0.018 | vL 0.054 | grad 0.229
-U 197 | F 403456 | FPS 1121 | D 36 | Difficulty 3 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 10.3 10.2 1.0 57.0 | H 0.647 | V 0.422 | pL 0.019 | vL 0.063 | grad 0.230
-U 198 | F 405504 | FPS 1155 | D 38 | Difficulty 3 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 11.2 10.9 1.0 75.0 | H 0.678 | V 0.385 | pL -0.030 | vL 0.055 | grad 0.214
-U 199 | F 407552 | FPS 1180 | D 40 | Difficulty 3 | rR:μσmM 0.66 0.45 0.00 1.00 | F:μσmM 11.3 11.6 1.0 70.0 | H 0.646 | V 0.428 | pL -0.064 | vL 0.045 | grad 0.217
-U 200 | F 409600 | FPS 1101 | D 43 | Difficulty 3 | rR:μσmM 0.67 0.45 0.00 1.00 | F:μσmM 10.0 11.1 1.0 92.0 | H 0.645 | V 0.453 | pL -0.066 | vL 0.070 | grad 0.246
-Model successfully saved
-U 201 | F 411648 | FPS 1122 | D 45 | Difficulty 3 | rR:μσmM 0.63 0.46 0.00 1.00 | F:μσmM 9.8 10.3 1.0 79.0 | H 0.595 | V 0.502 | pL 0.002 | vL 0.065 | grad 0.226
-U 202 | F 413696 | FPS 0949 | D 47 | Difficulty 3 | rR:μσmM 0.68 0.45 0.00 1.00 | F:μσmM 9.5 9.7 1.0 83.0 | H 0.587 | V 0.502 | pL -0.012 | vL 0.057 | grad 0.244
-U 203 | F 415744 | FPS 1114 | D 49 | Difficulty 3 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 10.1 12.9 1.0 88.0 | H 0.618 | V 0.494 | pL 0.042 | vL 0.050 | grad 0.232
-U 204 | F 417792 | FPS 1273 | D 51 | Difficulty 3 | rR:μσmM 0.66 0.45 0.00 1.00 | F:μσmM 12.5 14.7 1.0 65.0 | H 0.696 | V 0.366 | pL -0.009 | vL 0.036 | grad 0.171
-U 205 | F 419840 | FPS 1173 | D 53 | Difficulty 3 | rR:μσmM 0.63 0.46 0.00 1.00 | F:μσmM 13.6 13.6 1.0 67.0 | H 0.658 | V 0.426 | pL -0.034 | vL 0.049 | grad 0.245
-U 206 | F 421888 | FPS 1173 | D 55 | Difficulty 3 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 11.5 11.0 1.0 56.0 | H 0.673 | V 0.384 | pL 0.052 | vL 0.060 | grad 0.241
-U 207 | F 423936 | FPS 1219 | D 57 | Difficulty 3 | rR:μσmM 0.68 0.44 0.00 1.00 | F:μσmM 13.4 14.1 1.0 73.0 | H 0.647 | V 0.448 | pL -0.012 | vL 0.040 | grad 0.217
-U 208 | F 425984 | FPS 0951 | D 60 | Difficulty 3 | rR:μσmM 0.53 0.49 0.00 1.00 | F:μσmM 12.4 13.9 1.0 81.0 | H 0.703 | V 0.353 | pL 0.048 | vL 0.053 | grad 0.226
-U 209 | F 428032 | FPS 1167 | D 62 | Difficulty 3 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 12.0 11.0 1.0 69.0 | H 0.644 | V 0.392 | pL -0.005 | vL 0.053 | grad 0.223
-U 210 | F 430080 | FPS 1147 | D 64 | Difficulty 3 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 12.7 15.0 1.0 91.0 | H 0.673 | V 0.367 | pL -0.006 | vL 0.051 | grad 0.224
-Model successfully saved
-U 211 | F 432128 | FPS 1145 | D 66 | Difficulty 3 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 10.8 12.7 1.0 99.0 | H 0.667 | V 0.408 | pL -0.013 | vL 0.053 | grad 0.205
-U 212 | F 434176 | FPS 1164 | D 68 | Difficulty 3 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 11.2 9.8 1.0 50.0 | H 0.666 | V 0.440 | pL -0.036 | vL 0.061 | grad 0.236
-U 213 | F 436224 | FPS 1168 | D 70 | Difficulty 3 | rR:μσmM 0.69 0.44 0.00 1.00 | F:μσmM 11.5 13.4 1.0 91.0 | H 0.639 | V 0.441 | pL -0.011 | vL 0.047 | grad 0.239
-U 214 | F 438272 | FPS 1075 | D 72 | Difficulty 3 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 11.5 12.4 1.0 93.0 | H 0.658 | V 0.454 | pL 0.055 | vL 0.050 | grad 0.232
-U 215 | F 440320 | FPS 1163 | D 74 | Difficulty 3 | rR:μσmM 0.62 0.46 0.00 1.00 | F:μσmM 12.1 12.5 1.0 87.0 | H 0.659 | V 0.440 | pL -0.037 | vL 0.060 | grad 0.230
-U 216 | F 442368 | FPS 1040 | D 77 | Difficulty 3 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 9.0 8.5 1.0 62.0 | H 0.626 | V 0.499 | pL -0.044 | vL 0.074 | grad 0.298
-U 217 | F 444416 | FPS 1188 | D 79 | Difficulty 3 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 11.9 14.1 1.0 89.0 | H 0.632 | V 0.414 | pL 0.025 | vL 0.046 | grad 0.175
-U 218 | F 446464 | FPS 1181 | D 81 | Difficulty 3 | rR:μσmM 0.49 0.48 0.00 1.00 | F:μσmM 12.2 12.5 1.0 82.0 | H 0.652 | V 0.350 | pL 0.015 | vL 0.061 | grad 0.261
-U 219 | F 448512 | FPS 1197 | D 83 | Difficulty 3 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 11.9 13.3 1.0 73.0 | H 0.671 | V 0.373 | pL 0.018 | vL 0.043 | grad 0.198
-U 220 | F 450560 | FPS 1138 | D 85 | Difficulty 3 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 12.1 13.8 1.0 64.0 | H 0.687 | V 0.345 | pL -0.008 | vL 0.053 | grad 0.223
-Model successfully saved
-U 221 | F 452608 | FPS 1034 | D 87 | Difficulty 3 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 10.9 13.1 1.0 94.0 | H 0.678 | V 0.376 | pL -0.013 | vL 0.055 | grad 0.220
-U 222 | F 454656 | FPS 1140 | D 89 | Difficulty 3 | rR:μσmM 0.63 0.46 0.00 1.00 | F:μσmM 11.9 12.6 1.0 90.0 | H 0.639 | V 0.408 | pL -0.045 | vL 0.062 | grad 0.246
-U 223 | F 456704 | FPS 1081 | D 92 | Difficulty 3 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 10.7 9.3 1.0 44.0 | H 0.614 | V 0.459 | pL -0.034 | vL 0.071 | grad 0.225
-U 224 | F 458752 | FPS 1123 | D 94 | Difficulty 3 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 12.5 17.4 1.0 111.0 | H 0.634 | V 0.395 | pL 0.005 | vL 0.061 | grad 0.228
-U 225 | F 460800 | FPS 1109 | D 96 | Difficulty 3 | rR:μσmM 0.60 0.48 0.00 1.00 | F:μσmM 10.9 12.1 1.0 114.0 | H 0.633 | V 0.404 | pL 0.025 | vL 0.057 | grad 0.274
-U 226 | F 462848 | FPS 1112 | D 98 | Difficulty 3 | rR:μσmM 0.67 0.45 0.00 1.00 | F:μσmM 10.2 11.6 1.0 73.0 | H 0.642 | V 0.425 | pL -0.052 | vL 0.059 | grad 0.242
-U 227 | F 464896 | FPS 1025 | D 101 | Difficulty 3 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 10.9 11.9 1.0 80.0 | H 0.586 | V 0.454 | pL 0.019 | vL 0.061 | grad 0.222
-U 228 | F 466944 | FPS 0936 | D 103 | Difficulty 3 | rR:μσmM 0.65 0.46 0.00 1.00 | F:μσmM 10.1 10.4 1.0 78.0 | H 0.632 | V 0.480 | pL -0.025 | vL 0.063 | grad 0.257
-U 229 | F 468992 | FPS 1125 | D 105 | Difficulty 3 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 10.8 10.7 1.0 81.0 | H 0.609 | V 0.485 | pL 0.031 | vL 0.070 | grad 0.259
-U 230 | F 471040 | FPS 1113 | D 108 | Difficulty 3 | rR:μσmM 0.60 0.47 0.00 1.00 | F:μσmM 12.4 12.9 1.0 68.0 | H 0.642 | V 0.434 | pL 0.005 | vL 0.049 | grad 0.216
-Model successfully saved
-U 231 | F 473088 | FPS 1045 | D 112 | Difficulty 3 | rR:μσmM 0.67 0.45 0.00 1.00 | F:μσmM 12.7 13.9 1.0 93.0 | H 0.664 | V 0.477 | pL -0.034 | vL 0.054 | grad 0.276
-U 232 | F 475136 | FPS 1005 | D 115 | Difficulty 3 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 11.4 11.6 1.0 62.0 | H 0.644 | V 0.427 | pL 0.023 | vL 0.062 | grad 0.205
-U 233 | F 477184 | FPS 0187 | D 136 | Difficulty 3 | rR:μσmM 0.59 0.48 0.00 1.00 | F:μσmM 11.3 11.4 1.0 76.0 | H 0.662 | V 0.454 | pL 0.014 | vL 0.060 | grad 0.205
-U 234 | F 479232 | FPS 0108 | D 162 | Difficulty 3 | rR:μσmM 0.60 0.47 0.00 1.00 | F:μσmM 12.6 13.8 1.0 82.0 | H 0.684 | V 0.453 | pL -0.027 | vL 0.060 | grad 0.221
-scripts/train.py --algo ppo --env MiniGrid-GridCity-4S30-v0 --model GridCity --save-interval 10 --recurrence=8 --text --tb
-
-Namespace(algo='ppo', batch_size=256, clip_eps=0.2, difficulty=1, discount=0.99, entropy_coef=0.01, env='MiniGrid-GridCity-4S30-v0', epochs=4, frames=10000000, frames_per_proc=None, gae_lambda=0.95, log_interval=1, lr=0.0007, max_grad_norm=0.5, mem=True, model='GridCity', optim_alpha=0.99, optim_eps=1e-05, procs=16, recurrence=8, save_interval=10, seed=1, tb=True, text=True, value_loss_coef=0.5)
-
-Model successfully loaded
-
-ACModel(
-  (memory_rnn): LSTMCell(75, 75)
-  (word_embedding): Embedding(500, 32)
-  (text_rnn): GRU(32, 128, batch_first=True)
-  (actor): Sequential(
-    (0): Linear(in_features=203, out_features=64, bias=True)
-    (1): Tanh()
-    (2): Linear(in_features=64, out_features=4, bias=True)
-  )
-  (critic): Sequential(
-    (0): Linear(in_features=203, out_features=64, bias=True)
-    (1): Tanh()
-    (2): Linear(in_features=64, out_features=1, bias=True)
-  )
-)
-
-CUDA available: True
-
-U 231 | F 473088 | FPS 0739 | D 3 | Difficulty 1 | rR:μσmM 0.83 0.36 0.00 1.00 | F:μσmM 8.5 11.8 1.0 110.0 | H 0.591 | V 0.570 | pL -0.132 | vL 0.071 | grad 0.296
-U 232 | F 475136 | FPS 1011 | D 5 | Difficulty 2 | rR:μσmM 0.71 0.44 0.00 1.00 | F:μσmM 7.8 7.8 1.0 58.0 | H 0.572 | V 0.598 | pL 0.028 | vL 0.073 | grad 0.270
-U 233 | F 477184 | FPS 0935 | D 8 | Difficulty 3 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 9.6 10.1 1.0 52.0 | H 0.666 | V 0.431 | pL 0.053 | vL 0.054 | grad 0.233
-U 234 | F 479232 | FPS 1263 | D 10 | Difficulty 3 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 11.8 11.8 1.0 51.0 | H 0.663 | V 0.436 | pL 0.094 | vL 0.049 | grad 0.188
-U 235 | F 481280 | FPS 1202 | D 11 | Difficulty 3 | rR:μσmM 0.63 0.46 0.00 1.00 | F:μσmM 15.4 17.1 1.0 86.0 | H 0.696 | V 0.432 | pL -0.014 | vL 0.051 | grad 0.224
-U 236 | F 483328 | FPS 1217 | D 13 | Difficulty 3 | rR:μσmM 0.76 0.40 0.00 1.00 | F:μσmM 11.3 12.6 1.0 57.0 | H 0.685 | V 0.438 | pL -0.032 | vL 0.028 | grad 0.160
-U 237 | F 485376 | FPS 1228 | D 16 | Difficulty 4 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 15.7 17.4 1.0 105.0 | H 0.661 | V 0.446 | pL 0.023 | vL 0.052 | grad 0.201
-U 238 | F 487424 | FPS 1193 | D 17 | Difficulty 4 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 13.1 16.1 1.0 80.0 | H 0.714 | V 0.410 | pL 0.031 | vL 0.043 | grad 0.175
-U 239 | F 489472 | FPS 1433 | D 19 | Difficulty 4 | rR:μσmM 0.50 0.48 0.00 0.99 | F:μσmM 14.6 14.0 1.0 46.0 | H 0.690 | V 0.316 | pL 0.054 | vL 0.016 | grad 0.129
-U 240 | F 491520 | FPS 1414 | D 21 | Difficulty 4 | rR:μσmM 0.51 0.48 0.00 1.00 | F:μσmM 17.6 22.3 1.0 107.0 | H 0.771 | V 0.293 | pL 0.038 | vL 0.016 | grad 0.117
-Model successfully saved
-U 241 | F 493568 | FPS 1368 | D 23 | Difficulty 4 | rR:μσmM 0.54 0.48 0.00 1.00 | F:μσmM 13.0 16.8 1.0 83.0 | H 0.785 | V 0.312 | pL 0.008 | vL 0.023 | grad 0.147
-U 242 | F 495616 | FPS 1335 | D 24 | Difficulty 4 | rR:μσmM 0.52 0.47 0.00 0.99 | F:μσmM 18.3 20.0 1.0 106.0 | H 0.787 | V 0.375 | pL 0.014 | vL 0.032 | grad 0.143
-U 243 | F 497664 | FPS 1345 | D 26 | Difficulty 4 | rR:μσmM 0.56 0.47 0.00 1.00 | F:μσmM 16.7 20.2 1.0 85.0 | H 0.795 | V 0.329 | pL 0.027 | vL 0.021 | grad 0.151
-U 244 | F 499712 | FPS 1093 | D 28 | Difficulty 4 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 14.3 19.5 1.0 117.0 | H 0.774 | V 0.293 | pL 0.028 | vL 0.033 | grad 0.179
-U 245 | F 501760 | FPS 1231 | D 30 | Difficulty 4 | rR:μσmM 0.50 0.48 0.00 1.00 | F:μσmM 15.5 17.9 1.0 88.0 | H 0.762 | V 0.343 | pL 0.000 | vL 0.046 | grad 0.204
-U 246 | F 503808 | FPS 1184 | D 32 | Difficulty 4 | rR:μσmM 0.52 0.48 0.00 1.00 | F:μσmM 14.3 18.6 1.0 95.0 | H 0.741 | V 0.318 | pL -0.005 | vL 0.041 | grad 0.196
-U 247 | F 505856 | FPS 1251 | D 34 | Difficulty 4 | rR:μσmM 0.50 0.48 0.00 1.00 | F:μσmM 13.8 14.4 1.0 92.0 | H 0.759 | V 0.341 | pL -0.006 | vL 0.049 | grad 0.236
-U 248 | F 507904 | FPS 1181 | D 36 | Difficulty 4 | rR:μσmM 0.63 0.46 0.00 1.00 | F:μσmM 13.6 15.1 1.0 92.0 | H 0.702 | V 0.421 | pL -0.055 | vL 0.053 | grad 0.188
-U 249 | F 509952 | FPS 1195 | D 38 | Difficulty 4 | rR:μσmM 0.59 0.47 0.00 1.00 | F:μσmM 15.1 17.9 1.0 112.0 | H 0.750 | V 0.378 | pL 0.003 | vL 0.047 | grad 0.203
-U 250 | F 512000 | FPS 1220 | D 40 | Difficulty 4 | rR:μσmM 0.56 0.47 0.00 1.00 | F:μσmM 14.0 15.7 1.0 112.0 | H 0.724 | V 0.390 | pL -0.013 | vL 0.040 | grad 0.193
-Model successfully saved
-U 251 | F 514048 | FPS 1193 | D 42 | Difficulty 4 | rR:μσmM 0.54 0.47 0.00 1.00 | F:μσmM 15.2 19.4 1.0 84.0 | H 0.750 | V 0.392 | pL -0.008 | vL 0.034 | grad 0.169
-U 252 | F 516096 | FPS 1181 | D 44 | Difficulty 4 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 13.6 15.1 1.0 81.0 | H 0.694 | V 0.458 | pL -0.024 | vL 0.042 | grad 0.204
-U 253 | F 518144 | FPS 0967 | D 47 | Difficulty 4 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 10.6 9.3 1.0 46.0 | H 0.701 | V 0.454 | pL -0.010 | vL 0.078 | grad 0.248
-U 254 | F 520192 | FPS 0991 | D 49 | Difficulty 4 | rR:μσmM 0.65 0.45 0.00 1.00 | F:μσmM 14.4 15.4 1.0 64.0 | H 0.717 | V 0.387 | pL -0.015 | vL 0.038 | grad 0.194
-U 255 | F 522240 | FPS 1202 | D 51 | Difficulty 4 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 14.4 15.3 1.0 79.0 | H 0.724 | V 0.419 | pL -0.005 | vL 0.043 | grad 0.174
-U 256 | F 524288 | FPS 1174 | D 53 | Difficulty 4 | rR:μσmM 0.63 0.46 0.00 1.00 | F:μσmM 13.0 14.3 1.0 84.0 | H 0.717 | V 0.451 | pL 0.022 | vL 0.049 | grad 0.180
-U 257 | F 526336 | FPS 1310 | D 55 | Difficulty 4 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 21.0 23.7 1.0 113.0 | H 0.797 | V 0.320 | pL 0.034 | vL 0.031 | grad 0.143
-U 258 | F 528384 | FPS 1241 | D 57 | Difficulty 4 | rR:μσmM 0.62 0.46 0.00 1.00 | F:μσmM 16.1 17.1 1.0 104.0 | H 0.758 | V 0.387 | pL -0.019 | vL 0.039 | grad 0.164
-U 259 | F 530432 | FPS 1255 | D 59 | Difficulty 4 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 15.2 15.6 1.0 72.0 | H 0.778 | V 0.320 | pL 0.038 | vL 0.032 | grad 0.177
-U 260 | F 532480 | FPS 1297 | D 60 | Difficulty 4 | rR:μσmM 0.47 0.48 0.00 1.00 | F:μσmM 19.2 19.5 1.0 90.0 | H 0.781 | V 0.329 | pL 0.055 | vL 0.034 | grad 0.175
-Model successfully saved
-U 261 | F 534528 | FPS 1352 | D 62 | Difficulty 4 | rR:μσmM 0.45 0.48 0.00 0.99 | F:μσmM 19.0 21.9 1.0 115.0 | H 0.768 | V 0.270 | pL 0.048 | vL 0.021 | grad 0.124
-U 262 | F 536576 | FPS 1209 | D 64 | Difficulty 4 | rR:μσmM 0.59 0.47 0.00 1.00 | F:μσmM 16.6 16.3 1.0 76.0 | H 0.771 | V 0.359 | pL -0.004 | vL 0.048 | grad 0.186
-U 263 | F 538624 | FPS 1287 | D 66 | Difficulty 4 | rR:μσmM 0.53 0.47 0.00 1.00 | F:μσmM 16.8 20.0 1.0 97.0 | H 0.750 | V 0.315 | pL -0.014 | vL 0.042 | grad 0.165
-U 264 | F 540672 | FPS 1129 | D 68 | Difficulty 4 | rR:μσmM 0.44 0.48 0.00 1.00 | F:μσmM 17.7 17.6 1.0 114.0 | H 0.762 | V 0.273 | pL 0.006 | vL 0.038 | grad 0.153
-U 265 | F 542720 | FPS 1061 | D 71 | Difficulty 4 | rR:μσmM 0.55 0.46 0.00 1.00 | F:μσmM 21.5 19.6 1.0 88.0 | H 0.731 | V 0.330 | pL -0.023 | vL 0.037 | grad 0.191
-U 266 | F 544768 | FPS 1235 | D 72 | Difficulty 4 | rR:μσmM 0.63 0.45 0.00 1.00 | F:μσmM 17.9 18.4 1.0 99.0 | H 0.725 | V 0.360 | pL -0.052 | vL 0.036 | grad 0.171
-U 267 | F 546816 | FPS 1215 | D 74 | Difficulty 4 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 13.6 13.4 1.0 85.0 | H 0.701 | V 0.367 | pL 0.001 | vL 0.044 | grad 0.181
-U 268 | F 548864 | FPS 1199 | D 76 | Difficulty 4 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 14.7 14.8 1.0 84.0 | H 0.716 | V 0.333 | pL 0.015 | vL 0.046 | grad 0.220
-U 269 | F 550912 | FPS 1272 | D 78 | Difficulty 4 | rR:μσmM 0.59 0.47 0.00 1.00 | F:μσmM 17.9 18.7 1.0 88.0 | H 0.745 | V 0.371 | pL 0.053 | vL 0.041 | grad 0.211
-U 270 | F 552960 | FPS 1230 | D 80 | Difficulty 4 | rR:μσmM 0.52 0.48 0.00 1.00 | F:μσmM 14.2 17.4 1.0 112.0 | H 0.751 | V 0.333 | pL 0.018 | vL 0.038 | grad 0.161
-Model successfully saved
-U 271 | F 555008 | FPS 1293 | D 82 | Difficulty 4 | rR:μσmM 0.48 0.49 0.00 1.00 | F:μσmM 17.4 25.6 1.0 124.0 | H 0.746 | V 0.246 | pL 0.040 | vL 0.024 | grad 0.137
-U 272 | F 557056 | FPS 1176 | D 84 | Difficulty 4 | rR:μσmM 0.49 0.49 0.00 1.00 | F:μσmM 12.3 14.3 1.0 82.0 | H 0.761 | V 0.289 | pL -0.000 | vL 0.050 | grad 0.199
-U 273 | F 559104 | FPS 1021 | D 87 | Difficulty 4 | rR:μσmM 0.59 0.48 0.00 1.00 | F:μσmM 12.7 13.1 1.0 72.0 | H 0.704 | V 0.375 | pL -0.028 | vL 0.052 | grad 0.198
-U 274 | F 561152 | FPS 1243 | D 89 | Difficulty 4 | rR:μσmM 0.61 0.46 0.00 1.00 | F:μσmM 16.9 20.6 1.0 111.0 | H 0.741 | V 0.370 | pL -0.029 | vL 0.032 | grad 0.167
-U 275 | F 563200 | FPS 1235 | D 91 | Difficulty 4 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 15.5 16.7 1.0 76.0 | H 0.737 | V 0.342 | pL 0.043 | vL 0.043 | grad 0.172
-U 276 | F 565248 | FPS 1174 | D 93 | Difficulty 4 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 13.6 14.3 1.0 108.0 | H 0.700 | V 0.445 | pL -0.010 | vL 0.045 | grad 0.194
-U 277 | F 567296 | FPS 1196 | D 95 | Difficulty 4 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 13.1 12.4 1.0 54.0 | H 0.706 | V 0.397 | pL 0.019 | vL 0.058 | grad 0.246
-U 278 | F 569344 | FPS 1229 | D 97 | Difficulty 4 | rR:μσmM 0.59 0.47 0.00 1.00 | F:μσmM 16.4 18.7 1.0 110.0 | H 0.759 | V 0.402 | pL -0.011 | vL 0.040 | grad 0.157
-U 279 | F 571392 | FPS 1202 | D 99 | Difficulty 4 | rR:μσmM 0.61 0.46 0.00 1.00 | F:μσmM 15.7 14.2 1.0 61.0 | H 0.729 | V 0.487 | pL -0.010 | vL 0.049 | grad 0.200
-U 280 | F 573440 | FPS 0812 | D 102 | Difficulty 4 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 14.1 16.0 1.0 97.0 | H 0.742 | V 0.406 | pL 0.014 | vL 0.045 | grad 0.219
-Model successfully saved
-U 281 | F 575488 | FPS 0409 | D 110 | Difficulty 4 | rR:μσmM 0.58 0.47 0.00 1.00 | F:μσmM 13.9 15.0 1.0 107.0 | H 0.751 | V 0.383 | pL 0.021 | vL 0.040 | grad 0.202
-U 282 | F 577536 | FPS 0458 | D 137 | Difficulty 4 | rR:μσmM 0.66 0.45 0.00 1.00 | F:μσmM 16.9 16.7 1.0 101.0 | H 0.750 | V 0.376 | pL -0.016 | vL 0.044 | grad 0.173
-U 283 | F 579584 | FPS 0632 | D 147 | Difficulty 4 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 13.4 14.9 1.0 77.0 | H 0.721 | V 0.387 | pL -0.013 | vL 0.048 | grad 0.178
-U 284 | F 581632 | FPS 0597 | D 160 | Difficulty 4 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 14.8 15.3 1.0 92.0 | H 0.714 | V 0.416 | pL 0.021 | vL 0.046 | grad 0.177
-U 285 | F 583680 | FPS 0849 | D 168 | Difficulty 4 | rR:μσmM 0.60 0.47 0.00 1.00 | F:μσmM 12.2 12.3 1.0 82.0 | H 0.699 | V 0.437 | pL 0.013 | vL 0.051 | grad 0.187
-U 286 | F 585728 | FPS 0937 | D 177 | Difficulty 4 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 14.6 14.0 1.0 68.0 | H 0.705 | V 0.376 | pL 0.014 | vL 0.042 | grad 0.189
-U 287 | F 587776 | FPS 0747 | D 189 | Difficulty 4 | rR:μσmM 0.65 0.45 0.00 1.00 | F:μσmM 13.4 15.8 1.0 92.0 | H 0.757 | V 0.382 | pL -0.035 | vL 0.042 | grad 0.195
-U 288 | F 589824 | FPS 1125 | D 200 | Difficulty 4 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 13.7 13.3 1.0 77.0 | H 0.651 | V 0.434 | pL -0.035 | vL 0.052 | grad 0.219
-U 289 | F 591872 | FPS 1046 | D 204 | Difficulty 4 | rR:μσmM 0.63 0.46 0.00 1.00 | F:μσmM 11.9 12.8 1.0 93.0 | H 0.655 | V 0.506 | pL -0.010 | vL 0.055 | grad 0.230
-U 290 | F 593920 | FPS 0239 | D 216 | Difficulty 4 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 15.5 16.0 1.0 91.0 | H 0.696 | V 0.409 | pL 0.045 | vL 0.046 | grad 0.207
-Model successfully saved
-U 291 | F 595968 | FPS 0596 | D 231 | Difficulty 4 | rR:μσmM 0.59 0.47 0.00 1.00 | F:μσmM 12.3 12.8 1.0 88.0 | H 0.655 | V 0.394 | pL -0.019 | vL 0.059 | grad 0.215
-U 292 | F 598016 | FPS 1037 | D 237 | Difficulty 4 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 11.2 11.0 1.0 63.0 | H 0.618 | V 0.436 | pL -0.010 | vL 0.050 | grad 0.200
-U 293 | F 600064 | FPS 1140 | D 243 | Difficulty 4 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 11.2 10.6 1.0 82.0 | H 0.646 | V 0.443 | pL -0.012 | vL 0.055 | grad 0.190
-U 294 | F 602112 | FPS 1165 | D 248 | Difficulty 4 | rR:μσmM 0.59 0.47 0.00 1.00 | F:μσmM 12.8 16.4 1.0 109.0 | H 0.607 | V 0.388 | pL -0.001 | vL 0.038 | grad 0.156
-U 295 | F 604160 | FPS 0958 | D 254 | Difficulty 4 | rR:μσmM 0.57 0.47 0.00 1.00 | F:μσmM 16.2 19.1 1.0 100.0 | H 0.653 | V 0.359 | pL 0.053 | vL 0.050 | grad 0.214
-U 296 | F 606208 | FPS 0296 | D 266 | Difficulty 4 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 12.5 13.3 1.0 94.0 | H 0.646 | V 0.401 | pL -0.049 | vL 0.050 | grad 0.195
-U 297 | F 608256 | FPS 1207 | D 271 | Difficulty 4 | rR:μσmM 0.51 0.48 0.00 1.00 | F:μσmM 15.9 15.4 1.0 78.0 | H 0.678 | V 0.355 | pL 0.025 | vL 0.039 | grad 0.196
-U 298 | F 610304 | FPS 1185 | D 277 | Difficulty 4 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 14.3 17.8 1.0 118.0 | H 0.697 | V 0.384 | pL -0.006 | vL 0.048 | grad 0.192
-U 299 | F 612352 | FPS 1129 | D 281 | Difficulty 4 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 11.7 11.5 1.0 67.0 | H 0.664 | V 0.442 | pL -0.021 | vL 0.057 | grad 0.259
-U 300 | F 614400 | FPS 1154 | D 290 | Difficulty 4 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 12.7 15.5 1.0 111.0 | H 0.684 | V 0.382 | pL 0.021 | vL 0.055 | grad 0.198
-Model successfully saved
-U 301 | F 616448 | FPS 1065 | D 295 | Difficulty 4 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 11.8 13.1 1.0 99.0 | H 0.631 | V 0.418 | pL 0.025 | vL 0.047 | grad 0.209
-U 302 | F 618496 | FPS 0722 | D 302 | Difficulty 4 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 10.9 11.4 1.0 67.0 | H 0.642 | V 0.392 | pL 0.004 | vL 0.067 | grad 0.235
-U 303 | F 620544 | FPS 0247 | D 313 | Difficulty 4 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 13.2 14.3 1.0 80.0 | H 0.680 | V 0.386 | pL -0.021 | vL 0.045 | grad 0.223
-U 304 | F 622592 | FPS 0640 | D 328 | Difficulty 4 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 12.4 13.1 1.0 76.0 | H 0.667 | V 0.362 | pL 0.020 | vL 0.043 | grad 0.200
-U 305 | F 624640 | FPS 0877 | D 332 | Difficulty 4 | rR:μσmM 0.61 0.46 0.00 1.00 | F:μσmM 14.5 14.3 1.0 76.0 | H 0.680 | V 0.434 | pL -0.032 | vL 0.054 | grad 0.213
-U 306 | F 626688 | FPS 1075 | D 337 | Difficulty 4 | rR:μσmM 0.69 0.44 0.00 1.00 | F:μσmM 13.8 17.4 1.0 103.0 | H 0.619 | V 0.416 | pL -0.033 | vL 0.038 | grad 0.184
-U 307 | F 628736 | FPS 1146 | D 342 | Difficulty 4 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 12.1 14.5 1.0 79.0 | H 0.677 | V 0.411 | pL 0.039 | vL 0.054 | grad 0.213
-U 308 | F 630784 | FPS 1187 | D 348 | Difficulty 4 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 16.5 20.4 1.0 126.0 | H 0.646 | V 0.361 | pL 0.034 | vL 0.037 | grad 0.185
-U 309 | F 632832 | FPS 1025 | D 354 | Difficulty 4 | rR:μσmM 0.49 0.49 0.00 1.00 | F:μσmM 12.4 11.8 1.0 66.0 | H 0.661 | V 0.326 | pL 0.025 | vL 0.052 | grad 0.180
-U 310 | F 634880 | FPS 0886 | D 362 | Difficulty 4 | rR:μσmM 0.52 0.48 0.00 1.00 | F:μσmM 14.1 16.5 1.0 96.0 | H 0.659 | V 0.339 | pL -0.002 | vL 0.047 | grad 0.180
-Model successfully saved
-U 311 | F 636928 | FPS 0640 | D 384 | Difficulty 4 | rR:μσmM 0.65 0.46 0.00 1.00 | F:μσmM 11.3 13.2 1.0 102.0 | H 0.629 | V 0.433 | pL -0.088 | vL 0.059 | grad 0.211
-U 312 | F 638976 | FPS 0710 | D 392 | Difficulty 4 | rR:μσmM 0.65 0.46 0.00 1.00 | F:μσmM 9.7 8.9 1.0 68.0 | H 0.586 | V 0.457 | pL -0.047 | vL 0.059 | grad 0.195
-U 313 | F 641024 | FPS 1107 | D 401 | Difficulty 4 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 11.5 11.9 1.0 59.0 | H 0.651 | V 0.440 | pL 0.014 | vL 0.062 | grad 0.214
-U 314 | F 643072 | FPS 1136 | D 413 | Difficulty 4 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 12.6 14.7 1.0 120.0 | H 0.638 | V 0.468 | pL 0.014 | vL 0.059 | grad 0.233
-U 315 | F 645120 | FPS 1071 | D 423 | Difficulty 4 | rR:μσmM 0.59 0.48 0.00 1.00 | F:μσmM 9.6 8.9 1.0 60.0 | H 0.623 | V 0.449 | pL 0.011 | vL 0.080 | grad 0.308
-U 316 | F 647168 | FPS 1073 | D 431 | Difficulty 4 | rR:μσmM 0.54 0.48 0.00 1.00 | F:μσmM 11.8 13.2 1.0 82.0 | H 0.645 | V 0.434 | pL 0.016 | vL 0.060 | grad 0.225
-U 317 | F 649216 | FPS 0440 | D 447 | Difficulty 4 | rR:μσmM 0.65 0.46 0.00 1.00 | F:μσmM 10.3 9.1 1.0 56.0 | H 0.605 | V 0.487 | pL -0.000 | vL 0.054 | grad 0.179
-U 318 | F 651264 | FPS 0116 | D 474 | Difficulty 4 | rR:μσmM 0.65 0.46 0.00 1.00 | F:μσmM 11.7 11.6 1.0 78.0 | H 0.613 | V 0.485 | pL -0.034 | vL 0.074 | grad 0.201
-U 319 | F 653312 | FPS 1081 | D 485 | Difficulty 4 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 10.7 11.0 1.0 78.0 | H 0.634 | V 0.433 | pL 0.011 | vL 0.069 | grad 0.273
-U 320 | F 655360 | FPS 1074 | D 497 | Difficulty 4 | rR:μσmM 0.65 0.46 0.00 1.00 | F:μσmM 10.0 9.9 1.0 77.0 | H 0.623 | V 0.496 | pL -0.050 | vL 0.058 | grad 0.211
-Model successfully saved
-U 321 | F 657408 | FPS 1048 | D 508 | Difficulty 4 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 12.8 12.7 1.0 66.0 | H 0.629 | V 0.438 | pL 0.067 | vL 0.056 | grad 0.214
-U 322 | F 659456 | FPS 1055 | D 517 | Difficulty 4 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 11.6 11.9 1.0 72.0 | H 0.641 | V 0.403 | pL -0.013 | vL 0.058 | grad 0.211
-U 323 | F 661504 | FPS 0244 | D 529 | Difficulty 4 | rR:μσmM 0.62 0.46 0.00 1.00 | F:μσmM 10.6 10.0 1.0 65.0 | H 0.619 | V 0.451 | pL -0.033 | vL 0.060 | grad 0.240
-U 324 | F 663552 | FPS 1135 | D 536 | Difficulty 4 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 11.3 8.9 1.0 44.0 | H 0.650 | V 0.396 | pL 0.020 | vL 0.054 | grad 0.207
-U 325 | F 665600 | FPS 1108 | D 543 | Difficulty 4 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 12.3 10.0 1.0 44.0 | H 0.662 | V 0.413 | pL 0.039 | vL 0.058 | grad 0.244
-U 326 | F 667648 | FPS 1154 | D 552 | Difficulty 4 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 11.8 13.1 1.0 89.0 | H 0.682 | V 0.430 | pL -0.029 | vL 0.054 | grad 0.208
-U 327 | F 669696 | FPS 1104 | D 576 | Difficulty 4 | rR:μσmM 0.68 0.44 0.00 1.00 | F:μσmM 11.6 11.9 1.0 69.0 | H 0.650 | V 0.485 | pL -0.063 | vL 0.049 | grad 0.204
-scripts/train.py --algo ppo --env MiniGrid-GridCity-4S30-v0 --model GridCity --save-interval 10 --recurrence=8 --text --tb
-
-Namespace(algo='ppo', batch_size=256, clip_eps=0.2, difficulty=1, discount=0.99, entropy_coef=0.01, env='MiniGrid-GridCity-4S30-v0', epochs=4, frames=10000000, frames_per_proc=None, gae_lambda=0.95, log_interval=1, lr=0.0007, max_grad_norm=0.5, mem=True, model='GridCity', optim_alpha=0.99, optim_eps=1e-05, procs=16, recurrence=8, save_interval=10, seed=1, tb=True, text=True, value_loss_coef=0.5)
-
-Model successfully loaded
-
-ACModel(
-  (memory_rnn): LSTMCell(75, 75)
-  (word_embedding): Embedding(500, 32)
-  (text_rnn): GRU(32, 128, batch_first=True)
-  (actor): Sequential(
-    (0): Linear(in_features=203, out_features=64, bias=True)
-    (1): Tanh()
-    (2): Linear(in_features=64, out_features=4, bias=True)
-  )
-  (critic): Sequential(
-    (0): Linear(in_features=203, out_features=64, bias=True)
-    (1): Tanh()
-    (2): Linear(in_features=64, out_features=1, bias=True)
-  )
-)
-
-CUDA available: True
-
-U 321 | F 657408 | FPS 0874 | D 2 | Difficulty 1 | rR:μσmM 0.83 0.36 0.00 1.00 | F:μσmM 8.1 10.8 1.0 78.0 | H 0.621 | V 0.501 | pL -0.094 | vL 0.067 | grad 0.215
-U 322 | F 659456 | FPS 0894 | D 5 | Difficulty 2 | rR:μσmM 0.75 0.41 0.00 1.00 | F:μσmM 9.2 10.2 1.0 75.0 | H 0.574 | V 0.593 | pL -0.014 | vL 0.056 | grad 0.239
-U 323 | F 661504 | FPS 0923 | D 8 | Difficulty 3 | rR:μσmM 0.71 0.44 0.00 1.00 | F:μσmM 8.9 9.9 1.0 80.0 | H 0.615 | V 0.538 | pL 0.067 | vL 0.054 | grad 0.207
-U 324 | F 663552 | FPS 0959 | D 10 | Difficulty 4 | rR:μσmM 0.66 0.46 0.00 1.00 | F:μσmM 12.2 14.0 1.0 111.0 | H 0.619 | V 0.464 | pL 0.025 | vL 0.057 | grad 0.225
-U 325 | F 665600 | FPS 1136 | D 12 | Difficulty 4 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 12.3 11.4 1.0 77.0 | H 0.619 | V 0.445 | pL 0.030 | vL 0.050 | grad 0.202
-U 326 | F 667648 | FPS 1155 | D 14 | Difficulty 4 | rR:μσmM 0.60 0.47 0.00 1.00 | F:μσmM 12.1 12.1 1.0 71.0 | H 0.648 | V 0.418 | pL -0.008 | vL 0.044 | grad 0.172
-U 327 | F 669696 | FPS 1157 | D 16 | Difficulty 4 | rR:μσmM 0.59 0.48 0.00 1.00 | F:μσmM 11.4 13.6 1.0 99.0 | H 0.598 | V 0.360 | pL 0.004 | vL 0.041 | grad 0.220
-U 328 | F 671744 | FPS 1128 | D 18 | Difficulty 4 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 11.7 12.7 1.0 92.0 | H 0.634 | V 0.441 | pL 0.003 | vL 0.069 | grad 0.239
-U 329 | F 673792 | FPS 1114 | D 20 | Difficulty 4 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 12.9 15.2 1.0 109.0 | H 0.622 | V 0.421 | pL 0.005 | vL 0.048 | grad 0.212
-U 330 | F 675840 | FPS 1040 | D 23 | Difficulty 4 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 11.0 12.0 1.0 97.0 | H 0.615 | V 0.431 | pL 0.015 | vL 0.044 | grad 0.167
-Model successfully saved
-U 331 | F 677888 | FPS 1116 | D 25 | Difficulty 4 | rR:μσmM 0.65 0.46 0.00 1.00 | F:μσmM 10.6 10.3 1.0 63.0 | H 0.630 | V 0.422 | pL -0.027 | vL 0.056 | grad 0.185
-U 332 | F 679936 | FPS 1132 | D 27 | Difficulty 4 | rR:μσmM 0.58 0.48 0.00 1.00 | F:μσmM 11.1 10.8 1.0 68.0 | H 0.614 | V 0.438 | pL -0.001 | vL 0.062 | grad 0.216
-U 333 | F 681984 | FPS 1108 | D 29 | Difficulty 4 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 10.9 12.0 1.0 90.0 | H 0.634 | V 0.441 | pL 0.004 | vL 0.060 | grad 0.220
-U 334 | F 684032 | FPS 1140 | D 31 | Difficulty 4 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 11.2 11.1 1.0 70.0 | H 0.623 | V 0.395 | pL 0.028 | vL 0.065 | grad 0.225
-U 335 | F 686080 | FPS 0998 | D 33 | Difficulty 4 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 11.4 12.3 1.0 89.0 | H 0.614 | V 0.435 | pL -0.043 | vL 0.057 | grad 0.196
-U 336 | F 688128 | FPS 1116 | D 35 | Difficulty 4 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 11.2 11.9 1.0 79.0 | H 0.588 | V 0.455 | pL 0.004 | vL 0.047 | grad 0.198
-U 337 | F 690176 | FPS 1120 | D 38 | Difficulty 4 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 9.6 9.2 1.0 62.0 | H 0.622 | V 0.441 | pL -0.011 | vL 0.062 | grad 0.193
-U 338 | F 692224 | FPS 1129 | D 40 | Difficulty 4 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 11.6 12.1 1.0 74.0 | H 0.623 | V 0.443 | pL -0.009 | vL 0.061 | grad 0.226
-U 339 | F 694272 | FPS 1130 | D 42 | Difficulty 4 | rR:μσmM 0.70 0.44 0.00 1.00 | F:μσmM 12.0 14.5 1.0 86.0 | H 0.557 | V 0.470 | pL -0.028 | vL 0.042 | grad 0.195
-U 340 | F 696320 | FPS 1102 | D 44 | Difficulty 4 | rR:μσmM 0.68 0.45 0.00 1.00 | F:μσmM 10.2 9.1 1.0 59.0 | H 0.604 | V 0.455 | pL -0.018 | vL 0.053 | grad 0.250
-Model successfully saved
-U 341 | F 698368 | FPS 1081 | D 46 | Difficulty 4 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 10.4 11.6 1.0 66.0 | H 0.637 | V 0.394 | pL 0.013 | vL 0.049 | grad 0.182
-U 342 | F 700416 | FPS 0948 | D 49 | Difficulty 4 | rR:μσmM 0.66 0.45 0.00 1.00 | F:μσmM 12.5 15.7 1.0 101.0 | H 0.602 | V 0.466 | pL 0.013 | vL 0.055 | grad 0.225
-U 343 | F 702464 | FPS 1132 | D 51 | Difficulty 4 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 11.2 11.8 1.0 85.0 | H 0.613 | V 0.370 | pL 0.014 | vL 0.050 | grad 0.207
-U 344 | F 704512 | FPS 1136 | D 53 | Difficulty 4 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 11.2 11.7 1.0 90.0 | H 0.560 | V 0.392 | pL 0.002 | vL 0.054 | grad 0.202
-U 345 | F 706560 | FPS 1097 | D 55 | Difficulty 4 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 9.5 8.6 1.0 52.0 | H 0.594 | V 0.376 | pL 0.000 | vL 0.060 | grad 0.210
-U 346 | F 708608 | FPS 1093 | D 57 | Difficulty 4 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 10.7 11.4 1.0 113.0 | H 0.594 | V 0.428 | pL -0.005 | vL 0.077 | grad 0.224
-U 347 | F 710656 | FPS 0994 | D 59 | Difficulty 4 | rR:μσmM 0.66 0.45 0.00 1.00 | F:μσmM 10.9 14.8 1.0 112.0 | H 0.619 | V 0.389 | pL -0.049 | vL 0.042 | grad 0.260
-U 348 | F 712704 | FPS 0984 | D 62 | Difficulty 4 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 11.0 11.4 1.0 57.0 | H 0.685 | V 0.370 | pL 0.077 | vL 0.059 | grad 0.212
-U 349 | F 714752 | FPS 1165 | D 64 | Difficulty 4 | rR:μσmM 0.66 0.45 0.00 1.00 | F:μσmM 13.4 12.8 1.0 70.0 | H 0.654 | V 0.414 | pL -0.015 | vL 0.045 | grad 0.188
-U 350 | F 716800 | FPS 1104 | D 66 | Difficulty 4 | rR:μσmM 0.68 0.44 0.00 1.00 | F:μσmM 11.7 12.7 1.0 99.0 | H 0.634 | V 0.495 | pL -0.019 | vL 0.053 | grad 0.228
-Model successfully saved
-U 351 | F 718848 | FPS 1160 | D 68 | Difficulty 4 | rR:μσmM 0.68 0.44 0.00 1.00 | F:μσmM 13.2 16.3 1.0 113.0 | H 0.639 | V 0.483 | pL -0.007 | vL 0.045 | grad 0.199
-U 352 | F 720896 | FPS 1140 | D 70 | Difficulty 4 | rR:μσmM 0.57 0.47 0.00 1.00 | F:μσmM 12.9 13.6 1.0 80.0 | H 0.676 | V 0.424 | pL 0.008 | vL 0.054 | grad 0.192
-U 353 | F 722944 | FPS 1121 | D 72 | Difficulty 4 | rR:μσmM 0.66 0.45 0.00 1.00 | F:μσmM 12.0 14.5 1.0 119.0 | H 0.631 | V 0.482 | pL -0.015 | vL 0.053 | grad 0.204
-U 354 | F 724992 | FPS 1111 | D 75 | Difficulty 4 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 11.8 11.5 1.0 74.0 | H 0.656 | V 0.436 | pL 0.009 | vL 0.070 | grad 0.245
-U 355 | F 727040 | FPS 0952 | D 77 | Difficulty 4 | rR:μσmM 0.66 0.45 0.00 1.00 | F:μσmM 12.4 13.1 1.0 66.0 | H 0.626 | V 0.484 | pL -0.043 | vL 0.049 | grad 0.214
-U 356 | F 729088 | FPS 1094 | D 79 | Difficulty 4 | rR:μσmM 0.70 0.44 0.00 1.00 | F:μσmM 10.6 9.3 1.0 59.0 | H 0.557 | V 0.501 | pL -0.034 | vL 0.053 | grad 0.183
-U 357 | F 731136 | FPS 1160 | D 81 | Difficulty 4 | rR:μσmM 0.67 0.44 0.00 1.00 | F:μσmM 13.6 12.6 1.0 72.0 | H 0.562 | V 0.496 | pL -0.019 | vL 0.044 | grad 0.181
-U 358 | F 733184 | FPS 1103 | D 84 | Difficulty 4 | rR:μσmM 0.54 0.48 0.00 1.00 | F:μσmM 10.1 9.8 1.0 61.0 | H 0.604 | V 0.456 | pL 0.037 | vL 0.062 | grad 0.229
-U 359 | F 735232 | FPS 1127 | D 86 | Difficulty 4 | rR:μσmM 0.52 0.49 0.00 1.00 | F:μσmM 10.8 9.7 1.0 54.0 | H 0.623 | V 0.438 | pL 0.055 | vL 0.058 | grad 0.198
-U 360 | F 737280 | FPS 1019 | D 88 | Difficulty 4 | rR:μσmM 0.60 0.47 0.00 1.00 | F:μσmM 12.1 11.6 1.0 61.0 | H 0.562 | V 0.464 | pL -0.005 | vL 0.060 | grad 0.207
-Model successfully saved
-U 361 | F 739328 | FPS 0915 | D 91 | Difficulty 4 | rR:μσmM 0.68 0.45 0.00 1.00 | F:μσmM 9.6 8.4 1.0 76.0 | H 0.575 | V 0.516 | pL -0.037 | vL 0.058 | grad 0.218
-U 362 | F 741376 | FPS 1103 | D 93 | Difficulty 4 | rR:μσmM 0.63 0.46 0.00 1.00 | F:μσmM 11.3 12.1 1.0 83.0 | H 0.581 | V 0.510 | pL 0.015 | vL 0.059 | grad 0.208
-U 363 | F 743424 | FPS 1104 | D 95 | Difficulty 4 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 10.3 10.2 1.0 60.0 | H 0.614 | V 0.494 | pL 0.019 | vL 0.055 | grad 0.240
-U 364 | F 745472 | FPS 1062 | D 97 | Difficulty 4 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 10.6 11.3 1.0 71.0 | H 0.604 | V 0.492 | pL 0.024 | vL 0.063 | grad 0.221
-U 365 | F 747520 | FPS 1149 | D 100 | Difficulty 4 | rR:μσmM 0.63 0.46 0.00 1.00 | F:μσmM 11.1 10.5 1.0 85.0 | H 0.652 | V 0.484 | pL -0.024 | vL 0.040 | grad 0.159
-U 366 | F 749568 | FPS 1085 | D 102 | Difficulty 4 | rR:μσmM 0.69 0.44 0.00 1.00 | F:μσmM 12.8 14.5 1.0 108.0 | H 0.606 | V 0.523 | pL -0.017 | vL 0.041 | grad 0.173
-U 367 | F 751616 | FPS 0165 | D 115 | Difficulty 4 | rR:μσmM 0.67 0.45 0.00 1.00 | F:μσmM 9.5 7.9 1.0 52.0 | H 0.579 | V 0.532 | pL -0.047 | vL 0.062 | grad 0.178
-U 368 | F 753664 | FPS 0586 | D 127 | Difficulty 4 | rR:μσmM 0.63 0.47 0.00 1.00 | F:μσmM 10.6 8.7 1.0 47.0 | H 0.613 | V 0.479 | pL 0.027 | vL 0.068 | grad 0.218
-U 369 | F 755712 | FPS 0678 | D 143 | Difficulty 4 | rR:μσmM 0.65 0.46 0.00 1.00 | F:μσmM 11.7 10.9 1.0 76.0 | H 0.626 | V 0.485 | pL -0.012 | vL 0.042 | grad 0.187
-U 370 | F 757760 | FPS 0930 | D 153 | Difficulty 4 | rR:μσmM 0.69 0.44 0.00 1.00 | F:μσmM 10.1 9.3 1.0 60.0 | H 0.603 | V 0.516 | pL -0.030 | vL 0.053 | grad 0.182
-Model successfully saved
-U 371 | F 759808 | FPS 0957 | D 160 | Difficulty 4 | rR:μσmM 0.65 0.46 0.00 1.00 | F:μσmM 10.6 10.0 1.0 59.0 | H 0.633 | V 0.519 | pL 0.009 | vL 0.054 | grad 0.180
-U 372 | F 761856 | FPS 0954 | D 168 | Difficulty 4 | rR:μσmM 0.66 0.45 0.00 1.00 | F:μσmM 10.3 8.9 1.0 51.0 | H 0.579 | V 0.510 | pL -0.022 | vL 0.064 | grad 0.217
-U 373 | F 763904 | FPS 0422 | D 188 | Difficulty 4 | rR:μσmM 0.67 0.45 0.00 1.00 | F:μσmM 11.0 11.1 1.0 87.0 | H 0.615 | V 0.492 | pL 0.018 | vL 0.052 | grad 0.219
-U 374 | F 765952 | FPS 1097 | D 193 | Difficulty 4 | rR:μσmM 0.60 0.47 0.00 1.00 | F:μσmM 10.6 10.3 1.0 70.0 | H 0.642 | V 0.402 | pL 0.016 | vL 0.046 | grad 0.183
-U 375 | F 768000 | FPS 1125 | D 196 | Difficulty 4 | rR:μσmM 0.66 0.45 0.00 1.00 | F:μσmM 13.0 14.1 1.0 83.0 | H 0.620 | V 0.481 | pL 0.013 | vL 0.064 | grad 0.244
-U 376 | F 770048 | FPS 0820 | D 201 | Difficulty 4 | rR:μσmM 0.69 0.44 0.00 1.00 | F:μσmM 11.0 12.6 1.0 99.0 | H 0.592 | V 0.491 | pL 0.006 | vL 0.056 | grad 0.227
-U 377 | F 772096 | FPS 1092 | D 206 | Difficulty 4 | rR:μσmM 0.70 0.44 0.00 1.00 | F:μσmM 11.7 10.9 1.0 81.0 | H 0.589 | V 0.513 | pL -0.052 | vL 0.067 | grad 0.215
-U 378 | F 774144 | FPS 0272 | D 219 | Difficulty 4 | rR:μσmM 0.66 0.46 0.00 1.00 | F:μσmM 10.2 8.9 1.0 57.0 | H 0.570 | V 0.524 | pL 0.019 | vL 0.059 | grad 0.241
-U 379 | F 776192 | FPS 0846 | D 224 | Difficulty 4 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 10.0 9.0 1.0 63.0 | H 0.565 | V 0.520 | pL 0.013 | vL 0.064 | grad 0.207
-U 380 | F 778240 | FPS 0939 | D 228 | Difficulty 4 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 10.3 10.5 1.0 61.0 | H 0.605 | V 0.530 | pL 0.022 | vL 0.047 | grad 0.163
-Model successfully saved
-U 381 | F 780288 | FPS 1069 | D 233 | Difficulty 4 | rR:μσmM 0.70 0.43 0.00 1.00 | F:μσmM 10.5 10.4 1.0 73.0 | H 0.604 | V 0.548 | pL -0.006 | vL 0.062 | grad 0.199
-U 382 | F 782336 | FPS 1126 | D 239 | Difficulty 5 | rR:μσmM 0.57 0.48 0.00 1.00 | F:μσmM 13.3 13.9 1.0 95.0 | H 0.681 | V 0.463 | pL 0.046 | vL 0.037 | grad 0.164
-U 383 | F 784384 | FPS 1138 | D 242 | Difficulty 5 | rR:μσmM 0.65 0.45 0.00 1.00 | F:μσmM 13.4 14.1 1.0 77.0 | H 0.667 | V 0.443 | pL 0.016 | vL 0.052 | grad 0.195
-U 384 | F 786432 | FPS 1143 | D 247 | Difficulty 5 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 12.9 12.2 1.0 65.0 | H 0.687 | V 0.420 | pL 0.013 | vL 0.055 | grad 0.237
-U 385 | F 788480 | FPS 1102 | D 253 | Difficulty 5 | rR:μσmM 0.61 0.47 0.00 1.00 | F:μσmM 13.2 15.8 1.0 92.0 | H 0.683 | V 0.430 | pL 0.018 | vL 0.042 | grad 0.192
-U 386 | F 790528 | FPS 0603 | D 261 | Difficulty 5 | rR:μσmM 0.44 0.48 0.00 1.00 | F:μσmM 14.0 13.3 1.0 77.0 | H 0.632 | V 0.337 | pL 0.028 | vL 0.050 | grad 0.183
-U 387 | F 792576 | FPS 0219 | D 276 | Difficulty 5 | rR:μσmM 0.51 0.48 0.00 1.00 | F:μσmM 12.9 10.3 1.0 60.0 | H 0.672 | V 0.360 | pL 0.008 | vL 0.043 | grad 0.168
-U 388 | F 794624 | FPS 0786 | D 294 | Difficulty 5 | rR:μσmM 0.52 0.48 0.00 1.00 | F:μσmM 15.1 14.5 1.0 65.0 | H 0.708 | V 0.322 | pL 0.005 | vL 0.037 | grad 0.185
-U 389 | F 796672 | FPS 0636 | D 301 | Difficulty 5 | rR:μσmM 0.54 0.48 0.00 1.00 | F:μσmM 12.6 12.2 1.0 58.0 | H 0.714 | V 0.311 | pL -0.039 | vL 0.043 | grad 0.174
-U 390 | F 798720 | FPS 0558 | D 308 | Difficulty 5 | rR:μσmM 0.51 0.48 0.00 1.00 | F:μσmM 14.8 15.2 1.0 89.0 | H 0.728 | V 0.308 | pL 0.007 | vL 0.034 | grad 0.181
-Model successfully saved
-U 391 | F 800768 | FPS 1084 | D 315 | Difficulty 5 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 15.0 13.4 1.0 76.0 | H 0.711 | V 0.363 | pL -0.005 | vL 0.039 | grad 0.186
-U 392 | F 802816 | FPS 1198 | D 321 | Difficulty 5 | rR:μσmM 0.54 0.48 0.00 0.99 | F:μσmM 15.8 15.2 1.0 81.0 | H 0.715 | V 0.342 | pL 0.004 | vL 0.038 | grad 0.186
-U 393 | F 804864 | FPS 0928 | D 327 | Difficulty 5 | rR:μσmM 0.66 0.45 0.00 1.00 | F:μσmM 16.9 18.4 1.0 103.0 | H 0.721 | V 0.326 | pL -0.022 | vL 0.029 | grad 0.172
-U 394 | F 806912 | FPS 0232 | D 340 | Difficulty 5 | rR:μσmM 0.51 0.48 0.00 0.99 | F:μσmM 17.0 19.0 2.0 117.0 | H 0.717 | V 0.338 | pL 0.008 | vL 0.036 | grad 0.172
-U 395 | F 808960 | FPS 0947 | D 346 | Difficulty 5 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 15.3 15.6 1.0 89.0 | H 0.709 | V 0.355 | pL 0.018 | vL 0.047 | grad 0.198
-U 396 | F 811008 | FPS 1176 | D 352 | Difficulty 5 | rR:μσmM 0.57 0.47 0.00 1.00 | F:μσmM 16.2 20.8 1.0 123.0 | H 0.711 | V 0.339 | pL 0.012 | vL 0.041 | grad 0.174
-U 397 | F 813056 | FPS 1110 | D 358 | Difficulty 5 | rR:μσmM 0.57 0.47 0.00 1.00 | F:μσmM 13.4 12.3 1.0 74.0 | H 0.663 | V 0.350 | pL -0.032 | vL 0.044 | grad 0.172
-U 398 | F 815104 | FPS 1141 | D 363 | Difficulty 5 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 14.7 16.8 1.0 103.0 | H 0.691 | V 0.309 | pL -0.019 | vL 0.048 | grad 0.202
-U 399 | F 817152 | FPS 1154 | D 369 | Difficulty 5 | rR:μσmM 0.47 0.48 0.00 1.00 | F:μσmM 14.7 13.2 1.0 77.0 | H 0.746 | V 0.371 | pL 0.044 | vL 0.042 | grad 0.175
-U 400 | F 819200 | FPS 0960 | D 375 | Difficulty 5 | rR:μσmM 0.59 0.47 0.00 1.00 | F:μσmM 13.6 16.3 1.0 113.0 | H 0.658 | V 0.354 | pL -0.009 | vL 0.048 | grad 0.204
-Model successfully saved
-U 401 | F 821248 | FPS 0987 | D 381 | Difficulty 5 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 17.7 18.2 1.0 128.0 | H 0.690 | V 0.381 | pL 0.004 | vL 0.042 | grad 0.198
-U 402 | F 823296 | FPS 0269 | D 394 | Difficulty 5 | rR:μσmM 0.53 0.48 0.00 1.00 | F:μσmM 20.2 23.8 1.0 125.0 | H 0.710 | V 0.335 | pL 0.047 | vL 0.036 | grad 0.188
-U 403 | F 825344 | FPS 0209 | D 408 | Difficulty 5 | rR:μσmM 0.59 0.47 0.00 1.00 | F:μσmM 14.2 14.9 1.0 71.0 | H 0.668 | V 0.394 | pL -0.032 | vL 0.045 | grad 0.199
-U 404 | F 827392 | FPS 1066 | D 416 | Difficulty 5 | rR:μσmM 0.58 0.47 0.00 1.00 | F:μσmM 17.7 20.0 1.0 90.0 | H 0.693 | V 0.427 | pL 0.035 | vL 0.046 | grad 0.167
-U 405 | F 829440 | FPS 1061 | D 422 | Difficulty 5 | rR:μσmM 0.59 0.47 0.00 1.00 | F:μσmM 14.3 14.1 1.0 97.0 | H 0.713 | V 0.369 | pL -0.025 | vL 0.055 | grad 0.228
-U 406 | F 831488 | FPS 0994 | D 429 | Difficulty 5 | rR:μσmM 0.63 0.46 0.00 1.00 | F:μσmM 14.0 18.4 1.0 111.0 | H 0.694 | V 0.460 | pL -0.032 | vL 0.041 | grad 0.174
-U 407 | F 833536 | FPS 1135 | D 436 | Difficulty 5 | rR:μσmM 0.55 0.48 0.00 1.00 | F:μσmM 11.8 11.5 1.0 77.0 | H 0.650 | V 0.366 | pL 0.046 | vL 0.047 | grad 0.160
-U 408 | F 835584 | FPS 0977 | D 442 | Difficulty 5 | rR:μσmM 0.57 0.47 0.00 1.00 | F:μσmM 19.2 19.5 1.0 104.0 | H 0.699 | V 0.427 | pL -0.008 | vL 0.032 | grad 0.172
-U 409 | F 837632 | FPS 1226 | D 449 | Difficulty 5 | rR:μσmM 0.62 0.47 0.00 1.00 | F:μσmM 17.5 20.9 1.0 112.0 | H 0.704 | V 0.371 | pL 0.035 | vL 0.030 | grad 0.140
-U 410 | F 839680 | FPS 0094 | D 475 | Difficulty 5 | rR:μσmM 0.56 0.48 0.00 1.00 | F:μσmM 13.4 15.7 1.0 97.0 | H 0.705 | V 0.355 | pL 0.012 | vL 0.044 | grad 0.191
-Model successfully saved
-U 411 | F 841728 | FPS 0407 | D 484 | Difficulty 5 | rR:μσmM 0.64 0.46 0.00 1.00 | F:μσmM 16.3 20.6 1.0 116.0 | H 0.739 | V 0.317 | pL -0.016 | vL 0.024 | grad 0.134
-U 412 | F 843776 | FPS 0086 | D 513 | Difficulty 5 | rR:μσmM 0.59 0.47 0.00 0.99 | F:μσmM 14.3 15.0 1.0 89.0 | H 0.680 | V 0.401 | pL -0.015 | vL 0.053 | grad 0.192
-U 413 | F 845824 | FPS 1094 | D 522 | Difficulty 5 | rR:μσmM 0.43 0.48 0.00 1.00 | F:μσmM 14.1 16.0 1.0 119.0 | H 0.718 | V 0.318 | pL 0.008 | vL 0.045 | grad 0.188
+U 41 | F 083968 | FPS 0841 | D 136 | Difficulty 1 | rR:μσmM 0.86 0.33 0.00 1.00 | F:μσmM 5.8 6.8 1.0 56.0 | H 0.628 | V 0.711 | pL -0.029 | vL 0.066 | grad 0.341
