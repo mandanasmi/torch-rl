@@ -7,6 +7,7 @@ import datetime
 import torch
 import torch_rl
 import sys
+import numpy as np
 
 try:
     import gym_minigrid
@@ -185,8 +186,12 @@ while num_frames < args.frames:
         data += return_per_episode.values()
 
         # Curriculum Learning
-        win_rate = 0.95
-        if rreturn_per_episode['mean'] >= win_rate:
+        win_rate_threshold = 0.95
+        empirical_win_rate = sum(np.array(logs["return_per_episode"]) != 0) / len(logs["return_per_episode"])
+        print('sum(np.array(logs["return_per_episode"]) != 0): ' + str(sum(np.array(logs["return_per_episode"]) != 0)))
+        print('len(logs["return_per_episode"]):  ' + str(len(logs["return_per_episode"])))
+        print("empirical_win_rate: " + str(empirical_win_rate))
+        if  empirical_win_rate >= win_rate_threshold:
             print("Average return reward for current task is higher than" + str(win_rate) + " now, increase difficulty by 1!\n")
             args.difficulty = args.difficulty + 1
             algo.env.change_difficulty(args.difficulty)
