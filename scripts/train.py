@@ -149,7 +149,6 @@ else:
 
 while num_frames < args.frames:
     # Update model parameters
-
     update_start_time = time.time()
     logs = algo.update_parameters()
     update_end_time = time.time()
@@ -186,18 +185,11 @@ while num_frames < args.frames:
         data += return_per_episode.values()
 
         # Curriculum Learning
-        win_rate = 0.70
+        win_rate = 0.95
         if rreturn_per_episode['mean'] >= win_rate:
             print("Average return reward for current task is higher than" + str(win_rate) + " now, increase difficulty by 1!\n")
             args.difficulty = args.difficulty + 1
-            envs = []
-            for i in range(args.procs):
-                env = gym.make(args.env)
-                env.unwrapped.set_difficulty(args.difficulty)
-                env.seed(args.seed + 10000*i)
-                env.reset()
-                envs.append(env)
-
+            algo.env.change_difficulty(args.difficulty)
             if args.difficulty == 10:
                 break
 

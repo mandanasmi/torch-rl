@@ -12,6 +12,8 @@ def worker(conn, env):
         elif cmd == "reset":
             obs = env.reset()
             conn.send(obs)
+        elif cmd == "set_difficulty":
+            env.set_difficulty(data)
         else:
             raise NotImplementedError
 
@@ -33,6 +35,10 @@ class ParallelEnv(gym.Env):
             p.daemon = True
             p.start()
             remote.close()
+
+    def change_difficulty(self, difficulty):
+        for local in self.locals:
+            local.send(("set_difficulty", difficulty))
 
     def reset(self):
         for local in self.locals:
