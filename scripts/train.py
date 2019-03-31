@@ -136,19 +136,19 @@ total_start_time = time.time()
 update = status["update"]
 best_val = 0
 
+if args.algo == "a2c":
+    algo = torch_rl.A2CAlgo(envs, acmodel, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
+                            args.entropy_coef, args.value_loss_coef, args.max_grad_norm, args.recurrence,
+                            args.optim_alpha, args.optim_eps, preprocess_obss)
+elif args.algo == "ppo":
+    algo = torch_rl.PPOAlgo(envs, acmodel, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
+                            args.entropy_coef, args.value_loss_coef, args.max_grad_norm, args.recurrence,
+                            args.optim_eps, args.clip_eps, args.epochs, args.batch_size, preprocess_obss)
+else:
+    raise ValueError("Incorrect algorithm name: {}".format(args.algo))
+
 while num_frames < args.frames:
     # Update model parameters
-
-    if args.algo == "a2c":
-        algo = torch_rl.A2CAlgo(envs, acmodel, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
-                                args.entropy_coef, args.value_loss_coef, args.max_grad_norm, args.recurrence,
-                                args.optim_alpha, args.optim_eps, preprocess_obss)
-    elif args.algo == "ppo":
-        algo = torch_rl.PPOAlgo(envs, acmodel, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
-                                args.entropy_coef, args.value_loss_coef, args.max_grad_norm, args.recurrence,
-                                args.optim_eps, args.clip_eps, args.epochs, args.batch_size, preprocess_obss)
-    else:
-        raise ValueError("Incorrect algorithm name: {}".format(args.algo))
 
     update_start_time = time.time()
     logs = algo.update_parameters()
@@ -186,7 +186,7 @@ while num_frames < args.frames:
         data += return_per_episode.values()
 
         # Curriculum Learning
-        win_rate = 0.95
+        win_rate = 0.70
         if rreturn_per_episode['mean'] >= win_rate:
             print("Average return reward for current task is higher than" + str(win_rate) + " now, increase difficulty by 1!\n")
             args.difficulty = args.difficulty + 1
