@@ -158,7 +158,6 @@ while num_frames < args.frames:
     update += 1
 
     if utils.synthesize(logs["return_per_episode"])['mean'] > best_val:
-        print("logs[return_per_episode]: " + str(utils.synthesize(logs["return_per_episode"])['mean']))
         best_model = acmodel.state_dict()
 
     # Print logs
@@ -187,8 +186,9 @@ while num_frames < args.frames:
         data += return_per_episode.values()
 
         # Curriculum Learning
-        if rreturn_per_episode['mean'] >= 0.9:
-            print('Average return reward for current task is higher than 0.90 now, increase difficulty by 1!\n')
+        win_rate = 0.95
+        if rreturn_per_episode['mean'] >= win_rate:
+            print("Average return reward for current task is higher than" + str(win_rate) + " now, increase difficulty by 1!\n")
             args.difficulty = args.difficulty + 1
             envs = []
             for i in range(args.procs):

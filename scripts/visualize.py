@@ -20,6 +20,8 @@ parser.add_argument("--model", required=True,
                     help="name of the trained model (REQUIRED)")
 parser.add_argument("--seed", type=int, default=0,
                     help="random seed (default: 0)")
+parser.add_argument("--difficulty", type=int, default=1,
+                    help="difficulty level")
 parser.add_argument("--shift", type=int, default=0,
                     help="number of times the environment is reset at the beginning (default: 0)")
 parser.add_argument("--argmax", action="store_true", default=False,
@@ -36,6 +38,7 @@ utils.seed(args.seed)
 
 env = gym.make(args.env)
 env.seed(args.seed)
+env.set_difficulty(args.difficulty)
 for _ in range(args.shift):
     env.reset()
 
