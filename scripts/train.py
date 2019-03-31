@@ -192,7 +192,7 @@ while num_frames < args.frames:
         print('len(logs["return_per_episode"]):  ' + str(len(logs["return_per_episode"])))
         print("empirical_win_rate: " + str(empirical_win_rate))
         if  empirical_win_rate >= win_rate_threshold:
-            print("Average return reward for current task is higher than" + str(win_rate) + " now, increase difficulty by 1!\n")
+            print("Average return reward for current task is higher than" + str(win_rate_threshold) + " now, increase difficulty by 1!\n")
             args.difficulty = args.difficulty + 1
             algo.env.change_difficulty(args.difficulty)
             if args.difficulty == 10:
