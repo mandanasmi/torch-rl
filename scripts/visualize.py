@@ -38,7 +38,7 @@ utils.seed(args.seed)
 
 env = gym.make(args.env)
 env.seed(args.seed)
-env.set_difficulty(args.difficulty)
+env.set_difficulty(args.difficulty, shaped_difficulty=False)
 for _ in range(args.shift):
     env.reset()
 
