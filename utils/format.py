@@ -45,7 +45,7 @@ def preprocess_texts(texts, vocab, device=None):
     max_text_len = 0
 
     for text in texts:
-        tokens = re.findall("[a-zA-Z0-9]*", text.lower())
+        tokens = re.findall("[+-]*[a-z0-9]+", text.lower())
         var_indexed_text = numpy.array([vocab[token] for token in tokens])
         var_indexed_texts.append(var_indexed_text)
         max_text_len = max(len(var_indexed_text), max_text_len)
