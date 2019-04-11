@@ -38,7 +38,8 @@ utils.seed(args.seed)
 
 env = gym.make(args.env)
 env.seed(args.seed)
-env.set_difficulty(args.difficulty, shaped_difficulty=False)
+if "Street" not in args.env:
+    env.set_difficulty(args.difficulty, shaped_difficulty=False)
 for _ in range(args.shift):
     env.reset()
 
@@ -54,7 +55,7 @@ done = True
 while True:
     if done:
         obs = env.reset()
-    env.target_door.color = "red"
+    #env.target_door.color = "red"
     env.draw_address = True
 
     time.sleep(args.pause)
