@@ -32,6 +32,7 @@ for exp in range(params["num_experiments"]):
         cmd.append('--env=' + params['env'])
         cmd.append('--algo=' + params['algo'])
         cmd.append('--model=' + params['model'])
+        cmd.append('--frames=' + str(params['frames']))
         cmd.append('--text')
         for key, val in rand_params.items():
             cmd.append("--" + key + "=" + str(val))

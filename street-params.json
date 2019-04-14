@@ -5,16 +5,15 @@
 	"algo": "ppo",
 	"env": "MiniGrid-Street-v0",
   "model": "ppo-street",
+  "frames": 1000000,
 	"search_params": {
 		"lr": {
 			"low": -5,
 			"high": -1.5,
       "type": "float"
 		},
-		"recurrence": {
-			"low": 0,
-			"high": 1.5,
-      "type": "int"
+    "recurrence": {
+      "vals": [0, 8, 16]
 		}
 	}
 }
