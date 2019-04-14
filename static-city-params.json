@@ -1,0 +1,18 @@
+{
+  "num_experiments": 10,
+  "num_trials": 1,
+	"text": "",
+	"algo": "ppo",
+	"env": "MiniGrid-GridCity-4S30Static-v0",
+  "model": "ppo-static-city",
+	"search_params": {
+		"lr": {
+			"low": -5,
+			"high": -1.5,
+      "type": "float"
+		},
+		"recurrence": {
+      "vals": [0, 8, 16]
+		}
+	}
+}

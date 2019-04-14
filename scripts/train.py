@@ -8,6 +8,7 @@ import torch
 import torch_rl
 import sys
 import numpy as np
+import json
 
 try:
     import gym_minigrid
@@ -77,15 +78,17 @@ args.mem = args.recurrence > 1
 suffix = datetime.datetime.now().strftime("%y-%m-%d-%H-%M-%S")
 default_model_name = "{}_{}_seed{}_{}".format(args.env, args.algo, args.seed, suffix)
 model_name = args.model or default_model_name
-model_dir = utils.get_model_dir(model_name)
+model_dir = utils.get_model_dir(args.env, model_name, args.seed)
 
-# Define logger, CSV writer and Tensorboard writer
+# Define logger, CSV writer, json args, and Tensorboard writer
 
 logger = utils.get_logger(model_dir)
 csv_file, csv_writer = utils.get_csv_writer(model_dir)
 if args.tb:
     from tensorboardX import SummaryWriter
     tb_writer = SummaryWriter(model_dir)
+with open(model_dir + '/args.json', 'w') as outfile:
+    json.dump(vars(args), outfile)
 
 # Log command and all script arguments
 

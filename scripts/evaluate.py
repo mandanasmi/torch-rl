@@ -59,7 +59,7 @@ for difficulty in range(1, args.difficulty + 1):
         env = TraceRecordingWrapper(env, directory="storage/recordings")
         obs = env.reset()
 
-        model_dir = utils.get_model_dir(args.model)
+        model_dir = utils.get_model_dir(args.env, args.model, args.seed)
         agent = utils.Agent(args.env, env.observation_space, model_dir, args.argmax, 1)
         done = False
         while not done:

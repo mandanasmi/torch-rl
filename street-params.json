@@ -1,0 +1,20 @@
+{
+  "num_experiments": 10,
+  "num_trials": 1,
+	"text": "",
+	"algo": "ppo",
+	"env": "MiniGrid-Street-v0",
+  "model": "ppo-street",
+	"search_params": {
+		"lr": {
+			"low": -5,
+			"high": -1.5,
+      "type": "float"
+		},
+		"recurrence": {
+			"low": 0,
+			"high": 1.5,
+      "type": "int"
+		}
+	}
+}
