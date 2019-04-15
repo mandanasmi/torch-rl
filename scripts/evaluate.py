@@ -78,4 +78,4 @@ for difficulty in range(1, args.difficulty + 1):
                 print("episode: " + str(i) + ", reward: " + str(reward))
     logs.append(logs_by_difficulty)
 
-pickle.dump(logs, open("log.txt", 'wb'))
+pickle.dump(logs, open("log.pkl", 'wb'))

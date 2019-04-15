@@ -35,17 +35,19 @@ def keyDownCb(keyName):
 def handle_ep(observations, actions, rewards, seed, difficulty):
     trajectory_reward = sum(rewards)
     print(trajectory_reward)
-
-    if args.wins and trajectory_reward < 0.5:
-        return
-    if args.fails and trajectory_reward > 0.5:
-        return
     print(difficulty)
-    if args.hard and difficulty < 5:
+
+    if args.wins and not trajectory_reward:
         return
-    env = gym.make("MiniGrid-GridCity-4S30-v0")
+    if args.fails and trajectory_reward:
+        return
+    if args.hard and difficulty < 15:
+        return
+    env = gym.make("MiniGrid-GridCity-4S30Static-v0")
     env.seed(seed)
     utils.seed(seed)
+    env.set_difficulty(difficulty)
+    env.shaped_difficulty = False
     env.reset()
 
     trajectory = [int(x) for x in actions]
