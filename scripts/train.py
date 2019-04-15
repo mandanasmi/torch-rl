@@ -8,6 +8,7 @@ import torch
 import torch_rl
 import sys
 import numpy as np
+import json
 
 try:
     import gym_minigrid
@@ -69,6 +70,9 @@ parser.add_argument("--recurrence", type=int, default=1,
                     help="number of timesteps gradient is backpropagated (default: 1)\nIf > 1, a LSTM is added to the model to have memory")
 parser.add_argument("--text", action="store_true", default=False,
                     help="add a GRU to the model to handle text input")
+parser.add_argument("--exp", type=int, default=0,
+                    help="experiment id number")
+
 args = parser.parse_args()
 args.mem = args.recurrence > 1
 
@@ -77,15 +81,17 @@ args.mem = args.recurrence > 1
 suffix = datetime.datetime.now().strftime("%y-%m-%d-%H-%M-%S")
 default_model_name = "{}_{}_seed{}_{}".format(args.env, args.algo, args.seed, suffix)
 model_name = args.model or default_model_name
-model_dir = utils.get_model_dir(model_name)
+model_dir = utils.get_model_dir(args.env, model_name, args.exp, args.seed)
 
-# Define logger, CSV writer and Tensorboard writer
+# Define logger, CSV writer, json args, and Tensorboard writer
 
 logger = utils.get_logger(model_dir)
 csv_file, csv_writer = utils.get_csv_writer(model_dir)
 if args.tb:
     from tensorboardX import SummaryWriter
     tb_writer = SummaryWriter(model_dir)
+with open(model_dir + '/args.json', 'w') as outfile:
+    json.dump(vars(args), outfile)
 
 # Log command and all script arguments
 
@@ -98,11 +104,12 @@ utils.seed(args.seed)
 
 # Generate environments
 
+difficulty = utils.load_difficulty(model_dir, args.difficulty)
 envs = []
 for i in range(args.procs):
     env = gym.make(args.env)
     if "Street" not in args.env:
-        env.unwrapped.set_difficulty(args.difficulty)
+        env.unwrapped.set_difficulty(difficulty)
     env.seed(args.seed)
     envs.append(env)
 
@@ -149,6 +156,8 @@ elif args.algo == "ppo":
 else:
     raise ValueError("Incorrect algorithm name: {}".format(args.algo))
 
+best_model = acmodel.state_dict()
+
 while num_frames < args.frames:
     # Update model parameters
     update_start_time = time.time()
@@ -163,7 +172,6 @@ while num_frames < args.frames:
 
     # Print logs
     if update % args.log_interval == 0:
-        difficulty = args.difficulty
         fps = logs["num_frames"]/(update_end_time - update_start_time)
         duration = int(time.time() - total_start_time)
         return_per_episode = utils.synthesize(logs["return_per_episode"])
@@ -194,11 +202,10 @@ while num_frames < args.frames:
         print("empirical_win_rate: " + str(empirical_win_rate))
         if  empirical_win_rate >= win_rate_threshold:
             print("Average return reward for current task is higher than" + str(win_rate_threshold) + " now, increase difficulty by 1!\n")
-            args.difficulty = args.difficulty + 1
+            difficulty = difficulty + 1
+            utils.save_difficulty(difficulty, model_dir)
             if "Street" not in args.env:
-                algo.env.change_difficulty(args.difficulty)
-            if args.difficulty == 10:
-                break
+                algo.env.change_difficulty(difficulty)
 
         if status["num_frames"] == 0:
             csv_writer.writerow(header)

@@ -45,7 +45,7 @@ for _ in range(args.shift):
 
 # Define agent
 
-model_dir = utils.get_model_dir(args.model)
+model_dir = utils.get_model_dir(args.env, args.model, args.seed)
 agent = utils.Agent(args.env, env.observation_space, model_dir, args.argmax)
 
 # Run the agent
