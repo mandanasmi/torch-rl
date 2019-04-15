@@ -6,6 +6,7 @@
 	"env": "MiniGrid-Street-v0",
   "model": "ppo-street",
   "frames": 1000000,
+  "save-interval": 10,
 	"search_params": {
 		"lr": {
 			"low": -5,
@@ -13,7 +14,7 @@
       "type": "float"
 		},
     "recurrence": {
-      "vals": [0, 8, 16]
+      "vals": [1, 8, 16]
 		}
 	}
 }

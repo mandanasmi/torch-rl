@@ -35,6 +35,23 @@ def save_status(status, model_dir):
     with open(path, "w") as file:
         json.dump(status, file)
 
+def get_difficulty_path(model_dir):
+    return os.path.join(model_dir, "difficulty.json")
+
+def load_difficulty(model_dir, difficulty):
+    path = get_difficulty_path(model_dir)
+    try:
+        with open(path) as file:
+            return json.load(file)['difficulty']
+    except Exception:
+        return difficulty
+
+def save_difficulty(difficulty, model_dir):
+    path = get_difficulty_path(model_dir)
+    utils.create_folders_if_necessary(path)
+    with open(path, "w") as file:
+        json.dump({"difficulty": difficulty}, file)
+
 def get_log_path(model_dir):
     return os.path.join(model_dir, "log.txt")
 

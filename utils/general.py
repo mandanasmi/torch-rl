@@ -9,8 +9,8 @@ def get_storage_dir():
         return os.environ["TORCH_RL_STORAGE"]
     return "storage"
 
-def get_model_dir(model_name, env_name, seed):
-    return os.path.join(get_storage_dir(), env_name, model_name, str(seed))
+def get_model_dir(model_name, env_name, exp, seed):
+    return os.path.join(get_storage_dir(), env_name, model_name, str(exp), str(seed))
 
 def create_folders_if_necessary(path):
     dirname = os.path.dirname(path)

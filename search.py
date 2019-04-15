@@ -28,14 +28,15 @@ for exp in range(params["num_experiments"]):
     for trial in range(params["num_trials"]):
         seed = trial
         cmd = ['python', 'scripts/train.py']
+        cmd.append('--exp=' + str(exp))
         cmd.append('--seed=' + str(seed))
         cmd.append('--env=' + params['env'])
         cmd.append('--algo=' + params['algo'])
         cmd.append('--model=' + params['model'])
         cmd.append('--frames=' + str(params['frames']))
+        cmd.append('--save-interval=' + str(params['save-interval']))
         cmd.append('--text')
         for key, val in rand_params.items():
             cmd.append("--" + key + "=" + str(val))
         print(cmd)
         print(subprocess.check_output(cmd))
-        import pdb;pdb.set_trace()

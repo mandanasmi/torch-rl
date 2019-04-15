@@ -1,11 +1,12 @@
 {
-  "num_experiments": 10,
-  "num_trials": 1,
+  "num_experiments": 30,
+  "num_trials": 3,
 	"text": "",
 	"algo": "ppo",
 	"env": "MiniGrid-GridCity-4S30Static-v0",
   "model": "ppo-static-city",
   "frames": 1000000,
+  "save-interval": 10,
 	"search_params": {
 		"lr": {
 			"low": -5,
@@ -13,7 +14,7 @@
       "type": "float"
 		},
 		"recurrence": {
-      "vals": [0, 8, 16]
+      "vals": [1, 8, 16]
 		}
 	}
 }
