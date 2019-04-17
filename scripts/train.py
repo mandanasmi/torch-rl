@@ -127,15 +127,15 @@ except OSError:
 # Define actor-critic model
 
 try:
-    acmodel = utils.load_model(model_dir)
+    base_model = utils.load_model(model_dir)
     logger.info("Model successfully loaded\n")
 except OSError:
-    acmodel = ACModel(obs_space, envs[0].action_space, args.mem, args.text)
+    base_model = ACModel(obs_space, envs[0].action_space, args.mem, args.text)
     logger.info("Model successfully created\n")
-logger.info("{}\n".format(acmodel))
+logger.info("{}\n".format(base_model))
 
 if torch.cuda.is_available():
-    acmodel.cuda()
+    base_model.cuda()
 logger.info("CUDA available: {}\n".format(torch.cuda.is_available()))
 
 # Train model
@@ -146,17 +146,21 @@ update = status["update"]
 best_val = 0
 
 if args.algo == "a2c":
-    algo = torch_rl.A2CAlgo(envs, acmodel, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
+    algo = torch_rl.A2CAlgo(envs, base_model, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
                             args.entropy_coef, args.value_loss_coef, args.max_grad_norm, args.recurrence,
                             args.optim_alpha, args.optim_eps, preprocess_obss)
 elif args.algo == "ppo":
-    algo = torch_rl.PPOAlgo(envs, acmodel, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
+    algo = torch_rl.PPOAlgo(envs, base_model, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
+                            args.entropy_coef, args.value_loss_coef, args.max_grad_norm, args.recurrence,
+                            args.optim_eps, args.clip_eps, args.epochs, args.batch_size, preprocess_obss)
+elif args.algo == "dqn":
+    algo = torch_rl.DQNAlgo(envs, base_model, args.frames_per_proc, args.discount, args.lr, args.gae_lambda,
                             args.entropy_coef, args.value_loss_coef, args.max_grad_norm, args.recurrence,
                             args.optim_eps, args.clip_eps, args.epochs, args.batch_size, preprocess_obss)
 else:
     raise ValueError("Incorrect algorithm name: {}".format(args.algo))
 
-best_model = acmodel.state_dict()
+best_model = base_model.state_dict()
 
 while num_frames < args.frames:
     # Update model parameters
@@ -168,7 +172,7 @@ while num_frames < args.frames:
     update += 1
 
     if utils.synthesize(logs["return_per_episode"])['mean'] > best_val:
-        best_model = acmodel.state_dict()
+        best_model = base_model.state_dict()
 
     # Print logs
     if update % args.log_interval == 0:
@@ -226,12 +230,12 @@ while num_frames < args.frames:
         preprocess_obss.vocab.save()
 
         if torch.cuda.is_available():
-            acmodel.cpu()
+            base_model.cpu()
         model_to_save = ACModel(obs_space, envs[0].action_space, args.mem, args.text)
         model_to_save.load_state_dict(best_model)
         utils.save_model(model_to_save, model_dir)
         logger.info("Model successfully saved")
         if torch.cuda.is_available():
-            acmodel.cuda()
+            base_model.cuda()
 
         utils.save_status(status, model_dir)

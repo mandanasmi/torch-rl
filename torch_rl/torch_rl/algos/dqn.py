@@ -27,7 +27,7 @@ class DQNAlgo(BaseAlgo):
         # Collect experiences
 
         exps, logs = self.collect_experiences()
-
+        import pdb; pdb.set_trace()
         for _ in range(self.epochs):
             # Initialize log values
 
