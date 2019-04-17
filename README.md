@@ -160,7 +160,7 @@ This model can be easily adapted to your needs.
 
 The package consists of:
 - `torch_rl.A2CAlgo` and `torch_rl.PPOAlgo` classes for A2C and PPO algorithms
-- `torch_rl.ACModel` and `torch_rl.RecurrentACModel` abstract classes for non-recurrent and recurrent actor-critic models
+- `torch_rl.base_model` and `torch_rl.Recurrentbase_model` abstract classes for non-recurrent and recurrent actor-critic models
 - a `torch_rl.DictList` class for making dictionnaries of lists list-indexable and hence batch-friendly
 
 ### How to use?
@@ -169,19 +169,19 @@ Here are detailed the most important parts of the package.
 
 `torch_rl.A2CAlgo` and `torch_rl.PPOAlgo` have 2 methods:
 - `__init__` that may take, among the other parameters:
-    - an `acmodel` actor-critic model, i.e. an instance of a class inheriting from either `torch_rl.ACModel` or `torch_rl.RecurrentACModel`.
+    - an `base_model` actor-critic model, i.e. an instance of a class inheriting from either `torch_rl.base_model` or `torch_rl.Recurrentbase_model`.
     - a `preprocess_obss` function that transforms a list of observations into a list-indexable object `X` (e.g. a PyTorch tensor). The default `preprocess_obss` function converts observations into a PyTorch tensor.
     - a `reshape_reward` function that takes into parameter an observation `obs`, the action `action` taken, the reward `reward` received and the terminal status `done` and returns a new reward. By default, the reward is not reshaped.
     - a `recurrence` number to specify over how many timesteps gradient is backpropagated. This number is only taken into account if a recurrent model is used and **must divide** the `num_frames_per_agent` parameter and, for PPO, the `batch_size` parameter.
 - `update_parameters` that first collects experiences, then update the parameters and finally returns logs.
 
-`torch_rl.ACModel` has 2 abstract methods:
+`torch_rl.base_model` has 2 abstract methods:
 - `__init__` that takes into parameter an `observation_space` and an `action_space`.
 - `forward` that takes into parameter N preprocessed observations `obs` and returns a PyTorch distribution `dist` and a tensor of values `value`. The tensor of values **must be** of size N, not N x 1.
 
-`torch_rl.RecurrentACModel` has 3 abstract methods:
-- `__init__` that takes into parameter the same parameters than `torch_rl.ACModel`.
-- `forward` that takes into parameter the same parameters than `torch_rl.ACModel` along with a tensor of N memories `memory` of size N x M where M is the size of a memory. It returns the same thing than `torch_rl.ACModel` plus a tensor of N memories `memory`.
+`torch_rl.Recurrentbase_model` has 3 abstract methods:
+- `__init__` that takes into parameter the same parameters than `torch_rl.base_model`.
+- `forward` that takes into parameter the same parameters than `torch_rl.base_model` along with a tensor of N memories `memory` of size N x M where M is the size of a memory. It returns the same thing than `torch_rl.base_model` plus a tensor of N memories `memory`.
 - `memory_size` that returns the size M of a memory.
 
 **Note:** The `preprocess_obss` function must return a list-indexable object (e.g. a PyTorch tensor). If your observations are dictionnaries, your `preprocess_obss` function may first convert a list of dictionnaries into a dictionnary of lists and then make it list-indexable using the `torch_rl.DictList` class as follow:
@@ -202,6 +202,6 @@ An example of use of `torch_rl.A2CAlgo` and `torch_rl.PPOAlgo` classes is given 
 
 An example of use of `torch_rl.DictList` is given in the `preprocess_obss` functions of `utils/format.py`.
 
-An example of implementation of `torch_rl.RecurrentACModel` abstract class is defined in `model.py`
+An example of implementation of `torch_rl.Recurrentbase_model` abstract class is defined in `model.py`
 
 Examples of `preprocess_obss` functions are given in `utils/format.py`.
