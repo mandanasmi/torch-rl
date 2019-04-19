@@ -108,3 +108,72 @@ class ACModel(nn.Module, torch_rl.RecurrentACModel):
     def _get_embed_text(self, text):
         _, hidden = self.text_rnn(self.word_embedding(text))
         return hidden[-1]
+
+
+class DQNModel(nn.Module, torch_rl.RecurrentACModel):
+    def __init__(self, obs_space, action_space, use_memory=False, use_text=False):
+        super().__init__()
+
+        # Decide which components are enabled
+        self.use_text = use_text
+        self.use_memory = use_memory
+
+        n = 7 #obs_space["image"][0]
+        m = 7 #obs_space["image"][1]
+        self.image_embedding_size = ((n-1)//2-2)*((m-1)//2-2)*75
+
+        # Define memory
+        if self.use_memory:
+            self.memory_rnn = nn.LSTMCell(self.image_embedding_size, self.semi_memory_size)
+
+        # Define text embedding
+        if self.use_text:
+            self.word_embedding_size = 32
+            self.word_embedding = nn.Embedding(obs_space["text"], self.word_embedding_size)
+            self.text_embedding_size = 128
+            self.text_rnn = nn.GRU(self.word_embedding_size, self.text_embedding_size, batch_first=True)
+
+        # Resize image embedding
+        self.embedding_size = self.semi_memory_size
+        if self.use_text:
+            self.embedding_size += self.text_embedding_size
+
+        # Define actor's model
+        if isinstance(action_space, gym.spaces.Discrete):
+            self.net = nn.Sequential(
+                nn.Linear(self.embedding_size, 64),
+                nn.Tanh(),
+                nn.Linear(64, 64),
+                nn.Tanh(),
+                nn.Linear(64, action_space.n)
+            )
+        else:
+            raise ValueError("Unknown action space: " + str(action_space))
+
+        # Initialize parameters correctly
+        self.apply(initialize_parameters)
+
+    @property
+    def memory_size(self):
+        return 2*self.semi_memory_size
+
+    @property
+    def semi_memory_size(self):
+        return self.image_embedding_size
+
+    def forward(self, obs):
+        x = torch.transpose(torch.transpose(obs.image, 1, 3), 2, 3)
+
+        #x = self.image_conv(x)
+        x = x.reshape(x.shape[0], -1)
+
+        if self.use_text:
+            embed_text = self._get_embed_text(obs.text)
+            x = torch.cat((x, embed_text), dim=1)
+
+        return self.net(x)
+
+
+    def _get_embed_text(self, text):
+        _, hidden = self.text_rnn(self.word_embedding(text))
+        return hidden[-1]

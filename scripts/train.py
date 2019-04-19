@@ -17,7 +17,7 @@ except ImportError:
 import sys
 sys.path.append(".")
 import utils
-from model import ACModel
+from model import ACModel, DQNModel
 
 # Parse arguments
 
@@ -130,7 +130,10 @@ try:
     base_model = utils.load_model(model_dir)
     logger.info("Model successfully loaded\n")
 except OSError:
-    base_model = ACModel(obs_space, envs[0].action_space, args.mem, args.text)
+    if args.algo == "dqn":
+        base_model = DQNModel(obs_space, envs[0].action_space, args.mem, args.text)
+    else:
+        base_model = ACModel(obs_space, envs[0].action_space, args.mem, args.text)
     logger.info("Model successfully created\n")
 logger.info("{}\n".format(base_model))
 
