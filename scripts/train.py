@@ -207,13 +207,13 @@ while num_frames < args.frames:
         print('sum(np.array(logs["return_per_episode"]) != 0): ' + str(sum(np.array(logs["return_per_episode"]) != 0)))
         print('len(logs["return_per_episode"]):  ' + str(len(logs["return_per_episode"])))
         print("empirical_win_rate: " + str(empirical_win_rate))
-        if  empirical_win_rate >= win_rate_threshold:
+        if empirical_win_rate >= win_rate_threshold:
             print("Average return reward for current task is higher than" + str(win_rate_threshold) + " now, increase difficulty by 1!\n")
             difficulty = difficulty + 1
             utils.save_difficulty(difficulty, model_dir)
             if "Street" not in args.env:
                 algo.env.change_difficulty(difficulty)
-
+            best_val = 0
         if status["num_frames"] == 0:
             csv_writer.writerow(header)
 
