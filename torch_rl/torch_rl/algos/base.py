@@ -75,7 +75,7 @@ class BaseAlgo(ABC):
 
         shape = (self.num_frames_per_proc, self.num_procs)
 
-        self.obs = self.env.reset()
+        self.obs = [x['observation'] for x in self.env.reset()]
         self.obss = [None]*(shape[0])
         if self.base_model.recurrent:
             self.memory = torch.zeros(shape[1], self.base_model.memory_size, device=self.device)
@@ -126,7 +126,6 @@ class BaseAlgo(ABC):
 
         for i in range(self.num_frames_per_proc):
             # Do one agent-environment interaction
-
             preprocessed_obs = self.preprocess_obss(self.obs, device=self.device)
             with torch.no_grad():
                 if self.base_model.recurrent:
