@@ -21,6 +21,15 @@ def get_obss_preprocessor(env_id, obs_space, model_dir):
             })
         preprocess_obss.vocab = vocab
 
+    # Part for Hyrule env
+    elif re.match("Hyrule-.*", env_id):
+        obs_space = {"image": obs_space.shape}
+
+        def preprocess_obss(obss, device=None):
+            return torch_rl.DictList({
+                "image": preprocess_images(obss, device=device)
+            })
+
     # Check if the obs_space is of type Box([X, Y, 3])
     elif isinstance(obs_space, gym.spaces.Box) and len(obs_space.shape) == 3 and obs_space.shape[2] == 3:
         obs_space = {"image": obs_space.shape}
