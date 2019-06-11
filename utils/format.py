@@ -27,7 +27,7 @@ def get_obss_preprocessor(env_id, obs_space, model_dir):
 
         def preprocess_obss(obss, device=None):
             return torch_rl.DictList({
-                "image": preprocess_images(obss, device=device)
+                "image": preprocess_images([obs["image"] for obs in obss], device=device)
             })
 
     # Check if the obs_space is of type Box([X, Y, 3])

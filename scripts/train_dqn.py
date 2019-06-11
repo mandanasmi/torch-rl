@@ -46,12 +46,26 @@ parser.add_argument("--optim-eps", type=float, default=1e-5,
 parser.add_argument("--batch-size", type=int, default=32,
                     help="batch size for PPO (default: 256)")
 args = parser.parse_args()
+args.text = False
 
 # Get model directory
 suffix = datetime.datetime.now().strftime("%y-%m-%d-%H-%M-%S")
 default_model_name = "{}_{}_seed{}_{}".format(args.env, 'dqn', args.seed, suffix)
-model_name = args.model or default_model_name
-model_dir = utils.get_model_dir(args.env, model_name, args.exp, args.seed)
+model_dir = "storage/" + (args.model or default_model_name)
+utils.create_folders_if_necessary(model_dir)
+
+# Define logger, CSV writer, json args
+logger = utils.get_logger(model_dir)
+csv_file, csv_writer = utils.get_csv_writer(model_dir)
+with open(model_dir + '/args.json', 'w') as outfile:
+    json.dump(vars(args), outfile)
+
+# Log command and all script arguments
+logger.info("{}\n".format(" ".join(sys.argv)))
+logger.info("{}\n".format(args))
+
+# Set seed for all randomness sources
+utils.seed(args.seed)
 
 # Init environment
 env = gym.make(args.env)
@@ -62,18 +76,28 @@ env.seed(args.seed)
 # Get obs space and preprocess function
 obs_space, preprocess_obss = utils.get_obss_preprocessor(args.env, env.observation_space, model_dir)
 
-# Init Model
-print(obs_space)
-args.text = False
-base_model = DQNModel(obs_space, env.action_space, args.text)
+# Load training status
+try:
+    status = utils.load_status(model_dir)
+except OSError:
+    status = {"num_frames": 0, "update": 0}
+
+# Load model
+try:
+    base_model = utils.load_model(model_dir)
+    logger.info("Model successfully loaded\n")
+except OSError:
+    base_model = DQNModel(obs_space, env.action_space, args.text, env=args.env)
+    logger.info("Model successfully created\n")
+logger.info("{}\n".format(base_model))
+
 if torch.cuda.is_available():
     base_model.cuda()
+logger.info("CUDA available: {}\n".format(torch.cuda.is_available()))
 
 # Init Algorithm
 algo = torch_rl.DQNAlgo_new(env, base_model, args.frames, args.discount, args.lr, args.optim_eps,
                             args.batch_size, preprocess_obss)
 
 # Train Algoritm
-algo.update_parameters()
-
-
+algo.update_parameters(logger, status, model_dir)

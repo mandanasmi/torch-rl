@@ -15,7 +15,7 @@ class DQNAlgo_new(ABC):
 
     def __init__(self, env, base_model, num_frames, discount=0.99, lr=7e-4,
                  adam_eps=1e-5, batch_size=256, preprocess_obss=None, capacity=10000,
-                 log_interval=1000):
+                 log_interval=1000, save_interval=10000):
 
         self.env = env
         self.base_model = base_model
@@ -31,6 +31,7 @@ class DQNAlgo_new(ABC):
         self.all_rewards = []
         self.losses = []
         self.log_interval = log_interval
+        self.save_interval = save_interval
 
         epsilon_start = 1.0
         epsilon_final = 0.01
@@ -38,11 +39,11 @@ class DQNAlgo_new(ABC):
         self.epsilon_by_frame = lambda frame_idx: epsilon_final + (epsilon_start - epsilon_final) \
                                              * math.exp(-1. * frame_idx / epsilon_decay)
 
-    def update_parameters(self):
+    def update_parameters(self, logger, status, model_dir):
+        num_frames = status['num_frames']
         episode_reward = 0
         self.obs = self.env.reset()
-        print(self.obs)
-        for frame_idx in range(0, self.num_frames):
+        for frame_idx in range(num_frames, self.num_frames):
 
             preprocessed_obs = self.preprocess_obss([self.obs], device=self.device)
             epsilon = self.epsilon_by_frame(frame_idx)
@@ -64,8 +65,23 @@ class DQNAlgo_new(ABC):
                 loss = self.compute_td_loss()
                 self.losses.append(loss.item())
 
-            if frame_idx%self.log_interval == 0 and frame_idx > 0:
+            if frame_idx % self.log_interval == 0 and frame_idx > 0:
                 print("Number of Frames", frame_idx, "Rewards:", self.all_rewards[-1], "Losses:", self.losses[-1])
+
+            # TODO: Curriculum Implementation
+
+            if frame_idx % self.save_interval == 0:
+                # TODO: Save losses and rewards.
+                # self.all_rewards
+                # self.losses
+
+                # Saving model
+                if torch.cuda.is_available():
+                    self.base_model.cpu()
+                torch.save(self.base_model, model_dir+"/model.pt")
+                print("Saving Model and Logs...")
+                if torch.cuda.is_available():
+                    self.base_model.cuda()
 
     def compute_td_loss(self):
 
