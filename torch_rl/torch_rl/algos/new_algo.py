@@ -11,9 +11,9 @@ import json, os, csv
 class DQNAlgo_new(ABC):
     """The class for the DQN"""
 
-    def __init__(self, env, base_model, num_frames, discount=0.99, lr=7e-4,
-                 adam_eps=1e-5, batch_size=256, preprocess_obss=None, capacity=10000,
-                 log_interval=100, save_interval=1000, train_interval=100):
+    def __init__(self, env, base_model, num_frames, discount=0.99, lr=7e-4, adam_eps=1e-5,
+                 batch_size=256, preprocess_obss=None, capacity=10000, log_interval=100,
+                 save_interval=1000, train_interval=100, record_qvals=False):
 
         self.env = env
         self.base_model = base_model
@@ -26,12 +26,17 @@ class DQNAlgo_new(ABC):
         self.preprocess_obss = preprocess_obss or default_preprocess_obss
         self.batch_num = 0
         self.replay_buffer = ReplayBuffer(capacity)
+
         self.all_rewards = []
         self.losses = []
         self.log_interval = log_interval
         self.save_interval = save_interval
-        self.curriculum_threshold = 0.75
         self.train_interval = train_interval
+
+        self.curriculum_threshold = 0.75
+
+        self.qvals = []
+        self.record_qvals = record_qvals
 
         epsilon_start = 1.0
         epsilon_final = 0.01
@@ -43,6 +48,10 @@ class DQNAlgo_new(ABC):
         num_frames = status['num_frames']
         episode_reward = 0
         self.obs = self.env.reset()
+
+        if self.record_qvals:
+            orig_obs = self.obs
+
         for frame_idx in range(num_frames, self.num_frames):
 
             preprocessed_obs = self.preprocess_obss([self.obs], device=self.device)
@@ -60,14 +69,17 @@ class DQNAlgo_new(ABC):
                 loss = self.compute_td_loss()
                 self.losses.append(loss.item())
 
+                if self.record_qvals:
+                    self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
+
             if done:
                 self.obs = self.env.reset()
                 self.all_rewards.append(episode_reward)
                 episode_reward = 0
 
                 if len(self.all_rewards) % self.log_interval == 0 and len(self.all_rewards) > 0:
-                    print("Number of Trajectories", len(self.all_rewards),
-                          "| Number of Frames", frame_idx,
+                    print("Number of Trajectories:", len(self.all_rewards),
+                          "| Number of Frames:", frame_idx,
                           "| Rewards:", np.mean(self.all_rewards[-100:]),
                           "| Losses:", np.mean(self.losses[-100:]))
                     status["num_frames"] = frame_idx
@@ -98,9 +110,14 @@ class DQNAlgo_new(ABC):
                     if torch.cuda.is_available():
                         self.base_model.cpu()
                     torch.save(self.base_model, model_dir+"/model.pt")
-                    print("Saving Model and Logs...")
+                    print("Done saving model and logs...")
                     if torch.cuda.is_available():
                         self.base_model.cuda()
+
+                    if self.record_qvals:
+                        with open(model_dir + '/q_vals.csv', 'w') as writeFile:
+                            writer = csv.writer(writeFile)
+                            writer.writerow(self.qvals)
 
     def compute_td_loss(self):
 
