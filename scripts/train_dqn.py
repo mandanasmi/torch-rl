@@ -54,6 +54,7 @@ model_dir = "storage/" + (args.model or default_model_name)
 utils.create_folders_if_necessary(model_dir)
 
 # Store json args
+logger = utils.get_logger(model_dir)
 with open(model_dir + '/args.json', 'w') as outfile:
     json.dump(vars(args), outfile)
 
