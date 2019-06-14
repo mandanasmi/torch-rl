@@ -53,15 +53,10 @@ default_model_name = "{}_{}_seed{}_{}".format(args.env, 'dqn', args.seed, suffix
 model_dir = "storage/" + (args.model or default_model_name)
 utils.create_folders_if_necessary(model_dir)
 
-# Define logger, CSV writer, json args
+# Store json args
 logger = utils.get_logger(model_dir)
-csv_file, csv_writer = utils.get_csv_writer(model_dir)
 with open(model_dir + '/args.json', 'w') as outfile:
     json.dump(vars(args), outfile)
-
-# Log command and all script arguments
-logger.info("{}\n".format(" ".join(sys.argv)))
-logger.info("{}\n".format(args))
 
 # Set seed for all randomness sources
 utils.seed(args.seed)
@@ -86,19 +81,18 @@ obs_space, preprocess_obss = utils.get_obss_preprocessor(args.env, env.observati
 # Load model
 try:
     base_model = utils.load_model(model_dir)
-    logger.info("Model successfully loaded\n")
+    print("Model successfully loaded\n")
 except OSError:
     base_model = DQNModel(obs_space, env.action_space, args.text, env=args.env)
-    logger.info("Model successfully created\n")
-logger.info("{}\n".format(base_model))
+    print("Model successfully created\n")
 
 if torch.cuda.is_available():
     base_model.cuda()
-logger.info("CUDA available: {}\n".format(torch.cuda.is_available()))
+print("CUDA available: {}\n".format(torch.cuda.is_available()))
 
 # Init Algorithm
 algo = torch_rl.DQNAlgo_new(env, base_model, args.frames, args.discount, args.lr, args.optim_eps,
                             args.batch_size, preprocess_obss, record_qvals=args.debug)
 
 # Train Algoritm
-algo.update_parameters(logger, status, model_dir)
+algo.update_parameters(status, model_dir)

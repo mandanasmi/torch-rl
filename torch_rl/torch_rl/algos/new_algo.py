@@ -44,7 +44,7 @@ class DQNAlgo_new(ABC):
         self.epsilon_by_frame = lambda frame_idx: epsilon_final + (epsilon_start - epsilon_final) \
                                              * math.exp(-1. * frame_idx / epsilon_decay)
 
-    def update_parameters(self, logger, status, model_dir):
+    def update_parameters(self, status, model_dir):
         num_frames = status['num_frames']
         episode_reward = 0
         self.obs = self.env.reset()
@@ -114,7 +114,7 @@ class DQNAlgo_new(ABC):
                     if torch.cuda.is_available():
                         self.base_model.cuda()
 
-                    # TODO: Save replay buffer
+                    # TODO: Save replay buffer for training continuation
 
                     # Save q values if debug mode
                     if self.record_qvals:
