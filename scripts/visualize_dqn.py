@@ -71,11 +71,10 @@ pygame.display.set_caption('NAVI')
 f = 0
 start = time.time()
 while running:
-    f += 1
     if time.time() - start > 1:
-        print("FPS:", f)
         start = time.time()
         f = 0
+    f += 1
     if env_done:
         env_done = False
         obs = env.reset()
