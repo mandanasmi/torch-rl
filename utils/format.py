@@ -1,10 +1,12 @@
 import os
 import json
-import numpy
+import numpy as np
 import re
 import torch
 import torch_rl
 import gym
+from torchvision import transforms
+from PIL import Image
 
 import utils
 
@@ -27,7 +29,7 @@ def get_obss_preprocessor(env_id, obs_space, model_dir):
 
         def preprocess_obss(obss, device=None):
             return torch_rl.DictList({
-                "image": preprocess_images([obs["image"] for obs in obss], device=device)
+                "image": preprocess_natural_images([obs["image"] for obs in obss], device=device)
             })
 
     # Check if the obs_space is of type Box([X, Y, 3])
@@ -46,8 +48,22 @@ def get_obss_preprocessor(env_id, obs_space, model_dir):
 
 def preprocess_images(images, device=None):
     # Bug of Pytorch: very slow if not first converted to numpy array
-    images = numpy.array(images)
+    images = np.array(images)
     return torch.tensor(images, device=device, dtype=torch.float)
+
+def preprocess_natural_images(images, device=None):
+    images = np.array(images, dtype=np.uint8)
+    new_images = torch.tensor(images, device=device, dtype=torch.float)
+    new_images = torch.transpose(torch.transpose(new_images, 1, 3), 2, 3)
+    transform = transforms.Compose([transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])])
+    # TODO: Improve effeciency of this function
+    # TODO: Get actual mean and std of images in dataset
+    # TODO: add random crop to transforms
+    for idx, image in enumerate(images):
+        image = torch.from_numpy(image.transpose((2, 0, 1)))
+        image = image.float().div(255)
+        new_images[idx] = transform(image)
+    return new_images.to(device)
 
 def preprocess_texts(texts, vocab, device=None):
     var_indexed_texts = []
@@ -55,11 +71,11 @@ def preprocess_texts(texts, vocab, device=None):
 
     for text in texts:
         tokens = re.findall("[+-]*[a-z0-9]+", text.lower())
-        var_indexed_text = numpy.array([vocab[token] for token in tokens])
+        var_indexed_text = np.array([vocab[token] for token in tokens])
         var_indexed_texts.append(var_indexed_text)
         max_text_len = max(len(var_indexed_text), max_text_len)
 
-    indexed_texts = numpy.zeros((len(texts), max_text_len))
+    indexed_texts = np.zeros((len(texts), max_text_len))
 
     for i, indexed_text in enumerate(var_indexed_texts):
         indexed_texts[i, :len(indexed_text)] = indexed_text

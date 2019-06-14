@@ -114,6 +114,9 @@ class DQNAlgo_new(ABC):
                     if torch.cuda.is_available():
                         self.base_model.cuda()
 
+                    # TODO: Save replay buffer
+
+                    # Save q values if debug mode
                     if self.record_qvals:
                         with open(model_dir + '/q_vals.csv', 'w') as writeFile:
                             writer = csv.writer(writeFile)
