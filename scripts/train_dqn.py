@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import argparse
 import gym
 import time
@@ -33,20 +31,21 @@ parser.add_argument("--seed", type=int, default=1,
                     help="random seed (default: 1)")
 parser.add_argument("--exp", type=int, default=0,
                     help="experiment id number")
-parser.add_argument("--text", action="store_true", default=True,
+parser.add_argument("--text", action="store_true", default=False,
                     help="add a GRU to the model to handle text input")
 parser.add_argument("--frames", type=int, default=10**7,
                     help="number of frames of training (default: 10e7)")
 parser.add_argument("--discount", type=float, default=0.99,
                     help="discount factor (default: 0.99)")
-parser.add_argument("--lr", type=float, default=7e-4,
+parser.add_argument("--lr", type=float, default=7e-3,
                     help="learning rate for optimizers (default: 7e-4)")
 parser.add_argument("--optim-eps", type=float, default=1e-5,
                     help="Adam and RMSprop optimizer epsilon (default: 1e-5)")
-parser.add_argument("--batch-size", type=int, default=32,
+parser.add_argument("--batch-size", type=int, default=64,
                     help="batch size for PPO (default: 256)")
+parser.add_argument("--debug", action="store_true", default=False,
+                    help="Records Q values during training")
 args = parser.parse_args()
-args.text = False
 
 # Get model directory
 suffix = datetime.datetime.now().strftime("%y-%m-%d-%H-%M-%S")
@@ -67,20 +66,22 @@ logger.info("{}\n".format(args))
 # Set seed for all randomness sources
 utils.seed(args.seed)
 
-# Init environment
-env = gym.make(args.env)
-if "Street" not in args.env:
-    env.unwrapped.set_difficulty(args.difficulty, weighted=False)
-env.seed(args.seed)
-
-# Get obs space and preprocess function
-obs_space, preprocess_obss = utils.get_obss_preprocessor(args.env, env.observation_space, model_dir)
-
 # Load training status
 try:
     status = utils.load_status(model_dir)
 except OSError:
-    status = {"num_frames": 0, "update": 0}
+    status = {"num_frames": 0, "difficulty": args.difficulty}
+    utils.save_status(status, model_dir)
+print("Status: ", status)
+
+# Init environment
+env = gym.make(args.env)
+if "Street" not in args.env:
+    env.unwrapped.set_difficulty(status["difficulty"], weighted=False)
+env.seed(args.seed)
+
+# Get obs space and preprocess function
+obs_space, preprocess_obss = utils.get_obss_preprocessor(args.env, env.observation_space, model_dir)
 
 # Load model
 try:
@@ -97,7 +98,7 @@ logger.info("CUDA available: {}\n".format(torch.cuda.is_available()))
 
 # Init Algorithm
 algo = torch_rl.DQNAlgo_new(env, base_model, args.frames, args.discount, args.lr, args.optim_eps,
-                            args.batch_size, preprocess_obss)
+                            args.batch_size, preprocess_obss, record_qvals=args.debug)
 
 # Train Algoritm
 algo.update_parameters(logger, status, model_dir)
