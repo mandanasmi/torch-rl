@@ -21,7 +21,7 @@ parser.add_argument("--text", action="store_true", default=False,
 args = parser.parse_args()
 
 # Get model directory
-model_dir = "storage/" + args.model
+model_dir = "storage/" + args.model + "_seed_"+str(args.seed)
 utils.create_folders_if_necessary(model_dir)
 
 # Set seed for all randomness sources
@@ -61,7 +61,7 @@ video_size = [rendered.shape[1], rendered.shape[0]]
 running = True
 env_done = True
 transpose = True
-fps = 1
+fps = 10
 
 pygame.font.init()
 screen = pygame.display.set_mode(video_size)
@@ -83,8 +83,9 @@ while running:
         action = base_model.act(preprocessed_obs, epsilon=0.0)
         print("Action:", action)
         obs, rew, env_done, info = env.step(action)
+        print("Reward:", rew)
         if env_done:
-            print("Reward:", rew)
+            print("Final Reward:", rew)
 
     if obs is not None:
         rendered = env.render(mode='rgb_array')

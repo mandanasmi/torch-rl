@@ -11,7 +11,7 @@ import json, os, csv
 class DQNAlgo_new(ABC):
     """The class for the DQN"""
 
-    def __init__(self, env, base_model, num_frames, discount=0.99, lr=7e-4, adam_eps=1e-5,
+    def __init__(self, env, base_model, num_frames, discount=0.99, lr=0.0001, adam_eps=1e-5,
                  batch_size=256, preprocess_obss=None, capacity=10000, log_interval=100,
                  save_interval=1000, train_interval=100, record_qvals=False):
 
@@ -27,20 +27,21 @@ class DQNAlgo_new(ABC):
         self.batch_num = 0
         self.replay_buffer = ReplayBuffer(capacity)
 
+        self.episode_success = []
         self.all_rewards = []
         self.losses = []
         self.log_interval = log_interval
         self.save_interval = save_interval
         self.train_interval = train_interval
 
-        self.curriculum_threshold = 0.75
+        self.curriculum_threshold = 0.95
 
         self.qvals = []
         self.record_qvals = record_qvals
 
         epsilon_start = 1.0
-        epsilon_final = 0.01
-        epsilon_decay = 10000
+        epsilon_final = 0.1
+        epsilon_decay = 50000
         self.epsilon_by_frame = lambda frame_idx: epsilon_final + (epsilon_start - epsilon_final) \
                                              * math.exp(-1. * frame_idx / epsilon_decay)
 
@@ -73,6 +74,7 @@ class DQNAlgo_new(ABC):
                     self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
 
             if done:
+                self.episode_success.append(reward)
                 self.obs = self.env.reset()
                 self.all_rewards.append(episode_reward)
                 episode_reward = 0
@@ -80,17 +82,19 @@ class DQNAlgo_new(ABC):
                 if len(self.all_rewards) % self.log_interval == 0 and len(self.all_rewards) > 0:
                     print("Number of Trajectories:", len(self.all_rewards),
                           "| Number of Frames:", frame_idx,
-                          "| Rewards:", np.mean(self.all_rewards[-100:]),
-                          "| Losses:", np.mean(self.losses[-100:]))
+                          "| Success Rate:", np.mean(self.episode_success[-100:]),
+                          "| Average Episode Reward:", np.mean(self.all_rewards[-100:]),
+                          "| Losses:", np.mean(self.losses[-100:]),
+                          "| Epsilon:", epsilon)
                     status["num_frames"] = frame_idx
 
                     # Curriculum learning
-                    if np.mean(self.all_rewards[-100:]) > self.curriculum_threshold:
-                        print("empirical_win_rate: " + str(np.mean(self.all_rewards[-100:])))
+                    if np.mean(self.episode_success[-100:]) > self.curriculum_threshold:
+                        print("empirical_win_rate: " + str(np.mean(self.episode_success[-100:])))
                         print("Increasing Difficulty by 1!")
                         status["difficulty"] += 1
                         self.env.set_difficulty(status["difficulty"])
-                        print(status["difficulty"])
+                        print("New Difficulty:", status["difficulty"])
 
                 if len(self.all_rewards) % self.save_interval == 0 and len(self.all_rewards) > 0:
                     # Save losses and rewards.

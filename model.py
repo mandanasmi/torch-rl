@@ -113,18 +113,21 @@ class ACModel(nn.Module, torch_rl.RecurrentACModel):
 
 
 class DQNModel(nn.Module, torch_rl.RecurrentACModel):
-    def __init__(self, obs_space, action_space, use_text=False, env='Minigrid'):
+    def __init__(self, action_space, use_goal=True, use_gps=False, use_visible_text=True, env='Minigrid'):
         super().__init__()
 
         self.num_actions = action_space.n
         # Decide which components are enabled
-        self.use_text = use_text
+        self.use_goal = use_goal
+        self.use_gps = use_gps
+        self.use_visible_text = use_visible_text
         self.env = env
 
         if re.match("Hyrule-.*", self.env):
             self.image_embedding_size = 128  # Obtained by calculating output on below conv with input 84x84x3
         else:
             self.image_embedding_size = 75
+
         self.image_conv = nn.Sequential(
             nn.Conv2d(in_channels=3, out_channels=16, kernel_size=8, stride=4),
             nn.ReLU(),
@@ -136,13 +139,37 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
 
         self.embedding_size = self.image_embedding_size
 
-        # Define text embedding
-        if self.use_text:
-            self.word_embedding_size = 32
-            self.word_embedding = nn.Embedding(obs_space["text"], self.word_embedding_size)
-            self.text_embedding_size = 128
-            self.text_rnn = nn.GRU(self.word_embedding_size, self.text_embedding_size, batch_first=True)
-            self.embedding_size += self.text_embedding_size
+        # Define goal usages
+        if self.use_goal:
+            goal_embedding = 64
+            self.goal_net = nn.Sequential(
+                nn.Linear(43, goal_embedding),
+                nn.LeakyReLU(),
+            )
+            self.embedding_size += goal_embedding
+
+        if self.use_gps:
+            rel_gps_embedding = 8
+            self.gps_net = nn.Sequential(
+                nn.Linear(2, rel_gps_embedding),
+                nn.LeakyReLU(),
+            )
+            self.embedding_size += rel_gps_embedding
+
+        if self.use_visible_text:
+            vistext_house_embedding = 64
+            self.vistext_house_net = nn.Sequential(
+                nn.Linear(120, vistext_house_embedding),
+                nn.LeakyReLU(),
+            )
+            self.embedding_size += vistext_house_embedding
+
+            vistext_street_embedding = 16
+            self.vistext_street_net = nn.Sequential(
+                nn.Linear(6, vistext_street_embedding),
+                nn.LeakyReLU(),
+            )
+            self.embedding_size += vistext_street_embedding
 
         # Define actor's model
         if isinstance(action_space, gym.spaces.Discrete):
@@ -168,9 +195,19 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
         else:
             x = x.reshape(x.shape[0], -1)
 
-        if self.use_text:
-            embed_text = self._get_embed_text(obs.text)
-            x = torch.cat((x, embed_text), dim=1)
+        if self.use_goal:
+            embed_goal = self.goal_net(obs.goal)
+            x = torch.cat((x, embed_goal), dim=1)
+
+        if self.use_gps:
+            embed_gps = self.gps_net(obs.rel_gps)
+            x = torch.cat((x, embed_gps), dim=1)
+
+        if self.use_visible_text:
+            embed_house = self.vistext_house_net(obs.visible_text["house_numbers"])
+            x = torch.cat((x, embed_house), dim=1)
+            embed_street = self.vistext_street_net(obs.visible_text["street_names"])
+            x = torch.cat((x, embed_street), dim=1)
 
         return self.net(x)
 
@@ -183,7 +220,3 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
             action = random.randrange(self.num_actions)
 
         return action
-
-    def _get_embed_text(self, text):
-        _, hidden = self.text_rnn(self.word_embedding(text))
-        return hidden[-1]
