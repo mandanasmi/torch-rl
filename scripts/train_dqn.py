@@ -45,12 +45,14 @@ parser.add_argument("--batch-size", type=int, default=64,
                     help="batch size for PPO (default: 256)")
 parser.add_argument("--debug", action="store_true", default=False,
                     help="Records Q values during training")
+parser.add_argument("--dense-reward", action="store_true", default=False,
+                    help="Use dense reward during training.")
 args = parser.parse_args()
 
 # Get model directory
 suffix = datetime.datetime.now().strftime("%y-%m-%d-%H-%M-%S")
-default_model_name = "{}_{}_seed{}_{}".format(args.env, 'dqn', args.seed, suffix)
-model_dir = "storage/" + ((args.model+"_seed_"+str(args.seed)) or default_model_name)
+model_dir = "storage/" + args.model +"_seed_"+str(args.seed)
+if args.dense_reward: model_dir += "_denser"
 utils.create_folders_if_necessary(model_dir)
 
 # Store json args
@@ -73,6 +75,7 @@ print("Status: ", status)
 env = gym.make(args.env)
 if "Street" not in args.env:
     env.unwrapped.set_difficulty(status["difficulty"], weighted=False)
+    env.shaped_reward = args.dense_reward
 env.seed(args.seed)
 
 # Get obs space and preprocess function

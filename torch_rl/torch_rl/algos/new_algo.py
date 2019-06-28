@@ -52,6 +52,8 @@ class DQNAlgo_new(ABC):
 
         if self.record_qvals:
             orig_obs = self.obs
+            print(orig_obs)
+            np.save(model_dir+"/orig_obs.npy", orig_obs)
 
         for frame_idx in range(num_frames, self.num_frames):
 
@@ -104,6 +106,9 @@ class DQNAlgo_new(ABC):
                     with open(model_dir+'/rewards.csv', 'w') as writeFile:
                         writer = csv.writer(writeFile)
                         writer.writerow(self.all_rewards)
+                    with open(model_dir+'/episode_success.csv', 'w') as writeFile:
+                        writer = csv.writer(writeFile)
+                        writer.writerow(self.episode_success)
 
                     # Save status
                     path = os.path.join(model_dir, "status.json")
