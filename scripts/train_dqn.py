@@ -86,7 +86,7 @@ try:
     base_model = utils.load_model(model_dir)
     print("Model successfully loaded\n")
 except OSError:
-    base_model = DQNModel(env.action_space, args.text, env=args.env)
+    base_model = DQNModel(env.action_space, env=args.env)
     print("Model successfully created\n")
 
 if torch.cuda.is_available():

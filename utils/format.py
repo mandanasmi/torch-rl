@@ -30,7 +30,7 @@ def get_obss_preprocessor(env_id, obs_space, model_dir):
         def preprocess_obss(obss, device=None):
             return torch_rl.DictList({
                 "image": preprocess_natural_images([obs["image"] for obs in obss], device=device),
-                "goal": preprocess_matrix([obs["mission"] for obs in obss], device=device),
+                "goal": preprocess_visible_text([obs["mission"] for obs in obss], device=device),
                 "rel_gps": preprocess_matrix([obs["rel_gps"] for obs in obss], device=device),
                 "visible_text": preprocess_visible_text([obs["visible_text"] for obs in obss], device=device)
             })

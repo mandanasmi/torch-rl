@@ -124,16 +124,16 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
         self.env = env
 
         if re.match("Hyrule-.*", self.env):
-            self.image_embedding_size = 512  # Obtained by calculating output on below conv with input 84x84x3
+            self.image_embedding_size = 3600  # Obtained by calculating output on below conv with input 84x84x3
         else:
             self.image_embedding_size = 75
 
         self.image_conv = nn.Sequential(
-            nn.Conv2d(in_channels=3, out_channels=16, kernel_size=8, stride=4),
+            nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=2),
             nn.ReLU(),
-            nn.Conv2d(in_channels=16, out_channels=32, kernel_size=8, stride=2),
+            nn.Conv2d(in_channels=32, out_channels=64, kernel_size=5, stride=2),
             nn.ReLU(),
-            nn.Conv2d(in_channels=32, out_channels=32, kernel_size=4, stride=1),
+            nn.Conv2d(in_channels=64, out_channels=16, kernel_size=5, stride=1),
             nn.ReLU()
         )
 
@@ -141,12 +141,24 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
 
         # Define goal usages
         if self.use_goal:
-            goal_embedding = 64
-            self.goal_net = nn.Sequential(
-                nn.Linear(43, goal_embedding),
+            house_embedding = 16
+            self.house_net = nn.Sequential(
+                nn.Linear(40, house_embedding),
                 nn.LeakyReLU(),
             )
-            self.embedding_size += goal_embedding
+            self.embedding_size += house_embedding
+
+            street_embedding = 8
+            self.street_net = nn.Sequential(
+                nn.Linear(3, street_embedding),
+                nn.LeakyReLU(),
+            )
+            self.embedding_size += street_embedding
+
+            if self.use_visible_text:
+                print(self.use_visible_text)
+                self.embedding_size += house_embedding*3
+                self.embedding_size += street_embedding*2
 
         if self.use_gps:
             rel_gps_embedding = 8
@@ -155,21 +167,6 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
                 nn.LeakyReLU(),
             )
             self.embedding_size += rel_gps_embedding
-
-        if self.use_visible_text:
-            vistext_house_embedding = 32
-            self.vistext_house_net = nn.Sequential(
-                nn.Linear(120, vistext_house_embedding),
-                nn.LeakyReLU(),
-            )
-            self.embedding_size += vistext_house_embedding
-
-            vistext_street_embedding = 16
-            self.vistext_street_net = nn.Sequential(
-                nn.Linear(6, vistext_street_embedding),
-                nn.LeakyReLU(),
-            )
-            self.embedding_size += vistext_street_embedding
 
         # Define actor's model
         if isinstance(action_space, gym.spaces.Discrete):
@@ -196,18 +193,22 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
             x = x.reshape(x.shape[0], -1)
 
         if self.use_goal:
-            embed_goal = self.goal_net(obs.goal)
-            x = torch.cat((x, embed_goal), dim=1)
+            embed_house = self.house_net(obs.mission["house_numbers"])
+            x = torch.cat((x, embed_house), dim=1)
+            embed_street = self.street_net(obs.mission["street_names"])
+            x = torch.cat((x, embed_street), dim=1)
+
+            if self.use_visible_text:
+                for i in range(3):
+                    embed_house = self.house_net(obs.visible_text["house_numbers"][:][i*40:(i+1)*40])
+                    x = torch.cat((x, embed_house), dim=1)
+                for i in range(2):
+                    embed_street = self.street_net(obs.visible_text["street_names"][:][i*3:(i+1)*3])
+                    x = torch.cat((x, embed_street), dim=1)
 
         if self.use_gps:
             embed_gps = self.gps_net(obs.rel_gps)
             x = torch.cat((x, embed_gps), dim=1)
-
-        if self.use_visible_text:
-            embed_house = self.vistext_house_net(obs.visible_text["house_numbers"])
-            x = torch.cat((x, embed_house), dim=1)
-            embed_street = self.vistext_street_net(obs.visible_text["street_names"])
-            x = torch.cat((x, embed_street), dim=1)
 
         return self.net(x)
 
