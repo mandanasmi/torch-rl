@@ -113,7 +113,7 @@ class ACModel(nn.Module, torch_rl.RecurrentACModel):
 
 
 class DQNModel(nn.Module, torch_rl.RecurrentACModel):
-    def __init__(self, action_space, use_goal=True, use_gps=False, use_visible_text=True, env='Minigrid'):
+    def __init__(self, action_space, use_goal=True, use_gps=True, use_visible_text=True, env='Minigrid'):
         super().__init__()
 
         self.num_actions = action_space.n
@@ -156,7 +156,6 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
             self.embedding_size += street_embedding
 
             if self.use_visible_text:
-                print(self.use_visible_text)
                 self.embedding_size += house_embedding*3
                 self.embedding_size += street_embedding*2
 
@@ -193,17 +192,17 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
             x = x.reshape(x.shape[0], -1)
 
         if self.use_goal:
-            embed_house = self.house_net(obs.mission["house_numbers"])
+            embed_house = self.house_net(obs.goal["house_numbers"])
             x = torch.cat((x, embed_house), dim=1)
-            embed_street = self.street_net(obs.mission["street_names"])
+            embed_street = self.street_net(obs.goal["street_names"])
             x = torch.cat((x, embed_street), dim=1)
 
             if self.use_visible_text:
                 for i in range(3):
-                    embed_house = self.house_net(obs.visible_text["house_numbers"][:][i*40:(i+1)*40])
+                    embed_house = self.house_net(obs.visible_text["house_numbers"][:, i*40:(i+1)*40])
                     x = torch.cat((x, embed_house), dim=1)
                 for i in range(2):
-                    embed_street = self.street_net(obs.visible_text["street_names"][:][i*3:(i+1)*3])
+                    embed_street = self.street_net(obs.visible_text["street_names"][:, i*3:(i+1)*3])
                     x = torch.cat((x, embed_street), dim=1)
 
         if self.use_gps:
