@@ -124,7 +124,7 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
         self.env = env
 
         if re.match("Hyrule-.*", self.env):
-            self.image_embedding_size = 128  # Obtained by calculating output on below conv with input 84x84x3
+            self.image_embedding_size = 512  # Obtained by calculating output on below conv with input 84x84x3
         else:
             self.image_embedding_size = 75
 
@@ -133,7 +133,7 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
             nn.ReLU(),
             nn.Conv2d(in_channels=16, out_channels=32, kernel_size=8, stride=2),
             nn.ReLU(),
-            nn.Conv2d(in_channels=32, out_channels=32, kernel_size=4, stride=2),
+            nn.Conv2d(in_channels=32, out_channels=32, kernel_size=4, stride=1),
             nn.ReLU()
         )
 
@@ -157,7 +157,7 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
             self.embedding_size += rel_gps_embedding
 
         if self.use_visible_text:
-            vistext_house_embedding = 64
+            vistext_house_embedding = 32
             self.vistext_house_net = nn.Sequential(
                 nn.Linear(120, vistext_house_embedding),
                 nn.LeakyReLU(),

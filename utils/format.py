@@ -68,7 +68,8 @@ def preprocess_natural_images(images, device=None):
     images = np.array(images, dtype=np.uint8)
     new_images = torch.tensor(images, device=device, dtype=torch.float)
     new_images = torch.transpose(torch.transpose(new_images, 1, 3), 2, 3)
-    transform = transforms.Compose([transforms.Normalize(mean=[0.463, 0.488, 0.53], std=[0.0290, 0.0226, 0.0323])])
+    transform = transforms.Compose([transforms.Normalize(mean=[0.463, 0.488, 0.53], std=[0.5, 0.5, 0.5])])
+    # std=[0.0290, 0.0226, 0.0323]
     # TODO: Improve effeciency of this function
     # TODO: add random crop to transforms
     for idx, image in enumerate(images):
