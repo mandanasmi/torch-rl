@@ -11,7 +11,7 @@ import json, os, csv
 class DQNAlgo_new(ABC):
     """The class for the DQN"""
 
-    def __init__(self, env, base_model, num_frames, discount=0.99, lr=0.0001, adam_eps=1e-5,
+    def __init__(self, env, base_model, num_frames, discount=0.5, lr=0.00005, adam_eps=1e-5,
                  batch_size=256, preprocess_obss=None, capacity=10000, log_interval=100,
                  save_interval=1000, train_interval=100, record_qvals=False):
 
@@ -52,7 +52,6 @@ class DQNAlgo_new(ABC):
 
         if self.record_qvals:
             orig_obs = self.obs
-            print(orig_obs)
             np.save(model_dir+"/orig_obs.npy", orig_obs)
 
         for frame_idx in range(num_frames, self.num_frames):
