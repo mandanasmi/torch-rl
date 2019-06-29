@@ -66,17 +66,12 @@ def preprocess_visible_text(visible_text_dict, device=None):
 
 def preprocess_natural_images(images, device=None):
     images = np.array(images, dtype=np.uint8)
-    new_images = torch.tensor(images, device=device, dtype=torch.float)
-    new_images = torch.transpose(torch.transpose(new_images, 1, 3), 2, 3)
-    transform = transforms.Compose([transforms.Normalize(mean=[0.463, 0.488, 0.53], std=[0.5, 0.5, 0.5])])
-    # std=[0.0290, 0.0226, 0.0323]
-    # TODO: Improve effeciency of this function
-    # TODO: add random crop to transforms
+    transform = transforms.Compose([transforms.ToTensor(),
+                                    transforms.Normalize(mean=[0.437, 0.452, 0.479], std=[0.0431, 0.0428, 0.0570])])
+    tensor_list = []
     for idx, image in enumerate(images):
-        image = torch.from_numpy(image.transpose((2, 0, 1)))
-        image = image.float().div(255)
-        new_images[idx] = transform(image)
-    return new_images.to(device)
+        tensor_list.append(transform(image))
+    return torch.stack(tensor_list).to(device)
 
 def preprocess_texts(texts, vocab, device=None):
     var_indexed_texts = []

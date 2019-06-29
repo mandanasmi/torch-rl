@@ -50,7 +50,6 @@ parser.add_argument("--dense-reward", action="store_true", default=False,
 args = parser.parse_args()
 
 # Get model directory
-suffix = datetime.datetime.now().strftime("%y-%m-%d-%H-%M-%S")
 model_dir = "storage/" + args.model +"_seed_"+str(args.seed)
 if args.dense_reward: model_dir += "_denser"
 utils.create_folders_if_necessary(model_dir)

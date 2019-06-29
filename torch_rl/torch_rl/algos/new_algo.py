@@ -6,14 +6,15 @@ from collections import deque
 import random
 import math
 import json, os, csv
+import torch.nn.functional as F
 
 
 class DQNAlgo_new(ABC):
     """The class for the DQN"""
 
-    def __init__(self, env, base_model, num_frames, discount=0.5, lr=0.00005, adam_eps=1e-5,
+    def __init__(self, env, base_model, num_frames, discount=0.5, lr=0.0001, adam_eps=1e-5,
                  batch_size=256, preprocess_obss=None, capacity=10000, log_interval=100,
-                 save_interval=1000, train_interval=100, record_qvals=False):
+                 save_interval=1000, train_interval=500, record_qvals=False):
 
         self.env = env
         self.base_model = base_model
@@ -53,6 +54,7 @@ class DQNAlgo_new(ABC):
         if self.record_qvals:
             orig_obs = self.obs
             np.save(model_dir+"/orig_obs.npy", orig_obs)
+            self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
 
         for frame_idx in range(num_frames, self.num_frames):
 
@@ -75,7 +77,10 @@ class DQNAlgo_new(ABC):
                     self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
 
             if done:
-                self.episode_success.append(reward)
+                success = 0.0
+                if reward == 2.0:
+                    success = 1.0
+                self.episode_success.append(success)
                 self.obs = self.env.reset()
                 self.all_rewards.append(episode_reward)
                 episode_reward = 0
@@ -141,16 +146,20 @@ class DQNAlgo_new(ABC):
         done = torch.FloatTensor(done).to(device=self.device)
 
         q_values = self.base_model(obs)
-        next_q_values = self.base_model(next_obs)
+        next_q_values = self.base_model(next_obs).detach()
 
         q_value = q_values.gather(1, action.unsqueeze(1)).squeeze(1)
         next_q_value = next_q_values.max(1)[0]
         expected_q_value = reward + (self.discount * next_q_value * (1 - done))
 
-        loss = (q_value - expected_q_value).pow(2).mean()
+        # Compute Huber loss
+        loss = F.smooth_l1_loss(q_value, expected_q_value)
 
+        # Optimize the model
         self.optimizer.zero_grad()
         loss.backward()
+        for param in self.base_model.parameters():
+            param.grad.data.clamp_(-1, 1)
         self.optimizer.step()
 
         return loss
