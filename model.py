@@ -130,10 +130,13 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
 
         self.image_conv = nn.Sequential(
             nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=2),
+            nn.BatchNorm2d(32),
             nn.ReLU(),
             nn.Conv2d(in_channels=32, out_channels=64, kernel_size=5, stride=2),
+            nn.BatchNorm2d(64),
             nn.ReLU(),
             nn.Conv2d(in_channels=64, out_channels=16, kernel_size=5, stride=1),
+            nn.BatchNorm2d(16),
             nn.ReLU()
         )
 
@@ -185,7 +188,6 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
     def forward(self, obs):
         x = obs.image
         if re.match("Hyrule-.*", self.env):
-            # x = torch.transpose(torch.transpose(obs.image, 1, 3), 2, 3)
             x = self.image_conv(x)
             x = x.reshape(x.shape[0], -1)
         else:
