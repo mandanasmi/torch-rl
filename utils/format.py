@@ -67,7 +67,7 @@ def preprocess_visible_text(visible_text_dict, device=None):
 def preprocess_natural_images(images, device=None):
     images = np.array(images, dtype=np.uint8)
     transform = transforms.Compose([transforms.ToTensor(),
-                                    transforms.Normalize(mean=[0.437, 0.452, 0.479], std=[0.0431, 0.0428, 0.0570])])
+                                    transforms.Normalize(mean=[0.437, 0.452, 0.479], std=[0.2495, 0.2556, 0.2783])])
     tensor_list = []
     for idx, image in enumerate(images):
         tensor_list.append(transform(image))
