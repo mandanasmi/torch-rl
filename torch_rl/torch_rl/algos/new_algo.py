@@ -7,6 +7,7 @@ from collections import deque
 import random
 import math
 import json, os, csv
+import torch.nn.functional as F
 
 hyper_params = {
     "learning_rate": 0.01
@@ -19,9 +20,9 @@ experiment.log_parameters(hyper_params)
 class DQNAlgo_new(ABC):
     """The class for the DQN"""
 
-    def __init__(self, env, base_model, num_frames, discount=0.99, lr=7e-4, adam_eps=1e-5,
+    def __init__(self, env, base_model, num_frames, discount=0.5, lr=0.0001, adam_eps=1e-5,
                  batch_size=256, preprocess_obss=None, capacity=10000, log_interval=100,
-                 save_interval=1000, train_interval=100, record_qvals=False):
+                 save_interval=1000, train_interval=500, record_qvals=False):
 
         self.env = env
         self.base_model = base_model
@@ -35,13 +36,14 @@ class DQNAlgo_new(ABC):
         self.batch_num = 0
         self.replay_buffer = ReplayBuffer(capacity)
 
+        self.episode_success = []
         self.all_rewards = []
         self.losses = []
         self.log_interval = log_interval
         self.save_interval = save_interval
         self.train_interval = train_interval
 
-        self.curriculum_threshold = 0.75
+        self.curriculum_threshold = 0.95
 
         self.qvals = []
         self.record_qvals = record_qvals
@@ -55,16 +57,21 @@ class DQNAlgo_new(ABC):
     def update_parameters(self, status, model_dir):
         num_frames = status['num_frames']
         episode_reward = 0
+        episode_length = 0
+        episode_length_list = []
         self.obs = self.env.reset()
 
         if self.record_qvals:
             orig_obs = self.obs
+            np.save(model_dir+"/orig_obs.npy", orig_obs)
+            self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
         with experiment.train():
 
             for frame_idx in range(num_frames, self.num_frames):
 
                 preprocessed_obs = self.preprocess_obss([self.obs], device=self.device)
                 epsilon = self.epsilon_by_frame(frame_idx)
+
                 action = self.base_model.act(preprocessed_obs, epsilon)
                 next_state, reward, done, _ = self.env.step(action)
 
@@ -72,39 +79,47 @@ class DQNAlgo_new(ABC):
                 self.obs = next_state
 
                 episode_reward += reward
+                episode_length += 1
 
                 if len(self.replay_buffer) > self.batch_size and frame_idx % self.train_interval == 0:
                     loss = self.compute_td_loss()
                     self.losses.append(loss.item())
-                    print("loss.item(): " + str(loss.item()))
-                    print("epsilon: " + str(epsilon))
-                    import pdb; pdb.set_trace()
+
                     if self.record_qvals:
                         self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
 
                 if done:
+                    success = 0.0
+                    if reward == 2.0:
+                        success = 1.0
+                    self.episode_success.append(success)
+
+                    episode_length_list.append(episode_length)
+                    episode_length = 0
+
                     self.obs = self.env.reset()
                     self.all_rewards.append(episode_reward)
                     episode_reward = 0
-                    experiment.log_metric("episode_reward", episode_reward, step=frame_idx)
 
                     if len(self.all_rewards) % self.log_interval == 0 and len(self.all_rewards) > 0:
                         print("Number of Trajectories:", len(self.all_rewards),
                               "| Number of Frames:", frame_idx,
-                              "| Rewards:", np.mean(self.all_rewards[-100:]),
-                              "| Losses:", np.mean(self.losses[-100:]))
+                              "| Success Rate:", np.mean(self.episode_success[-100:]),
+                              "| Average Episode Reward:", np.mean(self.all_rewards[-100:]),
+                              "| Losses:", np.mean(self.losses[-100:]),
+                              "| Epsilon:", epsilon,
+                              "| Length of Episode:", np.mean(episode_length_list[-100:]))
                         status["num_frames"] = frame_idx
 
                         # Curriculum learning
-                        if np.mean(self.all_rewards[-100:]) > self.curriculum_threshold:
-                            print("empirical_win_rate: " + str(np.mean(self.all_rewards[-100:])))
+                        if np.mean(self.episode_success[-100:]) > self.curriculum_threshold:
+                            print("empirical_win_rate: " + str(np.mean(self.episode_success[-100:])))
                             print("Increasing Difficulty by 1!")
                             status["difficulty"] += 1
                             self.env.set_difficulty(status["difficulty"])
-                            print(status["difficulty"])
+                            print("New Difficulty:", status["difficulty"])
 
                     if len(self.all_rewards) % self.save_interval == 0 and len(self.all_rewards) > 0:
-
                         # Save losses and rewards.
                         with open(model_dir+'/losses.csv', 'w') as writeFile:
                             writer = csv.writer(writeFile)
@@ -112,6 +127,9 @@ class DQNAlgo_new(ABC):
                         with open(model_dir+'/rewards.csv', 'w') as writeFile:
                             writer = csv.writer(writeFile)
                             writer.writerow(self.all_rewards)
+                        with open(model_dir+'/episode_success.csv', 'w') as writeFile:
+                            writer = csv.writer(writeFile)
+                            writer.writerow(self.episode_success)
 
                         # Save status
                         path = os.path.join(model_dir, "status.json")
@@ -130,9 +148,59 @@ class DQNAlgo_new(ABC):
 
                         # Save q values if debug mode
                         if self.record_qvals:
-                            with open(model_dir + '/q_vals.csv', 'w') as writeFile:
+                            self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
+
+                    if done:
+                        self.obs = self.env.reset()
+                        self.all_rewards.append(episode_reward)
+                        episode_reward = 0
+                        experiment.log_metric("episode_reward", episode_reward, step=frame_idx)
+
+                        if len(self.all_rewards) % self.log_interval == 0 and len(self.all_rewards) > 0:
+                            print("Number of Trajectories:", len(self.all_rewards),
+                                  "| Number of Frames:", frame_idx,
+                                  "| Rewards:", np.mean(self.all_rewards[-100:]),
+                                  "| Losses:", np.mean(self.losses[-100:]))
+                            status["num_frames"] = frame_idx
+
+                            # Curriculum learning
+                            if np.mean(self.all_rewards[-100:]) > self.curriculum_threshold:
+                                print("empirical_win_rate: " + str(np.mean(self.all_rewards[-100:])))
+                                print("Increasing Difficulty by 1!")
+                                status["difficulty"] += 1
+                                self.env.set_difficulty(status["difficulty"])
+                                print(status["difficulty"])
+
+                        if len(self.all_rewards) % self.save_interval == 0 and len(self.all_rewards) > 0:
+
+                            # Save losses and rewards.
+                            with open(model_dir+'/losses.csv', 'w') as writeFile:
                                 writer = csv.writer(writeFile)
-                                writer.writerow(self.qvals)
+                                writer.writerow(self.losses)
+                            with open(model_dir+'/rewards.csv', 'w') as writeFile:
+                                writer = csv.writer(writeFile)
+                                writer.writerow(self.all_rewards)
+
+                            # Save status
+                            path = os.path.join(model_dir, "status.json")
+                            with open(path, "w") as file:
+                                json.dump(status, file)
+
+                            # Saving model
+                            if torch.cuda.is_available():
+                                self.base_model.cpu()
+                            torch.save(self.base_model, model_dir+"/model.pt")
+                            print("Done saving model and logs...")
+                            if torch.cuda.is_available():
+                                self.base_model.cuda()
+
+                            # TODO: Save replay buffer for training continuation
+
+                            # Save q values if debug mode
+                            if self.record_qvals:
+                                with open(model_dir + '/q_vals.csv', 'w') as writeFile:
+                                    writer = csv.writer(writeFile)
+                                    writer.writerow(self.qvals)
 
     def compute_td_loss(self):
 
@@ -145,16 +213,20 @@ class DQNAlgo_new(ABC):
         done = torch.FloatTensor(done).to(device=self.device)
 
         q_values = self.base_model(obs)
-        next_q_values = self.base_model(next_obs)
+        next_q_values = self.base_model(next_obs).detach()
 
         q_value = q_values.gather(1, action.unsqueeze(1)).squeeze(1)
         next_q_value = next_q_values.max(1)[0]
-        expected_q_value = reward + self.discount * next_q_value * (1 - done)
-        import pdb; pdb.set_trace()
-        loss = (q_value - expected_q_value).pow(2).mean()
+        expected_q_value = reward + (self.discount * next_q_value * (1 - done))
 
+        # Compute Huber loss
+        loss = F.smooth_l1_loss(q_value, expected_q_value)
+
+        # Optimize the model
         self.optimizer.zero_grad()
         loss.backward()
+        for param in self.base_model.parameters():
+            param.grad.data.clamp_(-1, 1)
         self.optimizer.step()
 
         return loss

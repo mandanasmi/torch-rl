@@ -46,13 +46,14 @@ parser.add_argument("--batch-size", type=int, default=64,
                     help="batch size for PPO (default: 256)")
 parser.add_argument("--debug", action="store_true", default=False,
                     help="Records Q values during training")
+parser.add_argument("--dense-reward", action="store_true", default=False,
+                    help="Use dense reward during training.")
 args = parser.parse_args()
 
 
 # Get model directory
-suffix = datetime.datetime.now().strftime("%y-%m-%d-%H-%M-%S")
-default_model_name = "{}_{}_seed{}_{}".format(args.env, 'dqn', args.seed, suffix)
-model_dir = "storage/" + (args.model or default_model_name)
+model_dir = "storage/" + args.model +"_seed_"+str(args.seed)
+if args.dense_reward: model_dir += "_denser"
 utils.create_folders_if_necessary(model_dir)
 
 # Store json args
@@ -75,6 +76,7 @@ print("Status: ", status)
 env = gym.make(args.env)
 if "Street" not in args.env:
     env.unwrapped.set_difficulty(status["difficulty"], weighted=False)
+    env.shaped_reward = args.dense_reward
 env.seed(args.seed)
 
 # Get obs space and preprocess function
@@ -85,7 +87,7 @@ try:
     base_model = utils.load_model(model_dir)
     print("Model successfully loaded\n")
 except OSError:
-    base_model = DQNModel(obs_space, env.action_space, args.text, env=args.env)
+    base_model = DQNModel(env.action_space, env=args.env)
     print("Model successfully created\n")
 
 if torch.cuda.is_available():
@@ -93,8 +95,8 @@ if torch.cuda.is_available():
 print("CUDA available: {}\n".format(torch.cuda.is_available()))
 
 # Init Algorithm
-algo = torch_rl.DQNAlgo_new(env, base_model, args.frames, args.discount, args.lr, args.optim_eps,
-                            args.batch_size, preprocess_obss, record_qvals=args.debug)
+algo = torch_rl.DQNAlgo_new(env, base_model, args.frames, args.discount, args.lr, args.optim_eps, args.batch_size,
+                            preprocess_obss, record_qvals=args.debug)
 
 # Train Algoritm
 algo.update_parameters(status, model_dir)

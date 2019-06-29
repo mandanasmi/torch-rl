@@ -18,7 +18,7 @@ def get_obss_preprocessor(env_id, obs_space, model_dir):
         vocab = Vocabulary(model_dir, obs_space["text"])
         def preprocess_obss(obss, device=None):
             return torch_rl.DictList({
-                "image": preprocess_images([obs["image"] for obs in obss], device=device),
+                "image": preprocess_matrix([obs["image"] for obs in obss], device=device),
                 "text": preprocess_texts([obs["mission"] for obs in obss], vocab, device=device)
             })
         preprocess_obss.vocab = vocab
@@ -29,7 +29,10 @@ def get_obss_preprocessor(env_id, obs_space, model_dir):
 
         def preprocess_obss(obss, device=None):
             return torch_rl.DictList({
-                "image": preprocess_natural_images([obs["image"] for obs in obss], device=device)
+                "image": preprocess_natural_images([obs["image"] for obs in obss], device=device),
+                "goal": preprocess_visible_text([obs["mission"] for obs in obss], device=device),
+                "rel_gps": preprocess_matrix([obs["rel_gps"] for obs in obss], device=device),
+                "visible_text": preprocess_visible_text([obs["visible_text"] for obs in obss], device=device)
             })
 
     # Check if the obs_space is of type Box([X, Y, 3])
@@ -38,31 +41,37 @@ def get_obss_preprocessor(env_id, obs_space, model_dir):
 
         def preprocess_obss(obss, device=None):
             return torch_rl.DictList({
-                "image": preprocess_images(obss, device=device)
+                "image": preprocess_matrix(obss, device=device)
             })
-
     else:
         raise ValueError("Unknown observation space: " + str(obs_space))
 
     return obs_space, preprocess_obss
 
-def preprocess_images(images, device=None):
+def preprocess_matrix(images, device=None):
     # Bug of Pytorch: very slow if not first converted to numpy array
     images = np.array(images)
     return torch.tensor(images, device=device, dtype=torch.float)
 
+def preprocess_visible_text(visible_text_dict, device=None):
+    house_numbers = []
+    street_names = []
+    for idx in range(len(visible_text_dict)):
+        house_numbers.append(visible_text_dict[idx]["house_numbers"])
+        street_names.append(visible_text_dict[idx]["street_names"])
+    house_numbers = np.array(house_numbers)
+    street_names = np.array(street_names)
+    return {"house_numbers": torch.tensor(house_numbers, device=device, dtype=torch.float),
+            "street_names": torch.tensor(street_names, device=device, dtype=torch.float)}
+
 def preprocess_natural_images(images, device=None):
     images = np.array(images, dtype=np.uint8)
-    new_images = torch.tensor(images, device=device, dtype=torch.float)
-    new_images = torch.transpose(torch.transpose(new_images, 1, 3), 2, 3)
-    transform = transforms.Compose([transforms.Normalize(mean=[0.463, 0.488, 0.53], std=[0.0290, 0.0226, 0.0323])])
-    # TODO: Improve effeciency of this function
-    # TODO: add random crop to transforms
+    transform = transforms.Compose([transforms.ToTensor(),
+                                    transforms.Normalize(mean=[0.437, 0.452, 0.479], std=[0.2495, 0.2556, 0.2783])])
+    tensor_list = []
     for idx, image in enumerate(images):
-        image = torch.from_numpy(image.transpose((2, 0, 1)))
-        image = image.float().div(255)
-        new_images[idx] = transform(image)
-    return new_images.to(device)
+        tensor_list.append(transform(image))
+    return torch.stack(tensor_list).to(device)
 
 def preprocess_texts(texts, vocab, device=None):
     var_indexed_texts = []

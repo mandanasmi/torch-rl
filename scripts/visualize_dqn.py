@@ -18,11 +18,13 @@ parser.add_argument("--seed", type=int, default=1,
                     help="random seed (default: 1)")
 parser.add_argument("--text", action="store_true", default=False,
                     help="add a GRU to the model to handle text input")
+parser.add_argument("--dense-reward", action="store_true", default=False,
+                    help="Use dense reward during training.")
 args = parser.parse_args()
 
 # Get model directory
-model_dir = "storage/" + args.model
-utils.create_folders_if_necessary(model_dir)
+model_dir = "storage/" + args.model +"_seed_"+str(args.seed)
+if args.dense_reward: model_dir += "_denser"
 
 # Set seed for all randomness sources
 utils.seed(args.seed)
@@ -61,7 +63,7 @@ video_size = [rendered.shape[1], rendered.shape[0]]
 running = True
 env_done = True
 transpose = True
-fps = 1
+fps = 4
 
 pygame.font.init()
 screen = pygame.display.set_mode(video_size)
@@ -83,8 +85,9 @@ while running:
         action = base_model.act(preprocessed_obs, epsilon=0.0)
         print("Action:", action)
         obs, rew, env_done, info = env.step(action)
+        print("Reward:", rew)
         if env_done:
-            print("Reward:", rew)
+            print("Final Reward:", rew)
 
     if obs is not None:
         rendered = env.render(mode='rgb_array')

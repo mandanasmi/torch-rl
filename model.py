@@ -113,36 +113,67 @@ class ACModel(nn.Module, torch_rl.RecurrentACModel):
 
 
 class DQNModel(nn.Module, torch_rl.RecurrentACModel):
-    def __init__(self, obs_space, action_space, use_text=False, env='Minigrid'):
+    def __init__(self, action_space, use_goal=True, use_gps=True, use_visible_text=True, env='Minigrid'):
         super().__init__()
 
         self.num_actions = action_space.n
         # Decide which components are enabled
-        self.use_text = use_text
+        self.use_goal = use_goal
+        self.use_gps = use_gps
+        self.use_visible_text = use_visible_text
         self.env = env
 
         if re.match("Hyrule-.*", self.env):
-            self.image_embedding_size = 128  # Obtained by calculating output on below conv with input 84x84x3
+            self.image_embedding_size = 256  # Obtained by calculating output on below conv with input 84x84x3
         else:
             self.image_embedding_size = 75
+
         self.image_conv = nn.Sequential(
-            nn.Conv2d(in_channels=3, out_channels=16, kernel_size=8, stride=4),
+            nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=2),
+            nn.BatchNorm2d(32),
             nn.ReLU(),
-            nn.Conv2d(in_channels=16, out_channels=32, kernel_size=8, stride=2),
+            nn.Conv2d(in_channels=32, out_channels=64, kernel_size=5, stride=2),
+            nn.BatchNorm2d(64),
             nn.ReLU(),
-            nn.Conv2d(in_channels=32, out_channels=32, kernel_size=4, stride=2),
+            nn.Conv2d(in_channels=64, out_channels=16, kernel_size=5, stride=1),
+            nn.BatchNorm2d(16),
+            nn.ReLU()
+        )
+
+        self.post_conv_net = nn.Sequential(
+            nn.Linear(3600, 256),
             nn.ReLU()
         )
 
         self.embedding_size = self.image_embedding_size
 
-        # Define text embedding
-        if self.use_text:
-            self.word_embedding_size = 32
-            self.word_embedding = nn.Embedding(obs_space["text"], self.word_embedding_size)
-            self.text_embedding_size = 128
-            self.text_rnn = nn.GRU(self.word_embedding_size, self.text_embedding_size, batch_first=True)
-            self.embedding_size += self.text_embedding_size
+        # Define goal usages
+        if self.use_goal:
+            house_embedding = 16
+            self.house_net = nn.Sequential(
+                nn.Linear(40, house_embedding),
+                nn.LeakyReLU(),
+            )
+            self.embedding_size += house_embedding
+
+            street_embedding = 8
+            self.street_net = nn.Sequential(
+                nn.Linear(3, street_embedding),
+                nn.LeakyReLU(),
+            )
+            self.embedding_size += street_embedding
+
+            if self.use_visible_text:
+                self.embedding_size += house_embedding*3
+                self.embedding_size += street_embedding*2
+
+        if self.use_gps:
+            rel_gps_embedding = 8
+            self.gps_net = nn.Sequential(
+                nn.Linear(2, rel_gps_embedding),
+                nn.LeakyReLU(),
+            )
+            self.embedding_size += rel_gps_embedding
 
         # Define actor's model
         if isinstance(action_space, gym.spaces.Discrete):
@@ -162,15 +193,29 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
     def forward(self, obs):
         x = obs.image
         if re.match("Hyrule-.*", self.env):
-            # x = torch.transpose(torch.transpose(obs.image, 1, 3), 2, 3)
             x = self.image_conv(x)
             x = x.reshape(x.shape[0], -1)
+            x = self.post_conv_net(x)
         else:
             x = x.reshape(x.shape[0], -1)
 
-        if self.use_text:
-            embed_text = self._get_embed_text(obs.text)
-            x = torch.cat((x, embed_text), dim=1)
+        if self.use_goal:
+            embed_house = self.house_net(obs.goal["house_numbers"])
+            x = torch.cat((x, embed_house), dim=1)
+            embed_street = self.street_net(obs.goal["street_names"])
+            x = torch.cat((x, embed_street), dim=1)
+
+            if self.use_visible_text:
+                for i in range(3):
+                    embed_house = self.house_net(obs.visible_text["house_numbers"][:, i*40:(i+1)*40])
+                    x = torch.cat((x, embed_house), dim=1)
+                for i in range(2):
+                    embed_street = self.street_net(obs.visible_text["street_names"][:, i*3:(i+1)*3])
+                    x = torch.cat((x, embed_street), dim=1)
+
+        if self.use_gps:
+            embed_gps = self.gps_net(obs.rel_gps)
+            x = torch.cat((x, embed_gps), dim=1)
 
         return self.net(x)
 
@@ -183,7 +228,3 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
             action = random.randrange(self.num_actions)
 
         return action
-
-    def _get_embed_text(self, text):
-        _, hidden = self.text_rnn(self.word_embedding(text))
-        return hidden[-1]
