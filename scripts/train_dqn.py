@@ -46,7 +46,7 @@ parser.add_argument("--batch-size", type=int, default=64,
                     help="batch size for PPO (default: 256)")
 parser.add_argument("--debug", action="store_true", default=False,
                     help="Records Q values during training")
-parser.add_argument("--dense-reward", action="store_true", default=False,
+parser.add_argument("--dense-reward", action="store_true",
                     help="Use dense reward during training.")
 args = parser.parse_args()
 
