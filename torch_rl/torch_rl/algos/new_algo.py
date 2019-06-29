@@ -49,6 +49,8 @@ class DQNAlgo_new(ABC):
     def update_parameters(self, status, model_dir):
         num_frames = status['num_frames']
         episode_reward = 0
+        episode_length = 0
+        episode_length_list = []
         self.obs = self.env.reset()
 
         if self.record_qvals:
@@ -68,6 +70,7 @@ class DQNAlgo_new(ABC):
             self.obs = next_state
 
             episode_reward += reward
+            episode_length += 1
 
             if len(self.replay_buffer) > self.batch_size and frame_idx % self.train_interval == 0:
                 loss = self.compute_td_loss()
@@ -81,6 +84,10 @@ class DQNAlgo_new(ABC):
                 if reward == 2.0:
                     success = 1.0
                 self.episode_success.append(success)
+
+                episode_length_list.append(episode_length)
+                episode_length = 0
+
                 self.obs = self.env.reset()
                 self.all_rewards.append(episode_reward)
                 episode_reward = 0
@@ -91,7 +98,8 @@ class DQNAlgo_new(ABC):
                           "| Success Rate:", np.mean(self.episode_success[-100:]),
                           "| Average Episode Reward:", np.mean(self.all_rewards[-100:]),
                           "| Losses:", np.mean(self.losses[-100:]),
-                          "| Epsilon:", epsilon)
+                          "| Epsilon:", epsilon,
+                          "| Length of Episode:", np.mean(episode_length_list[-100:]))
                     status["num_frames"] = frame_idx
 
                     # Curriculum learning

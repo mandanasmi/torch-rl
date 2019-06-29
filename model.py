@@ -124,7 +124,7 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
         self.env = env
 
         if re.match("Hyrule-.*", self.env):
-            self.image_embedding_size = 3600  # Obtained by calculating output on below conv with input 84x84x3
+            self.image_embedding_size = 256  # Obtained by calculating output on below conv with input 84x84x3
         else:
             self.image_embedding_size = 75
 
@@ -137,6 +137,11 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
             nn.ReLU(),
             nn.Conv2d(in_channels=64, out_channels=16, kernel_size=5, stride=1),
             nn.BatchNorm2d(16),
+            nn.ReLU()
+        )
+
+        self.post_conv_net = nn.Sequential(
+            nn.Linear(3600, 256),
             nn.ReLU()
         )
 
@@ -190,6 +195,7 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
         if re.match("Hyrule-.*", self.env):
             x = self.image_conv(x)
             x = x.reshape(x.shape[0], -1)
+            x = self.post_conv_net(x)
         else:
             x = x.reshape(x.shape[0], -1)
 
