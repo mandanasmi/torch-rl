@@ -93,10 +93,11 @@ class DQNAlgo_new(ABC):
                     if reward == 2.0:
                         success = 1.0
                     self.episode_success.append(success)
-                    experiment.log_metric("episode_success", success, step=frame_idx)
-
                     episode_length_list.append(episode_length)
+                    experiment.log_metric("episode_success", success, step=frame_idx)
+                    experiment.log_metric("episode_difficulty", status["difficulty"], step=frame_idx)
                     experiment.log_metric("episode_length", episode_length, step=frame_idx)
+                    experiment.log_metric("loss", loss.item(), step=frame_idx)
 
                     episode_length = 0
 
