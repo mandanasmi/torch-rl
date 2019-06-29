@@ -1,6 +1,6 @@
 import argparse
 import pygame
-
+import comet_ml
 import gym
 import time
 import torch
@@ -36,7 +36,7 @@ print("Status: ", status)
 # Init environment
 env = gym.make(args.env)
 if "Street" not in args.env:
-    env.unwrapped.set_difficulty(status["difficulty"], weighted=False)
+    env.unwrapped.set_difficulty(5, weighted=False)
 env.seed(args.seed)
 
 # Get obs space and preprocess function

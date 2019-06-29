@@ -43,7 +43,7 @@ class DQNAlgo_new(ABC):
         self.save_interval = save_interval
         self.train_interval = train_interval
 
-        self.curriculum_threshold = 0.95
+        self.curriculum_threshold = 0.75
 
         self.qvals = []
         self.record_qvals = record_qvals
@@ -65,6 +65,7 @@ class DQNAlgo_new(ABC):
             orig_obs = self.obs
             np.save(model_dir+"/orig_obs.npy", orig_obs)
             self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
+
         with experiment.train():
 
             for frame_idx in range(num_frames, self.num_frames):
@@ -94,11 +95,12 @@ class DQNAlgo_new(ABC):
                     if reward == 2.0:
                         success = 1.0
                     self.episode_success.append(success)
-                    episode_length_list.append(episode_length)
+
                     experiment.log_metric("episode_success", success, step=frame_idx)
                     experiment.log_metric("episode_difficulty", status["difficulty"], step=frame_idx)
                     experiment.log_metric("episode_length", episode_length, step=frame_idx)
 
+                    episode_length_list.append(episode_length)
                     episode_length = 0
 
                     self.obs = self.env.reset()
@@ -117,7 +119,7 @@ class DQNAlgo_new(ABC):
                         status["num_frames"] = frame_idx
 
                         # Curriculum learning
-                        if np.mean(self.episode_success[-100:]) > self.curriculum_threshold:
+                        if np.mean(self.episode_success[-100:]) >= self.curriculum_threshold:
                             print("empirical_win_rate: " + str(np.mean(self.episode_success[-100:])))
                             print("Increasing Difficulty by 1!")
                             status["difficulty"] += 1
@@ -149,62 +151,11 @@ class DQNAlgo_new(ABC):
                         if torch.cuda.is_available():
                             self.base_model.cuda()
 
-                        # TODO: Save replay buffer for training continuation
-
                         # Save q values if debug mode
                         if self.record_qvals:
-                            self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
-
-                    if done:
-                        self.obs = self.env.reset()
-                        self.all_rewards.append(episode_reward)
-                        episode_reward = 0
-
-                        if len(self.all_rewards) % self.log_interval == 0 and len(self.all_rewards) > 0:
-                            print("Number of Trajectories:", len(self.all_rewards),
-                                  "| Number of Frames:", frame_idx,
-                                  "| Rewards:", np.mean(self.all_rewards[-100:]),
-                                  "| Losses:", np.mean(self.losses[-100:]))
-                            status["num_frames"] = frame_idx
-
-                            # Curriculum learning
-                            if np.mean(self.all_rewards[-100:]) > self.curriculum_threshold:
-                                print("empirical_win_rate: " + str(np.mean(self.all_rewards[-100:])))
-                                print("Increasing Difficulty by 1!")
-                                status["difficulty"] += 1
-                                self.env.set_difficulty(status["difficulty"])
-                                print(status["difficulty"])
-
-                        if len(self.all_rewards) % self.save_interval == 0 and len(self.all_rewards) > 0:
-
-                            # Save losses and rewards.
-                            with open(model_dir+'/losses.csv', 'w') as writeFile:
+                            with open(model_dir + '/q_vals.csv', 'w') as writeFile:
                                 writer = csv.writer(writeFile)
-                                writer.writerow(self.losses)
-                            with open(model_dir+'/rewards.csv', 'w') as writeFile:
-                                writer = csv.writer(writeFile)
-                                writer.writerow(self.all_rewards)
-
-                            # Save status
-                            path = os.path.join(model_dir, "status.json")
-                            with open(path, "w") as file:
-                                json.dump(status, file)
-
-                            # Saving model
-                            if torch.cuda.is_available():
-                                self.base_model.cpu()
-                            torch.save(self.base_model, model_dir+"/model.pt")
-                            print("Done saving model and logs...")
-                            if torch.cuda.is_available():
-                                self.base_model.cuda()
-
-                            # TODO: Save replay buffer for training continuation
-
-                            # Save q values if debug mode
-                            if self.record_qvals:
-                                with open(model_dir + '/q_vals.csv', 'w') as writeFile:
-                                    writer = csv.writer(writeFile)
-                                    writer.writerow(self.qvals)
+                                writer.writerow(self.qvals)
 
     def compute_td_loss(self):
 
