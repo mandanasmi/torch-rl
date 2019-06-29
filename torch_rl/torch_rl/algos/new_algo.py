@@ -93,12 +93,16 @@ class DQNAlgo_new(ABC):
                     if reward == 2.0:
                         success = 1.0
                     self.episode_success.append(success)
+                    experiment.log_metric("episode_success", success, step=frame_idx)
 
                     episode_length_list.append(episode_length)
+                    experiment.log_metric("episode_length", episode_length, step=frame_idx)
+
                     episode_length = 0
 
                     self.obs = self.env.reset()
                     self.all_rewards.append(episode_reward)
+                    experiment.log_metric("episode_reward", episode_reward, step=frame_idx)
                     episode_reward = 0
 
                     if len(self.all_rewards) % self.log_interval == 0 and len(self.all_rewards) > 0:
@@ -154,7 +158,6 @@ class DQNAlgo_new(ABC):
                         self.obs = self.env.reset()
                         self.all_rewards.append(episode_reward)
                         episode_reward = 0
-                        experiment.log_metric("episode_reward", episode_reward, step=frame_idx)
 
                         if len(self.all_rewards) % self.log_interval == 0 and len(self.all_rewards) > 0:
                             print("Number of Trajectories:", len(self.all_rewards),
