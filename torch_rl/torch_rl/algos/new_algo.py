@@ -84,6 +84,7 @@ class DQNAlgo_new(ABC):
                 if len(self.replay_buffer) > self.batch_size and frame_idx % self.train_interval == 0:
                     loss = self.compute_td_loss()
                     self.losses.append(loss.item())
+                    experiment.log_metric("loss", loss.item(), step=frame_idx)
 
                     if self.record_qvals:
                         self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
@@ -97,7 +98,6 @@ class DQNAlgo_new(ABC):
                     experiment.log_metric("episode_success", success, step=frame_idx)
                     experiment.log_metric("episode_difficulty", status["difficulty"], step=frame_idx)
                     experiment.log_metric("episode_length", episode_length, step=frame_idx)
-                    experiment.log_metric("loss", loss.item(), step=frame_idx)
 
                     episode_length = 0
 
