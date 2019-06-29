@@ -1,4 +1,5 @@
 import numpy as np
+from comet_ml import Experiment
 import torch
 from torch_rl.format import default_preprocess_obss
 from abc import ABC
@@ -6,6 +7,13 @@ from collections import deque
 import random
 import math
 import json, os, csv
+
+hyper_params = {
+    "learning_rate": 0.01
+}
+
+experiment = Experiment("UcVgpp0wPaprHG4w8MFVMgq7j", project_name="navi-corl-2019")
+experiment.log_parameters(hyper_params)
 
 
 class DQNAlgo_new(ABC):
@@ -38,7 +46,7 @@ class DQNAlgo_new(ABC):
         self.qvals = []
         self.record_qvals = record_qvals
 
-        epsilon_start = 1.0
+        epsilon_start = 0.2
         epsilon_final = 0.01
         epsilon_decay = 10000
         self.epsilon_by_frame = lambda frame_idx: epsilon_final + (epsilon_start - epsilon_final) \
@@ -51,76 +59,80 @@ class DQNAlgo_new(ABC):
 
         if self.record_qvals:
             orig_obs = self.obs
+        with experiment.train():
 
-        for frame_idx in range(num_frames, self.num_frames):
+            for frame_idx in range(num_frames, self.num_frames):
 
-            preprocessed_obs = self.preprocess_obss([self.obs], device=self.device)
-            epsilon = self.epsilon_by_frame(frame_idx)
+                preprocessed_obs = self.preprocess_obss([self.obs], device=self.device)
+                epsilon = self.epsilon_by_frame(frame_idx)
+                action = self.base_model.act(preprocessed_obs, epsilon)
+                next_state, reward, done, _ = self.env.step(action)
 
-            action = self.base_model.act(preprocessed_obs, epsilon)
-            next_state, reward, done, _ = self.env.step(action)
+                self.replay_buffer.push(self.obs, action, reward, next_state, done)
+                self.obs = next_state
 
-            self.replay_buffer.push(self.obs, action, reward, next_state, done)
-            self.obs = next_state
+                episode_reward += reward
 
-            episode_reward += reward
-
-            if len(self.replay_buffer) > self.batch_size and frame_idx % self.train_interval == 0:
-                loss = self.compute_td_loss()
-                self.losses.append(loss.item())
-
-                if self.record_qvals:
-                    self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
-
-            if done:
-                self.obs = self.env.reset()
-                self.all_rewards.append(episode_reward)
-                episode_reward = 0
-
-                if len(self.all_rewards) % self.log_interval == 0 and len(self.all_rewards) > 0:
-                    print("Number of Trajectories:", len(self.all_rewards),
-                          "| Number of Frames:", frame_idx,
-                          "| Rewards:", np.mean(self.all_rewards[-100:]),
-                          "| Losses:", np.mean(self.losses[-100:]))
-                    status["num_frames"] = frame_idx
-
-                    # Curriculum learning
-                    if np.mean(self.all_rewards[-100:]) > self.curriculum_threshold:
-                        print("empirical_win_rate: " + str(np.mean(self.all_rewards[-100:])))
-                        print("Increasing Difficulty by 1!")
-                        status["difficulty"] += 1
-                        self.env.set_difficulty(status["difficulty"])
-                        print(status["difficulty"])
-
-                if len(self.all_rewards) % self.save_interval == 0 and len(self.all_rewards) > 0:
-                    # Save losses and rewards.
-                    with open(model_dir+'/losses.csv', 'w') as writeFile:
-                        writer = csv.writer(writeFile)
-                        writer.writerow(self.losses)
-                    with open(model_dir+'/rewards.csv', 'w') as writeFile:
-                        writer = csv.writer(writeFile)
-                        writer.writerow(self.all_rewards)
-
-                    # Save status
-                    path = os.path.join(model_dir, "status.json")
-                    with open(path, "w") as file:
-                        json.dump(status, file)
-
-                    # Saving model
-                    if torch.cuda.is_available():
-                        self.base_model.cpu()
-                    torch.save(self.base_model, model_dir+"/model.pt")
-                    print("Done saving model and logs...")
-                    if torch.cuda.is_available():
-                        self.base_model.cuda()
-
-                    # TODO: Save replay buffer for training continuation
-
-                    # Save q values if debug mode
+                if len(self.replay_buffer) > self.batch_size and frame_idx % self.train_interval == 0:
+                    loss = self.compute_td_loss()
+                    self.losses.append(loss.item())
+                    print("loss.item(): " + str(loss.item()))
+                    print("epsilon: " + str(epsilon))
+                    import pdb; pdb.set_trace()
                     if self.record_qvals:
-                        with open(model_dir + '/q_vals.csv', 'w') as writeFile:
+                        self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
+
+                if done:
+                    self.obs = self.env.reset()
+                    self.all_rewards.append(episode_reward)
+                    episode_reward = 0
+                    experiment.log_metric("episode_reward", episode_reward, step=frame_idx)
+
+                    if len(self.all_rewards) % self.log_interval == 0 and len(self.all_rewards) > 0:
+                        print("Number of Trajectories:", len(self.all_rewards),
+                              "| Number of Frames:", frame_idx,
+                              "| Rewards:", np.mean(self.all_rewards[-100:]),
+                              "| Losses:", np.mean(self.losses[-100:]))
+                        status["num_frames"] = frame_idx
+
+                        # Curriculum learning
+                        if np.mean(self.all_rewards[-100:]) > self.curriculum_threshold:
+                            print("empirical_win_rate: " + str(np.mean(self.all_rewards[-100:])))
+                            print("Increasing Difficulty by 1!")
+                            status["difficulty"] += 1
+                            self.env.set_difficulty(status["difficulty"])
+                            print(status["difficulty"])
+
+                    if len(self.all_rewards) % self.save_interval == 0 and len(self.all_rewards) > 0:
+
+                        # Save losses and rewards.
+                        with open(model_dir+'/losses.csv', 'w') as writeFile:
                             writer = csv.writer(writeFile)
-                            writer.writerow(self.qvals)
+                            writer.writerow(self.losses)
+                        with open(model_dir+'/rewards.csv', 'w') as writeFile:
+                            writer = csv.writer(writeFile)
+                            writer.writerow(self.all_rewards)
+
+                        # Save status
+                        path = os.path.join(model_dir, "status.json")
+                        with open(path, "w") as file:
+                            json.dump(status, file)
+
+                        # Saving model
+                        if torch.cuda.is_available():
+                            self.base_model.cpu()
+                        torch.save(self.base_model, model_dir+"/model.pt")
+                        print("Done saving model and logs...")
+                        if torch.cuda.is_available():
+                            self.base_model.cuda()
+
+                        # TODO: Save replay buffer for training continuation
+
+                        # Save q values if debug mode
+                        if self.record_qvals:
+                            with open(model_dir + '/q_vals.csv', 'w') as writeFile:
+                                writer = csv.writer(writeFile)
+                                writer.writerow(self.qvals)
 
     def compute_td_loss(self):
 
@@ -138,7 +150,7 @@ class DQNAlgo_new(ABC):
         q_value = q_values.gather(1, action.unsqueeze(1)).squeeze(1)
         next_q_value = next_q_values.max(1)[0]
         expected_q_value = reward + self.discount * next_q_value * (1 - done)
-
+        import pdb; pdb.set_trace()
         loss = (q_value - expected_q_value).pow(2).mean()
 
         self.optimizer.zero_grad()
@@ -164,4 +176,3 @@ class ReplayBuffer(object):
 
     def __len__(self):
         return len(self.buffer)
-

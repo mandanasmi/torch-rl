@@ -1,5 +1,6 @@
 import argparse
 import gym
+from comet_ml import Experiment
 import time
 import datetime
 import torch
@@ -46,6 +47,7 @@ parser.add_argument("--batch-size", type=int, default=64,
 parser.add_argument("--debug", action="store_true", default=False,
                     help="Records Q values during training")
 args = parser.parse_args()
+
 
 # Get model directory
 suffix = datetime.datetime.now().strftime("%y-%m-%d-%H-%M-%S")
