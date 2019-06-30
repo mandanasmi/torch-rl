@@ -1,10 +1,10 @@
+import comet_ml
 import matplotlib.pyplot as plt
 import csv
 import numpy as np
 import os
 import utils
 import argparse
-
 
 parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
 parser.add_argument("--env", required=True,

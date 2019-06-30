@@ -43,14 +43,14 @@ class DQNAlgo_new(ABC):
         self.save_interval = save_interval
         self.train_interval = train_interval
 
-        self.curriculum_threshold = 0.75
+        self.curriculum_threshold = 0.5
 
         self.qvals = []
         self.record_qvals = record_qvals
 
-        epsilon_start = 0.2
+        epsilon_start = 1.0
         epsilon_final = 0.01
-        epsilon_decay = 10000
+        epsilon_decay = 20000
         self.epsilon_by_frame = lambda frame_idx: epsilon_final + (epsilon_start - epsilon_final) \
                                              * math.exp(-1. * frame_idx / epsilon_decay)
 
