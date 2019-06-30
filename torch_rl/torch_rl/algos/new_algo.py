@@ -88,7 +88,8 @@ class DQNAlgo_new(ABC):
                     experiment.log_metric("loss", loss.item(), step=frame_idx)
 
                     if self.record_qvals:
-                        self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
+                        with torch.no_grad():
+                            self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)).cpu().numpy())
 
                 if done:
                     success = 0.0
