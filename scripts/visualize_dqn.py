@@ -5,6 +5,8 @@ import gym
 import time
 import torch
 
+import sys
+sys.path.append(".")
 import utils
 
 parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
@@ -82,7 +84,7 @@ while running:
         obs = env.reset()
     else:
         preprocessed_obs = preprocess_obss([obs], device=device)
-        action = base_model.act(preprocessed_obs, epsilon=0.0)
+        action = base_model.act(preprocessed_obs, epsilon=0.02)
         print("Action:", action)
         obs, rew, env_done, info = env.step(action)
         print("Reward:", rew)

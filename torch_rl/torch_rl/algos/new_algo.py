@@ -20,9 +20,9 @@ experiment.log_parameters(hyper_params)
 class DQNAlgo_new(ABC):
     """The class for the DQN"""
 
-    def __init__(self, env, base_model, num_frames, discount=0.99, lr=0.001, adam_eps=1e-4,
-                 batch_size=256, preprocess_obss=None, capacity=10000, log_interval=100,
-                 save_interval=1000, train_interval=500, record_qvals=False):
+    def __init__(self, env, base_model, num_frames, discount=0.99, lr=0.00001, adam_eps=1e-4,
+                 batch_size=128, preprocess_obss=None, capacity=10000, log_interval=1,
+                 save_interval=10, train_interval=500, record_qvals=False):
 
         self.env = env
         self.base_model = base_model
@@ -63,6 +63,7 @@ class DQNAlgo_new(ABC):
 
         if self.record_qvals:
             orig_obs = self.obs
+            experiment.log_metric("good_action_for_qvals", self.env.shortest_path_length()[0])
             np.save(model_dir+"/orig_obs.npy", orig_obs)
             self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
 
@@ -101,7 +102,7 @@ class DQNAlgo_new(ABC):
                     self.episode_success.append(success)
 
                     experiment.log_metric("episode_success", success, step=frame_idx)
-                    # experiment.log_metric("episode_difficulty", status["difficulty"], step=frame_idx)
+                    experiment.log_metric("episode_finished", len(self.episode_success))
                     experiment.log_metric("episode_length", episode_length, step=frame_idx)
 
                     episode_length_list.append(episode_length)
@@ -122,14 +123,13 @@ class DQNAlgo_new(ABC):
                               "| Length of Episode:", np.mean(episode_length_list[-100:]))
                         status["num_frames"] = frame_idx
 
-                        # Curriculum learning
-                        if np.mean(self.episode_success[-100:]) >= self.curriculum_threshold:
-                            print("empirical_win_rate: " + str(np.mean(self.episode_success[-100:])))
-                            print("Increasing Difficulty by 1!")
-                            status["difficulty"] += 1
-                            self.env.set_difficulty(status["difficulty"])
-                            print("New Difficulty:", status["difficulty"])
-
+                        # # Curriculum learning
+                        # if np.mean(self.episode_success[-100:]) >= self.curriculum_threshold:
+                        #     print("empirical_win_rate: " + str(np.mean(self.episode_success[-100:])))
+                        #     print("Increasing Difficulty by 1!")
+                        #     status["difficulty"] += 1
+                        #     self.env.set_difficulty(status["difficulty"])
+                        #     print("New Difficulty:", status["difficulty"])
                     if len(self.all_rewards) % self.save_interval == 0 and len(self.all_rewards) > 0:
                         # Save losses and rewards.
                         with open(model_dir+'/losses.csv', 'w') as writeFile:
