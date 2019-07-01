@@ -64,6 +64,3 @@ fig.suptitle('Q-Value difference', fontsize=20)
 plt.xlabel('trajectories (x100)', fontsize=16)
 plt.ylabel('Loss', fontsize=16)
 fig.savefig(model_dir+'/plots/losses.jpg')
-
-# orig_obs_file = "orig_obs.npy"
-# orig_obs = np.load(dir+orig_obs_file)
