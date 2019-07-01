@@ -20,7 +20,7 @@ experiment.log_parameters(hyper_params)
 class DQNAlgo_new(ABC):
     """The class for the DQN"""
 
-    def __init__(self, env, base_model, num_frames, discount=0.5, lr=0.0001, adam_eps=1e-5,
+    def __init__(self, env, base_model, num_frames, discount=0.99, lr=0.001, adam_eps=1e-4,
                  batch_size=256, preprocess_obss=None, capacity=10000, log_interval=100,
                  save_interval=1000, train_interval=500, record_qvals=False):
 
@@ -50,7 +50,7 @@ class DQNAlgo_new(ABC):
 
         epsilon_start = 1.0
         epsilon_final = 0.01
-        epsilon_decay = 20000
+        epsilon_decay = 5000
         self.epsilon_by_frame = lambda frame_idx: epsilon_final + (epsilon_start - epsilon_final) \
                                              * math.exp(-1. * frame_idx / epsilon_decay)
 
@@ -72,6 +72,7 @@ class DQNAlgo_new(ABC):
 
                 preprocessed_obs = self.preprocess_obss([self.obs], device=self.device)
                 epsilon = self.epsilon_by_frame(frame_idx)
+                experiment.log_metric("epsilon", epsilon, step=frame_idx)
 
                 action = self.base_model.act(preprocessed_obs, epsilon)
                 next_state, reward, done, _ = self.env.step(action)
@@ -89,8 +90,10 @@ class DQNAlgo_new(ABC):
 
                     if self.record_qvals:
                         with torch.no_grad():
-                            self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)).cpu().numpy())
-
+                            qvals = self.base_model(self.preprocess_obss([orig_obs], device=self.device)).cpu().numpy()
+                            self.qvals.append(qvals)
+                            qval_dict = {"BIG_LEFT": qvals[0][0], "SMALL_LEFT": qvals[0][1], "FORWARD": qvals[0][2], "SMALL_RIGHT": qvals[0][3], "BIG_RIGHT": qvals[0][4], }
+                            experiment.log_metrics(qval_dict, step=frame_idx)
                 if done:
                     success = 0.0
                     if reward == 2.0:
@@ -98,7 +101,7 @@ class DQNAlgo_new(ABC):
                     self.episode_success.append(success)
 
                     experiment.log_metric("episode_success", success, step=frame_idx)
-                    experiment.log_metric("episode_difficulty", status["difficulty"], step=frame_idx)
+                    # experiment.log_metric("episode_difficulty", status["difficulty"], step=frame_idx)
                     experiment.log_metric("episode_length", episode_length, step=frame_idx)
 
                     episode_length_list.append(episode_length)
