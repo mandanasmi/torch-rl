@@ -20,12 +20,13 @@ experiment.log_parameters(hyper_params)
 class DQNAlgo_new(ABC):
     """The class for the DQN"""
 
-    def __init__(self, env, base_model, num_frames, discount=0.99, lr=0.00001, adam_eps=1e-4,
-                 batch_size=128, preprocess_obss=None, capacity=10000, log_interval=1,
-                 save_interval=10, train_interval=500, record_qvals=False):
+    def __init__(self, env, base_model, target_net, num_frames, discount=0.99, lr=0.001, adam_eps=1e-8,
+                 batch_size=128, preprocess_obss=None, capacity=10000, log_interval=100,
+                 save_interval=1000, train_interval=500, record_qvals=False, target_update=10):
 
         self.env = env
         self.base_model = base_model
+        self.target_model = target_net
         self.base_model.train()
         self.discount = discount
         self.optimizer = torch.optim.Adam(self.base_model.parameters(), lr, eps=adam_eps)
@@ -42,6 +43,7 @@ class DQNAlgo_new(ABC):
         self.log_interval = log_interval
         self.save_interval = save_interval
         self.train_interval = train_interval
+        self.target_update = target_update
 
         self.curriculum_threshold = 0.5
 
@@ -50,7 +52,7 @@ class DQNAlgo_new(ABC):
 
         epsilon_start = 1.0
         epsilon_final = 0.01
-        epsilon_decay = 5000
+        epsilon_decay = 20000
         self.epsilon_by_frame = lambda frame_idx: epsilon_final + (epsilon_start - epsilon_final) \
                                              * math.exp(-1. * frame_idx / epsilon_decay)
 
@@ -113,6 +115,9 @@ class DQNAlgo_new(ABC):
                     experiment.log_metric("episode_reward", episode_reward, step=frame_idx)
                     episode_reward = 0
 
+                    if len(self.all_rewards)%self.target_update == 0:
+                        self.target_model.load_state_dict(self.base_model.state_dict())
+
                     if len(self.all_rewards) % self.log_interval == 0 and len(self.all_rewards) > 0:
                         print("Number of Trajectories:", len(self.all_rewards),
                               "| Number of Frames:", frame_idx,
@@ -172,7 +177,7 @@ class DQNAlgo_new(ABC):
         done = torch.FloatTensor(done).to(device=self.device)
 
         q_values = self.base_model(obs)
-        next_q_values = self.base_model(next_obs).detach()
+        next_q_values = self.target_model(next_obs).detach()
 
         q_value = q_values.gather(1, action.unsqueeze(1)).squeeze(1)
         next_q_value = next_q_values.max(1)[0]

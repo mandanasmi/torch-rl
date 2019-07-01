@@ -113,7 +113,7 @@ class ACModel(nn.Module, torch_rl.RecurrentACModel):
 
 
 class DQNModel(nn.Module, torch_rl.RecurrentACModel):
-    def __init__(self, action_space, use_goal=True, use_gps=True, use_visible_text=True, env='Minigrid'):
+    def __init__(self, action_space, use_goal=False, use_gps=True, use_visible_text=True, env='Minigrid'):
         super().__init__()
 
         self.num_actions = action_space.n
@@ -124,7 +124,7 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
         self.env = env
 
         if re.match("Hyrule-.*", self.env):
-            self.image_embedding_size = 256  # Obtained by calculating output on below conv with input 84x84x3
+            self.image_embedding_size = 128  # Obtained by calculating output on below conv with input 84x84x3
         else:
             self.image_embedding_size = 75
 
@@ -132,16 +132,16 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
             nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=2),
             nn.BatchNorm2d(32),
             nn.ReLU(),
-            nn.Conv2d(in_channels=32, out_channels=64, kernel_size=5, stride=2),
-            nn.BatchNorm2d(64),
+            nn.Conv2d(in_channels=32, out_channels=32, kernel_size=5, stride=2),
+            nn.BatchNorm2d(32),
             nn.ReLU(),
-            nn.Conv2d(in_channels=64, out_channels=16, kernel_size=5, stride=1),
+            nn.Conv2d(in_channels=32, out_channels=16, kernel_size=5, stride=2),
             nn.BatchNorm2d(16),
             nn.ReLU()
         )
 
         self.post_conv_net = nn.Sequential(
-            nn.Linear(3600, 256),
+            nn.Linear(1024, self.image_embedding_size),
             nn.ReLU()
         )
 
@@ -178,11 +178,9 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
         # Define actor's model
         if isinstance(action_space, gym.spaces.Discrete):
             self.net = nn.Sequential(
-                nn.Linear(self.embedding_size, 64),
-                nn.Tanh(),
-                nn.Linear(64, 64),
-                nn.Tanh(),
-                nn.Linear(64, self.num_actions)
+                nn.Linear(self.embedding_size, 128),
+                nn.ReLU(),
+                nn.Linear(128, self.num_actions)
             )
         else:
             raise ValueError("Unknown action space: " + str(action_space))

@@ -84,18 +84,25 @@ obs_space, preprocess_obss = utils.get_obss_preprocessor(args.env, env.observati
 
 # Load model
 try:
-    base_model = utils.load_model(model_dir)
+    policy_net = utils.load_model(model_dir)
+    target_net = DQNModel(env.action_space, env=args.env)
+    target_net.load_state_dict(policy_net.state_dict())
+    target_net.eval()
     print("Model successfully loaded\n")
 except OSError:
-    base_model = DQNModel(env.action_space, env=args.env)
+    policy_net = DQNModel(env.action_space, env=args.env)
+    target_net = DQNModel(env.action_space, env=args.env)
+    target_net.load_state_dict(policy_net.state_dict())
+    target_net.eval()
     print("Model successfully created\n")
 
 if torch.cuda.is_available():
-    base_model.cuda()
+    policy_net.cuda()
+    target_net.cuda()
 print("CUDA available: {}\n".format(torch.cuda.is_available()))
 
 # Init Algorithm
-algo = torch_rl.DQNAlgo_new(env, base_model, args.frames, args.discount, args.lr, args.optim_eps, args.batch_size,
+algo = torch_rl.DQNAlgo_new(env, policy_net, target_net, args.frames, args.discount, args.lr, args.optim_eps, args.batch_size,
                             preprocess_obss, record_qvals=args.debug)
 
 # Train Algoritm
