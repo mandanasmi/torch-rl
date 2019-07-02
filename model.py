@@ -127,7 +127,7 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
 
         if self.use_image:
             if re.match("Hyrule-.*", self.env):
-                self.image_embedding_size = 128  # Obtained by calculating output on below conv with input 84x84x3
+                self.image_embedding_size = 128
             else:
                 self.image_embedding_size = 75
             self.embedding_size = self.image_embedding_size
@@ -170,9 +170,11 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
                 self.embedding_size += street_embedding*2
 
         if self.use_gps:
-            rel_gps_embedding = 8
+            rel_gps_embedding = 128
             self.gps_net = nn.Sequential(
-                nn.Linear(2, rel_gps_embedding),
+                nn.Linear(2, 64),
+                nn.LeakyReLU(),
+                nn.Linear(64, rel_gps_embedding),
                 nn.LeakyReLU(),
             )
             self.embedding_size += rel_gps_embedding
