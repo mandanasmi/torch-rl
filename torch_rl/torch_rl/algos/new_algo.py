@@ -20,7 +20,7 @@ experiment.log_parameters(hyper_params)
 class DQNAlgo_new(ABC):
     """The class for the DQN"""
 
-    def __init__(self, env, base_model, target_net, num_frames, discount=0.99, lr=0.02, adam_eps=1e-8,
+    def __init__(self, env, base_model, target_net, num_frames, discount=0.99, lr=0.005, adam_eps=1e-8,
                  batch_size=128, preprocess_obss=None, capacity=10000, log_interval=100,
                  save_interval=1000, train_interval=500, record_qvals=False, target_update=10):
 
@@ -52,7 +52,7 @@ class DQNAlgo_new(ABC):
 
         epsilon_start = 1.0
         epsilon_final = 0.01
-        epsilon_decay = 20000
+        epsilon_decay = 100000
         self.epsilon_by_frame = lambda frame_idx: epsilon_final + (epsilon_start - epsilon_final) \
                                              * math.exp(-1. * frame_idx / epsilon_decay)
 
