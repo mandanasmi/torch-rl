@@ -180,14 +180,17 @@ class DQNAlgo_new(ABC):
 
 
     def process_embeddings(self):
-        img_means = [img.mean().item() for img in self.base_model.embed_imgs]
-        img_medians = [img.median().item() for img in self.base_model.embed_imgs]
-        gps_means = [gps.mean().item() for gps in self.base_model.embed_gps]
-        gps_medians = [gps.median().item() for gps in self.base_model.embed_gps]
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
-        ax.plot(img_means, label="img_means")
-        ax.plot(img_medians, label="img_medians")
+
+        if self.base_model.embed_imgs:
+            img_means = [img.mean().item() for img in self.base_model.embed_imgs]
+            img_medians = [img.median().item() for img in self.base_model.embed_imgs]
+            ax.plot(img_means, label="img_means")
+            ax.plot(img_medians, label="img_medians")
+
+        gps_means = [gps.mean().item() for gps in self.base_model.embed_gps]
+        gps_medians = [gps.median().item() for gps in self.base_model.embed_gps]
         ax.plot(gps_means, label="gps_means")
         ax.plot(gps_medians, label="gps_medians")
         plt.legend()

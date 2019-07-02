@@ -113,7 +113,7 @@ class ACModel(nn.Module, torch_rl.RecurrentACModel):
 
 
 class DQNModel(nn.Module, torch_rl.RecurrentACModel):
-    def __init__(self, action_space, use_goal=False, use_gps=True, use_visible_text=True, use_image=True, env='Minigrid'):
+    def __init__(self, action_space, use_goal=False, use_gps=True, use_visible_text=True, use_image=False, env='Minigrid'):
         super().__init__()
 
         self.num_actions = action_space.n
@@ -204,7 +204,7 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
                 x = self.post_conv_net(x)
             else:
                 x = x.reshape(x.shape[0], -1)
-            self.embed_imgs.append(x)
+            self.embed_imgs.append(x.cpu().detach())
 
         if self.use_goal:
             embed_house = self.house_net(obs.goal["house_numbers"])
@@ -222,9 +222,11 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
 
         if self.use_gps:
             embed_gps = self.gps_net(obs.rel_gps)
-            self.embed_gps.append(embed_gps)
-            x = torch.cat((x, embed_gps), dim=1)
-
+            self.embed_gps.append(embed_gps.cpu().detach())
+            if self.use_image:
+                x = torch.cat((x, embed_gps), dim=1)
+            else:
+                x = embed_gps
         return self.net(x)
 
     def act(self, obs, epsilon):
