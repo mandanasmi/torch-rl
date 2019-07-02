@@ -176,10 +176,10 @@ class DQNAlgo_new(ABC):
                                 obs = self.preprocess_obss([obs], device=self.device)
                                 self.base_model.act(obs, 0)
                                 obs, reward, done, _ = self.env.step(action)
-                            self.process_embeddings()
+                            self.process_embeddings(model_dir)
 
 
-    def process_embeddings(self):
+    def process_embeddings(self, model_dir):
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 
@@ -194,7 +194,9 @@ class DQNAlgo_new(ABC):
         ax.plot(gps_means, label="gps_means")
         ax.plot(gps_medians, label="gps_medians")
         plt.legend()
-        plt.savefig("storage/figs/embedding_means_" + str(len(self.episode_success)))
+        if not os.path.isdir(model_dir + "/figs"):
+            os.mkdir(model_dir + "/figs")
+        plt.savefig(model_dir + "/figs/embedding_means_" + str(len(self.episode_success)))
         plt.close()
 
     def compute_td_loss(self):
