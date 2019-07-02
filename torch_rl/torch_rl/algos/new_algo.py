@@ -20,7 +20,7 @@ experiment.log_parameters(hyper_params)
 class DQNAlgo_new(ABC):
     """The class for the DQN"""
 
-    def __init__(self, env, base_model, target_net, num_frames, discount=0.99, lr=0.001, adam_eps=1e-8,
+    def __init__(self, env, base_model, target_net, num_frames, discount=0.99, lr=0.02, adam_eps=1e-8,
                  batch_size=128, preprocess_obss=None, capacity=10000, log_interval=100,
                  save_interval=1000, train_interval=500, record_qvals=False, target_update=10):
 
@@ -29,7 +29,7 @@ class DQNAlgo_new(ABC):
         self.target_model = target_net
         self.base_model.train()
         self.discount = discount
-        self.optimizer = torch.optim.Adam(self.base_model.parameters(), lr, eps=adam_eps)
+        self.optimizer = torch.optim.SGD(self.base_model.parameters(), lr) #, eps=adam_eps)
         self.batch_size = batch_size
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.num_frames = num_frames

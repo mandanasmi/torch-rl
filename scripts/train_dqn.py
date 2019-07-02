@@ -93,12 +93,12 @@ except OSError:
     policy_net = DQNModel(env.action_space, env=args.env)
     target_net = DQNModel(env.action_space, env=args.env)
     target_net.load_state_dict(policy_net.state_dict())
-    target_net.eval()
     print("Model successfully created\n")
 
 if torch.cuda.is_available():
     policy_net.cuda()
     target_net.cuda()
+    target_net.eval()
 print("CUDA available: {}\n".format(torch.cuda.is_available()))
 
 # Init Algorithm
