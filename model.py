@@ -124,6 +124,8 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
         self.use_image = use_image
         self.use_visible_text = use_visible_text
         self.env = env
+        self.embed_imgs = []
+        self.embed_gps = []
 
         if self.use_image:
             if re.match("Hyrule-.*", self.env):
@@ -200,6 +202,7 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
                 x = self.post_conv_net(x)
             else:
                 x = x.reshape(x.shape[0], -1)
+            self.embed_imgs.append(x)
 
         if self.use_goal:
             embed_house = self.house_net(obs.goal["house_numbers"])
@@ -217,6 +220,7 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
 
         if self.use_gps:
             embed_gps = self.gps_net(obs.rel_gps)
+            self.embed_gps.append(embed_gps)
             x = torch.cat((x, embed_gps), dim=1)
 
         return self.net(x)

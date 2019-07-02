@@ -5,6 +5,7 @@ from torch_rl.format import default_preprocess_obss
 from abc import ABC
 from collections import deque
 import random
+from matplotlib import pyplot as plt
 import math
 import json, os, csv
 import torch.nn.functional as F
@@ -69,9 +70,9 @@ class DQNAlgo_new(ABC):
             np.save(model_dir+"/orig_obs.npy", orig_obs)
             self.qvals.append(self.base_model(self.preprocess_obss([orig_obs], device=self.device)))
 
-        with experiment.train():
 
-            for frame_idx in range(num_frames, self.num_frames):
+        for frame_idx in range(num_frames, self.num_frames):
+            with experiment.train():
 
                 preprocessed_obs = self.preprocess_obss([self.obs], device=self.device)
                 epsilon = self.epsilon_by_frame(frame_idx)
@@ -102,7 +103,6 @@ class DQNAlgo_new(ABC):
                     if reward == 2.0:
                         success = 1.0
                     self.episode_success.append(success)
-
                     experiment.log_metric("episode_success_rate", np.sum(self.episode_success)/len(self.episode_success))
                     experiment.log_metric("num_episodes_finished", len(self.episode_success))
                     experiment.log_metric("episode_length", episode_length, step=frame_idx)
@@ -115,7 +115,7 @@ class DQNAlgo_new(ABC):
                     experiment.log_metric("episode_reward", episode_reward, step=frame_idx)
                     episode_reward = 0
 
-                    if len(self.all_rewards)%self.target_update == 0:
+                    if len(self.all_rewards) % self.target_update == 0:
                         self.target_model.load_state_dict(self.base_model.state_dict())
 
                     if len(self.all_rewards) % self.log_interval == 0 and len(self.all_rewards) > 0:
@@ -165,6 +165,34 @@ class DQNAlgo_new(ABC):
                             with open(model_dir + '/q_vals.csv', 'w') as writeFile:
                                 writer = csv.writer(writeFile)
                                 writer.writerow(self.qvals)
+
+                    if len(self.all_rewards) % self.target_update == 0:
+                        self.base_model.embed_imgs = []
+                        self.base_model.embed_gps = []
+                        with experiment.test():
+                            obs = self.env.reset()
+                            spl = self.env.shortest_path_length()
+                            for action in spl:
+                                obs = self.preprocess_obss([obs], device=self.device)
+                                self.base_model.act(obs, 0)
+                                obs, reward, done, _ = self.env.step(action)
+                            self.process_embeddings()
+
+
+    def process_embeddings(self):
+        img_means = [img.mean().item() for img in self.base_model.embed_imgs]
+        img_medians = [img.median().item() for img in self.base_model.embed_imgs]
+        gps_means = [gps.mean().item() for gps in self.base_model.embed_gps]
+        gps_medians = [gps.median().item() for gps in self.base_model.embed_gps]
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+        ax.plot(img_means, label="img_means")
+        ax.plot(img_medians, label="img_medians")
+        ax.plot(gps_means, label="gps_means")
+        ax.plot(gps_medians, label="gps_medians")
+        plt.legend()
+        plt.savefig("storage/figs/embedding_means_" + str(len(self.episode_success)))
+        plt.close()
 
     def compute_td_loss(self):
 
