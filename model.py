@@ -147,7 +147,9 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
             )
 
             self.post_conv_net = nn.Sequential(
-                nn.Linear(1024, self.image_embedding_size),
+                nn.Linear(1024, 512),
+                nn.ReLU(),
+                nn.Linear(512, self.image_embedding_size),
                 nn.ReLU()
             )
 
@@ -175,9 +177,9 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
             rel_gps_embedding = 128
             self.gps_net = nn.Sequential(
                 nn.Linear(2, 64),
-                nn.LeakyReLU(),
+                nn.ReLU(),
                 nn.Linear(64, rel_gps_embedding),
-                nn.LeakyReLU(),
+                nn.ReLU(),
             )
             self.embedding_size += rel_gps_embedding
 
