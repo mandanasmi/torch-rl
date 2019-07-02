@@ -100,7 +100,7 @@ class DQNAlgo_new(ABC):
                             experiment.log_metrics(qval_dict, step=frame_idx)
                 if done:
                     success = 0.0
-                    if reward == 2.0:
+                    if reward >= 2.0:
                         success = 1.0
                     self.episode_success.append(success)
                     experiment.log_metric("episode_success_rate", np.sum(self.episode_success)/len(self.episode_success))

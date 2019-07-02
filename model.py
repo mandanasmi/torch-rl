@@ -176,7 +176,7 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
         if self.use_gps:
             rel_gps_embedding = 128
             self.gps_net = nn.Sequential(
-                nn.Linear(2, 64),
+                nn.Linear(4, 64),
                 nn.ReLU(),
                 nn.Linear(64, rel_gps_embedding),
                 nn.ReLU(),
