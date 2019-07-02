@@ -103,8 +103,8 @@ class DQNAlgo_new(ABC):
                         success = 1.0
                     self.episode_success.append(success)
 
-                    experiment.log_metric("episode_success", success, step=frame_idx)
-                    experiment.log_metric("episode_finished", len(self.episode_success))
+                    experiment.log_metric("episode_success_rate", np.sum(self.episode_success)/len(self.episode_success))
+                    experiment.log_metric("num_episodes_finished", len(self.episode_success))
                     experiment.log_metric("episode_length", episode_length, step=frame_idx)
 
                     episode_length_list.append(episode_length)

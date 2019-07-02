@@ -113,39 +113,41 @@ class ACModel(nn.Module, torch_rl.RecurrentACModel):
 
 
 class DQNModel(nn.Module, torch_rl.RecurrentACModel):
-    def __init__(self, action_space, use_goal=False, use_gps=True, use_visible_text=True, env='Minigrid'):
+    def __init__(self, action_space, use_goal=False, use_gps=True, use_visible_text=True, use_image=True, env='Minigrid'):
         super().__init__()
 
         self.num_actions = action_space.n
+        self.embedding_size = 0
         # Decide which components are enabled
         self.use_goal = use_goal
         self.use_gps = use_gps
+        self.use_image = use_image
         self.use_visible_text = use_visible_text
         self.env = env
 
-        if re.match("Hyrule-.*", self.env):
-            self.image_embedding_size = 128  # Obtained by calculating output on below conv with input 84x84x3
-        else:
-            self.image_embedding_size = 75
+        if self.use_image:
+            if re.match("Hyrule-.*", self.env):
+                self.image_embedding_size = 128  # Obtained by calculating output on below conv with input 84x84x3
+            else:
+                self.image_embedding_size = 75
+            self.embedding_size = self.image_embedding_size
 
-        self.image_conv = nn.Sequential(
-            nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=2),
-            nn.BatchNorm2d(32),
-            nn.ReLU(),
-            nn.Conv2d(in_channels=32, out_channels=32, kernel_size=5, stride=2),
-            nn.BatchNorm2d(32),
-            nn.ReLU(),
-            nn.Conv2d(in_channels=32, out_channels=16, kernel_size=5, stride=2),
-            nn.BatchNorm2d(16),
-            nn.ReLU()
-        )
+            self.image_conv = nn.Sequential(
+                nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=2),
+                nn.BatchNorm2d(32),
+                nn.ReLU(),
+                nn.Conv2d(in_channels=32, out_channels=32, kernel_size=5, stride=2),
+                nn.BatchNorm2d(32),
+                nn.ReLU(),
+                nn.Conv2d(in_channels=32, out_channels=16, kernel_size=5, stride=2),
+                nn.BatchNorm2d(16),
+                nn.ReLU()
+            )
 
-        self.post_conv_net = nn.Sequential(
-            nn.Linear(1024, self.image_embedding_size),
-            nn.ReLU()
-        )
-
-        self.embedding_size = self.image_embedding_size
+            self.post_conv_net = nn.Sequential(
+                nn.Linear(1024, self.image_embedding_size),
+                nn.ReLU()
+            )
 
         # Define goal usages
         if self.use_goal:
@@ -189,13 +191,15 @@ class DQNModel(nn.Module, torch_rl.RecurrentACModel):
         self.apply(initialize_parameters)
 
     def forward(self, obs):
-        x = obs.image
-        if re.match("Hyrule-.*", self.env):
-            x = self.image_conv(x)
-            x = x.reshape(x.shape[0], -1)
-            x = self.post_conv_net(x)
-        else:
-            x = x.reshape(x.shape[0], -1)
+        x = torch.tensor([])
+        if self.use_image:
+            x = obs.image
+            if re.match("Hyrule-.*", self.env):
+                x = self.image_conv(x)
+                x = x.reshape(x.shape[0], -1)
+                x = self.post_conv_net(x)
+            else:
+                x = x.reshape(x.shape[0], -1)
 
         if self.use_goal:
             embed_house = self.house_net(obs.goal["house_numbers"])
