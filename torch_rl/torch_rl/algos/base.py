@@ -74,8 +74,7 @@ class BaseAlgo(ABC):
         # Initialize experience values
 
         shape = (self.num_frames_per_proc, self.num_procs)
-
-        self.obs = [x['observation'] for x in self.env.reset()]
+        self.obs = [x for x in self.env.reset()]
         self.obss = [None]*(shape[0])
         if self.base_model.recurrent:
             self.memory = torch.zeros(shape[1], self.base_model.memory_size, device=self.device)
@@ -84,6 +83,7 @@ class BaseAlgo(ABC):
         self.masks = torch.zeros(*shape, device=self.device)
         self.actions = torch.zeros(*shape, device=self.device, dtype=torch.int)
         self.values = torch.zeros(*shape, device=self.device)
+        self.termination_preds = torch.zeros(*shape, device=self.device)
         self.rewards = torch.zeros(*shape, device=self.device)
         self.advantages = torch.zeros(*shape, device=self.device)
         self.log_probs = torch.zeros(*shape, device=self.device)
@@ -129,11 +129,11 @@ class BaseAlgo(ABC):
             preprocessed_obs = self.preprocess_obss(self.obs, device=self.device)
             with torch.no_grad():
                 if self.base_model.recurrent:
-                    dist, value, memory = self.base_model(preprocessed_obs, self.memory * self.mask.unsqueeze(1))
+                    dist, value, memory, tp = self.base_model(preprocessed_obs, self.memory * self.mask.unsqueeze(1))
                 else:
                     dist, value = self.base_model(preprocessed_obs)
             action = dist.sample()
-
+            import pdb; pdb.set_trace()
             obs, reward, done, _ = self.env.step(action.cpu().numpy())
 
             # Update experiences values
@@ -147,6 +147,7 @@ class BaseAlgo(ABC):
             self.mask = 1 - torch.tensor(done, device=self.device, dtype=torch.float)
             self.actions[i] = action
             self.values[i] = value
+            self.termination_preds[i] = tp
             if self.reshape_reward is not None:
                 self.rewards[i] = torch.tensor([
                     self.reshape_reward(obs_, action_, reward_, done_)
@@ -178,7 +179,7 @@ class BaseAlgo(ABC):
         preprocessed_obs = self.preprocess_obss(self.obs, device=self.device)
         with torch.no_grad():
             if self.base_model.recurrent:
-                _, next_value, _ = self.base_model(preprocessed_obs, self.memory * self.mask.unsqueeze(1))
+                _, next_value, _, _ = self.base_model(preprocessed_obs, self.memory * self.mask.unsqueeze(1))
             else:
                 _, next_value = self.base_model(preprocessed_obs)
 
@@ -214,11 +215,8 @@ class BaseAlgo(ABC):
         exps.advantage = self.advantages.transpose(0, 1).reshape(-1)
         exps.returnn = exps.value + exps.advantage
         exps.log_prob = self.log_probs.transpose(0, 1).reshape(-1)
-
-        # Preprocess experiences
-
         exps.obs = self.preprocess_obss(exps.obs, device=self.device)
-
+        exps.tp = self.termination_preds.transpose(0, 1).reshape(-1)  # Preprocess experiences
         # Log some values
 
         keep = max(self.log_done_counter, self.num_procs)

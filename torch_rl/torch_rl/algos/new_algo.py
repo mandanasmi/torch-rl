@@ -1,6 +1,6 @@
 import numpy as np
-from comet_ml import Experiment
 import torch
+
 from torch_rl.format import default_preprocess_obss
 from abc import ABC
 from collections import deque
@@ -14,8 +14,8 @@ hyper_params = {
     "learning_rate": 0.01
 }
 
-experiment = Experiment("UcVgpp0wPaprHG4w8MFVMgq7j", project_name="navi-corl-2019")
-experiment.log_parameters(hyper_params)
+# experiment = Experiment("UcVgpp0wPaprHG4w8MFVMgq7j", project_name="navi-corl-2019")
+# experiment.log_parameters(hyper_params)
 
 
 class DQNAlgo_new(ABC):

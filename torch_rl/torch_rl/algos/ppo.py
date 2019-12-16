@@ -60,9 +60,8 @@ class PPOAlgo(BaseAlgo):
                     sb = exps[inds + i]
 
                     # Compute loss
-
                     if self.base_model.recurrent:
-                        dist, value, memory = self.base_model(sb.obs, memory * sb.mask)
+                        dist, value, memory, tp = self.base_model(sb.obs, memory * sb.mask)
                     else:
                         dist, value = self.base_model(sb.obs)
 
@@ -77,6 +76,11 @@ class PPOAlgo(BaseAlgo):
                     surr1 = (value - sb.returnn).pow(2)
                     surr2 = (value_clipped - sb.returnn).pow(2)
                     value_loss = torch.max(surr1, surr2).mean()
+
+
+                    # termination prediction loss
+                    import pdb;
+                    pdb.set_trace()
 
                     loss = policy_loss - self.entropy_coef * entropy + self.value_loss_coef * value_loss
 

@@ -204,8 +204,8 @@ while num_frames < args.frames:
         # Curriculum Learning
         win_rate_threshold = 0.95
         empirical_win_rate = sum(np.array(logs["return_per_episode"]) != 0) / len(logs["return_per_episode"])
-        print('sum(np.array(logs["return_per_episode"]) != 0): ' + str(sum(np.array(logs["return_per_episode"]) != 0)))
-        print('len(logs["return_per_episode"]):  ' + str(len(logs["return_per_episode"])))
+        # print('sum(np.array(logs["return_per_episode"]) != 0): ' + str(sum(np.array(logs["return_per_episode"]) != 0)))
+        # print('len(logs["return_per_episode"]):  ' + str(len(logs["return_per_episode"])))
         print("empirical_win_rate: " + str(empirical_win_rate))
         if empirical_win_rate >= win_rate_threshold:
             print("Average return reward for current task is higher than" + str(win_rate_threshold) + " now, increase difficulty by 1!\n")

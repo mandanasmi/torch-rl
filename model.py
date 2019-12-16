@@ -71,6 +71,12 @@ class ACModel(nn.Module, torch_rl.RecurrentACModel):
             nn.Linear(64, 1)
         )
 
+        self.tp_head = nn.Sequential(
+            nn.Linear(self.embedding_size, 64),
+            nn.Tanh(),
+            nn.Linear(64, 1)
+        )
+
         # Initialize parameters correctly
         self.apply(initialize_parameters)
 
@@ -98,14 +104,13 @@ class ACModel(nn.Module, torch_rl.RecurrentACModel):
         if self.use_text:
             embed_text = self._get_embed_text(obs.text)
             embedding = torch.cat((embedding, embed_text), dim=1)
-
         x = self.actor(embedding)
         dist = Categorical(logits=F.log_softmax(x, dim=1))
 
         x = self.critic(embedding)
         value = x.squeeze(1)
-
-        return dist, value, memory
+        tp = self.tp_head(embedding).squeeze(1)
+        return dist, value, memory, tp
 
     def _get_embed_text(self, text):
         _, hidden = self.text_rnn(self.word_embedding(text))
